@@ -31,6 +31,6 @@
         android:id="@+id/close_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Hey! There is more..." />
+        android:text="Close" />
 
 </LinearLayout>

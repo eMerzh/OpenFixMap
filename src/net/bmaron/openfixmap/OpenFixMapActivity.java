@@ -83,15 +83,13 @@ public class OpenFixMapActivity extends Activity {
 		        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 		        
 		        logger.info("Hello 1 "+item.mDescription);
-		        
-		        //showDialog(DIALOG_ERROR_ID);
 		        dialog = new Dialog(OpenFixMapActivity.this);
 
 	            dialog.setContentView(R.layout.errordetail_dialog);
-	            dialog.setTitle("Custom Dialog");
+	            dialog.setTitle(item.getTitle());
 
 	            TextView text = (TextView) dialog.findViewById(R.id.text);
-	            text.setText("Hello, this is a custom dialog!");
+	            text.setText(item.mDescription);
 	            ImageView image = (ImageView) dialog.findViewById(R.id.image);
 	            image.setImageResource(R.drawable.robot);
 	            Button button = (Button) dialog.findViewById(R.id.close_button);
@@ -100,7 +98,6 @@ public class OpenFixMapActivity extends Activity {
 
 	            	@Override
 	            	public void onClick(View v) {
-	            		//removeDialog(DIALOG_ERROR_ID);
 	            		myItemGestureListener.this.dialog.cancel();
 	            	}
 	            });
@@ -144,6 +141,7 @@ public class OpenFixMapActivity extends Activity {
         	logger.info("array is"+Arrays.toString(list.get(i)));
         	if(list.get(i).length < 12) continue;
         	logger.info("Hello "+list.get(i)[0]+" World "+list.get(i)[1]);
+        	
         	GeoPoint point = new GeoPoint(Double.parseDouble(list.get(i)[0]), Double.parseDouble(list.get(i)[1]));
             OverlayItem myItem = new OverlayItem(list.get(i)[2],list.get(i)[10],point);
             pList.add(myItem);
@@ -155,35 +153,6 @@ public class OpenFixMapActivity extends Activity {
         
         logger.info("Hello World"+ this.mapView.getOverlays().size());
         
-    }
-    
-    protected Dialog onCreateDialog(int id) {
-        Dialog dialog;
-        switch(id) {
-        case DIALOG_ERROR_ID:
-            dialog = new Dialog(this);
-
-            dialog.setContentView(R.layout.errordetail_dialog);
-            dialog.setTitle("Custom Dialog");
-
-            TextView text = (TextView) dialog.findViewById(R.id.text);
-            text.setText("Hello, this is a custom dialog!");
-            ImageView image = (ImageView) dialog.findViewById(R.id.image);
-            image.setImageResource(R.drawable.robot);
-            Button button = (Button) dialog.findViewById(R.id.close_button);
-            
-            button.setOnClickListener(new OnClickListener() {
-
-            	@Override
-            	public void onClick(View v) {
-            		removeDialog(DIALOG_ERROR_ID);
-            	}
-            });
-            break;
-        default:
-            dialog = null;
-        }
-        return dialog;
     }
 
 }
