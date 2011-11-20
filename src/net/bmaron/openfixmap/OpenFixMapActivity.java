@@ -77,30 +77,14 @@ public class OpenFixMapActivity extends Activity {
 
         
     	class myItemGestureListener<T extends OverlayItem> implements OnItemGestureListener<T> {
-       	 		protected Dialog dialog;
+       	 		protected ProblemDialog dialog;
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
 		        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 		        
 		        logger.info("Hello 1 "+item.mDescription);
-		        dialog = new Dialog(OpenFixMapActivity.this);
+		        dialog = new ProblemDialog(OpenFixMapActivity.this, item.getTitle(), item.mDescription);
 
-	            dialog.setContentView(R.layout.errordetail_dialog);
-	            dialog.setTitle(item.getTitle());
-
-	            TextView text = (TextView) dialog.findViewById(R.id.text);
-	            text.setText(item.mDescription);
-	            ImageView image = (ImageView) dialog.findViewById(R.id.image);
-	            image.setImageResource(R.drawable.robot);
-	            Button button = (Button) dialog.findViewById(R.id.close_button);
-	            
-	            button.setOnClickListener(new OnClickListener() {
-
-	            	@Override
-	            	public void onClick(View v) {
-	            		myItemGestureListener.this.dialog.cancel();
-	            	}
-	            });
 	            dialog.show();
 		        return false;
 		    }
