@@ -2,14 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+>
 	<org.osmdroid.views.MapView
 		android:id="@+id/mapview"
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
 		android:enabled="true"
 		android:clickable="true"
+		 android:layout_weight="3"
 	/>
 
-
+    <Button
+        android:id="@+id/reload_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Reload"
+        android:layout_weight="1"
+        />
 </LinearLayout>
