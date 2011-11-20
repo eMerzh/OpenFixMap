@@ -8,11 +8,18 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
@@ -39,6 +46,8 @@ public class OpenFixMapActivity extends Activity {
     private MapController mapController;
     private SimpleLocationOverlay mMyLocationOverlay;
     private ScaleBarOverlay mScaleBarOverlay;  
+    
+    static final int DIALOG_ERROR_ID = 0;
     
     /** Called when the activity is first created. */
     @Override
@@ -68,31 +77,37 @@ public class OpenFixMapActivity extends Activity {
 
         
     	class myItemGestureListener<T extends OverlayItem> implements OnItemGestureListener<T> {
-       	 
+       	 		protected Dialog dialog;
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
 		        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 		        
 		        logger.info("Hello 1 "+item.mDescription);
 		        
-		        new AlertDialog.Builder(OpenFixMapActivity.this)
-		        .setTitle(item.getTitle())
-		        .setMessage(item.mDescription)
-		        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int which) { 
-		                // continue with delete
-		            }
-		         })
-		        /*.setNegativeButton("No", new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int which) { 
-		                // do nothing
-		            }
-		         })*/
-		         .show();
+		        //showDialog(DIALOG_ERROR_ID);
+		        dialog = new Dialog(OpenFixMapActivity.this);
 
+	            dialog.setContentView(R.layout.errordetail_dialog);
+	            dialog.setTitle("Custom Dialog");
+
+	            TextView text = (TextView) dialog.findViewById(R.id.text);
+	            text.setText("Hello, this is a custom dialog!");
+	            ImageView image = (ImageView) dialog.findViewById(R.id.image);
+	            image.setImageResource(R.drawable.robot);
+	            Button button = (Button) dialog.findViewById(R.id.close_button);
+	            
+	            button.setOnClickListener(new OnClickListener() {
+
+	            	@Override
+	            	public void onClick(View v) {
+	            		//removeDialog(DIALOG_ERROR_ID);
+	            		myItemGestureListener.this.dialog.cancel();
+	            	}
+	            });
+	            dialog.show();
 		        return false;
 		    }
-		 
+		
 	    @Override
 		    public boolean onItemLongPress(int index, T item) {
 	        	org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
@@ -139,6 +154,36 @@ public class OpenFixMapActivity extends Activity {
         this.mapView.getOverlays().add(test);
         
         logger.info("Hello World"+ this.mapView.getOverlays().size());
-
+        
     }
+    
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        switch(id) {
+        case DIALOG_ERROR_ID:
+            dialog = new Dialog(this);
+
+            dialog.setContentView(R.layout.errordetail_dialog);
+            dialog.setTitle("Custom Dialog");
+
+            TextView text = (TextView) dialog.findViewById(R.id.text);
+            text.setText("Hello, this is a custom dialog!");
+            ImageView image = (ImageView) dialog.findViewById(R.id.image);
+            image.setImageResource(R.drawable.robot);
+            Button button = (Button) dialog.findViewById(R.id.close_button);
+            
+            button.setOnClickListener(new OnClickListener() {
+
+            	@Override
+            	public void onClick(View v) {
+            		removeDialog(DIALOG_ERROR_ID);
+            	}
+            });
+            break;
+        default:
+            dialog = null;
+        }
+        return dialog;
+    }
+
 }
