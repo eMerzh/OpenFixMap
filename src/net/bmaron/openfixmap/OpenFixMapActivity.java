@@ -7,41 +7,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
-import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController.AnimationType;
 import org.osmdroid.views.MapView;
-
 import org.osmdroid.tileprovider.tilesource.CloudmadeTileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.tileprovider.util.CloudmadeUtil;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
-import org.osmdroid.views.overlay.MinimapOverlay;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.MyLocationOverlay;
-import org.osmdroid.views.util.constants.MapViewConstants;
 
 		
 public class OpenFixMapActivity extends Activity {
@@ -55,12 +35,14 @@ public class OpenFixMapActivity extends Activity {
     
     static final int DIALOG_ERROR_ID = 0;
     
-
+	private Handler mHandler;
     
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mHandler = new Handler(); 
+
         setContentView(R.layout.main);
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 
@@ -86,8 +68,12 @@ public class OpenFixMapActivity extends Activity {
 
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
             public void run() {
-            	mapController.animateTo(mMyLocationOverlay.getMyLocation());
-            	mapController.setZoom(17);
+            	/*if(mMyLocationOverlay.getMyLocation() != null)
+            	{
+            		mapController.animateTo(mMyLocationOverlay.getMyLocation());
+            		mapController.setZoom(17);
+            	}*/
+            	
             }
         });
         
@@ -96,15 +82,22 @@ public class OpenFixMapActivity extends Activity {
         
 
     	class myItemGestureListener<T extends OverlayItem> implements OnItemGestureListener<T> {
-       	 		protected ProblemDialog dialog;
+		    
+    		private T it;
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
+		    	it = item;
 		        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 		        
 		        logger.info("Hello 1 "+item.mDescription);
-		        dialog = new ProblemDialog(OpenFixMapActivity.this, item.getTitle(), item.mDescription);
-
-	            dialog.show();
+		        
+		        mHandler.post(new Runnable() {
+				    public void run() { 
+				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this, it.getTitle(), it.mDescription);
+				    	dialog.show();
+				    	}
+				  }); 
+		      
 		        return false;
 		    }
 		
@@ -157,30 +150,7 @@ public class OpenFixMapActivity extends Activity {
         logger.info("Hello World"+ this.mapView.getOverlays().size());
         
     }
-   /* 
-    @Override
-    protected void onPause() {
-        final SharedPreferences.Editor edit = mPrefs.edit();
-        edit.putBoolean(PREFS_SHOW_LOCATION, mLocationOverlay.isMyLocationEnabled());
-        edit.putBoolean(PREFS_SHOW_COMPASS, mLocationOverlay.isCompassEnabled());
-        edit.commit();
- 
-        this.mLocationOverlay.disableMyLocation();
- 
-        super.onPause();
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mPrefs.getBoolean(PREFS_SHOW_LOCATION, false)) {
-            this.mLocationOverlay.enableMyLocation();
-        }
-        if (mPrefs.getBoolean(PREFS_SHOW_COMPASS, false)) {
-            this.mLocationOverlay.enableCompass();
-        }
-    }*/
-    
+
     protected void loadMapSource(int source)
     {
     	switch(source) {
