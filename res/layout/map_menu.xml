@@ -3,7 +3,12 @@
     <item android:id="@+id/refresh"
           android:icon="@drawable/ic_menu_refresh"
           android:title="Refresh" />
+    
     <item android:id="@+id/preferences"
           android:icon="@drawable/ic_menu_preferences"
           android:title="Preferences" />
+ 
+    <item android:id="@+id/goto_location"
+          android:icon="@drawable/ic_menu_mylocation"
+          android:title="My Location" />
 </menu>

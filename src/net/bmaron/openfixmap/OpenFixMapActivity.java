@@ -64,16 +64,21 @@ public class OpenFixMapActivity extends Activity {
         this.mMyLocationOverlay = new MyLocationOverlay(this, this.mapView);                          
         this.mapView.getOverlays().add(mMyLocationOverlay);
         this.mMyLocationOverlay.enableMyLocation();
-        this.mMyLocationOverlay.enableCompass();
+        //this.mMyLocationOverlay.enableCompass();
 
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
             public void run() {
-            	/*if(mMyLocationOverlay.getMyLocation() != null)
-            	{
-            		mapController.animateTo(mMyLocationOverlay.getMyLocation());
-            		mapController.setZoom(17);
-            	}*/
-            	
+            	mHandler.post(new Runnable() {
+				    public void run() { 
+				    	if(mMyLocationOverlay.getMyLocation() != null) {
+		            		double lat = ((double)mMyLocationOverlay.getMyLocation().getLatitudeE6())/1000000;
+		            		double lon = ((double)mMyLocationOverlay.getMyLocation().getLongitudeE6())/1000000;
+		    		        GeoPoint p = new GeoPoint(lat, lon);
+		    		        mapController.animateTo(p);
+		            		mapController.setZoom(17);
+		            	}
+				    }
+            	});            	
             }
         });
         
