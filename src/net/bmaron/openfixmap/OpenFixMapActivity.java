@@ -1,9 +1,7 @@
 package net.bmaron.openfixmap;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -11,6 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.CloudmadeTileSource;
@@ -54,7 +54,7 @@ public class OpenFixMapActivity extends Activity {
         loadMapSource(2);
         
 
-        /* Set position near etterbeek */
+        /* Set position near Home :) */
         mapController = this.mapView.getController();
         mapController.setZoom(16);
         GeoPoint p = new GeoPoint(50.838599, 4.406551);
@@ -68,17 +68,7 @@ public class OpenFixMapActivity extends Activity {
 
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
             public void run() {
-            	mHandler.post(new Runnable() {
-				    public void run() { 
-				    	if(mMyLocationOverlay.getMyLocation() != null) {
-		            		double lat = ((double)mMyLocationOverlay.getMyLocation().getLatitudeE6())/1000000;
-		            		double lon = ((double)mMyLocationOverlay.getMyLocation().getLongitudeE6())/1000000;
-		    		        GeoPoint p = new GeoPoint(lat, lon);
-		    		        mapController.animateTo(p);
-		            		mapController.setZoom(17);
-		            	}
-				    }
-            	});            	
+            	goToCurrenLocation();
             }
         });
         
@@ -92,17 +82,12 @@ public class OpenFixMapActivity extends Activity {
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
 		    	it = item;
-		        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-		        
-		        logger.info("Hello 1 "+item.mDescription);
-		        
 		        mHandler.post(new Runnable() {
 				    public void run() { 
 				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this, it.getTitle(), it.mDescription);
 				    	dialog.show();
 				    	}
-				  }); 
-		      
+				}); 
 		        return false;
 		    }
 		
@@ -117,40 +102,26 @@ public class OpenFixMapActivity extends Activity {
         OnItemGestureListener<OverlayItem> pOnItemGestureListener = new myItemGestureListener<OverlayItem>();
 
 
-
-        //http://keepright.ipax.at/points.php?lat=50.831871476664&lon=4.4058486757746&zoom=15&show_ign=1&show_tmpign=1&lang=en&ch=0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413
-
-        String next[] = {};
-        List<String[]> list = new ArrayList<String[]>();
-
+        KeepRightParser parser = new KeepRightParser();
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open("points.csv")),'\t', '\0', 0);
-            for(;;) {
-                next = reader.readNext();
-                if(next != null) {
-                    list.add(next);
-                } else {
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+			parser.parseDocument(getAssets().open("points.gpx"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+    		logger.error("Io Error Parsing GPX File :" + e.getMessage());
+		}
         
-        List<OverlayItem> pList = new ArrayList<OverlayItem>();
-        for(int i=1; i<= 10; i++) {
-        	logger.info("array is"+Arrays.toString(list.get(i)));
-        	if(list.get(i).length < 12) continue;
-        	logger.info("Hello "+list.get(i)[0]+" World "+list.get(i)[1]);
-        	
-        	GeoPoint point = new GeoPoint(Double.parseDouble(list.get(i)[0]), Double.parseDouble(list.get(i)[1]));
-            OverlayItem myItem = new OverlayItem(list.get(i)[2],list.get(i)[10],point);
-            pList.add(myItem);
+        
+        List<ErrorItem> itemList = parser.getItems();
+        List<OverlayItem> poList = new ArrayList<OverlayItem>();
 
+        for(int i=1; i<= 10 && i < itemList.size(); i++) {
+        	ErrorItem item = itemList.get(i);
+            OverlayItem oItem = new OverlayItem(item.getTitle(),item.getDescription(),item.getPoint());
+            poList.add(oItem);
         }
 
-        ItemizedIconOverlay<OverlayItem> test = new ItemizedIconOverlay<OverlayItem>(this, pList, pOnItemGestureListener);
-        this.mapView.getOverlays().add(test);
+        ItemizedIconOverlay<OverlayItem> pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, poList, pOnItemGestureListener);
+        this.mapView.getOverlays().add(pointOverlay);
         
         logger.info("Hello World"+ this.mapView.getOverlays().size());
         
@@ -181,11 +152,37 @@ public class OpenFixMapActivity extends Activity {
     	}
 
     }
-    
+    protected void goToCurrenLocation()
+    {
+    	mHandler.post(new Runnable() {
+		    public void run() { 
+		    	if(mMyLocationOverlay.getMyLocation() != null) {
+            		double lat = ((double)mMyLocationOverlay.getMyLocation().getLatitudeE6())/1000000;
+            		double lon = ((double)mMyLocationOverlay.getMyLocation().getLongitudeE6())/1000000;
+    		        
+    		        GeoPoint p = new GeoPoint(lat, lon);
+    		        mapController.animateTo(p);
+            		mapController.setZoom(17);
+            	}
+		    }
+    	});       
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.layout.map_menu, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.gotolocation:
+        	goToCurrenLocation();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
