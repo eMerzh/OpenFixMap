@@ -8,7 +8,7 @@
           android:icon="@drawable/ic_menu_preferences"
           android:title="Preferences" />
  
-    <item android:id="@+id/goto_location"
+    <item android:id="@+id/gotolocation"
           android:icon="@drawable/ic_menu_mylocation"
           android:title="My Location" />
 </menu>
