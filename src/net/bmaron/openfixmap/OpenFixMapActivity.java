@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
@@ -129,7 +130,9 @@ public class OpenFixMapActivity extends Activity {
     	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
         
     	parser.parseDocument();
-        
+    	
+    	Toast toast = Toast.makeText(this, "Download Finished", Toast.LENGTH_SHORT);
+    	toast.show();
         return parser.getItems();
     }
     
@@ -143,6 +146,8 @@ public class OpenFixMapActivity extends Activity {
             OverlayItem oItem = new OverlayItem(item.getTitle(),item.getDescription(),item.getPoint());
             pointOverlay.addItem(oItem);
         }
+        mapView.invalidate();
+
     }
     
     protected void loadMapSource(int source)
