@@ -62,12 +62,13 @@ public class KeepRightParser extends DefaultHandler{
 			HttpContext localContext = new BasicHttpContext();
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 			qparams.add(new BasicNameValuePair("format", "gpx"));
+			qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
+			qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected 
 			qparams.add(new BasicNameValuePair("left", ""+ String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
 			qparams.add(new BasicNameValuePair("bottom", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
 			qparams.add(new BasicNameValuePair("right", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
 			qparams.add(new BasicNameValuePair("top", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
 			URI uri;
-
 			uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/export.php", 
 					URLEncodedUtils.format(qparams, "UTF-8") +
 				    "&ch=0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413"
