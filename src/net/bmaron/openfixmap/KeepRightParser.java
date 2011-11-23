@@ -6,16 +6,29 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIUtils;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.osmdroid.util.BoundingBoxE6;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-// http://keepright.ipax.at/export.php?format=gpx&ch=0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413,20,300,360,390&left=4.3714046044177&bottom=50.832611071166&right=4.4036984009558&top=50.839440986483
+// 
 public class KeepRightParser extends DefaultHandler{
 	
 	private List<ErrorItem> lItems;
@@ -23,14 +36,18 @@ public class KeepRightParser extends DefaultHandler{
 	//to maintain context
 	private String tempVal;
 	private ErrorItem tempItem;
+	private BoundingBoxE6 boundingBox;
 	
 	public KeepRightParser(){
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-
+	public KeepRightParser(BoundingBoxE6 bb) {
+		boundingBox = bb;
+		lItems = new ArrayList<ErrorItem>();
+	}
 	
-	public void parseDocument(InputStream file) {
+	public void parseDocument() {
 
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -40,7 +57,30 @@ public class KeepRightParser extends DefaultHandler{
 			SAXParser sp = spf.newSAXParser();
 
 			//parse the file and also register this class for call backs
-			sp.parse(file, this);
+			
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpContext localContext = new BasicHttpContext();
+			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+			qparams.add(new BasicNameValuePair("format", "gpx"));
+			//qparams.add(new BasicNameValuePair("ch", "0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413,20,300,360,390"));
+			qparams.add(new BasicNameValuePair("left", ""+ String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
+			qparams.add(new BasicNameValuePair("bottom", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
+			qparams.add(new BasicNameValuePair("right", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
+			qparams.add(new BasicNameValuePair("top", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
+			URI uri;
+			
+				uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/export.php", 
+				    URLEncodedUtils.format(qparams, "UTF-8") +
+				    "&ch=0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413,20,300,360,390"
+				    , null);
+				HttpGet httpget = new HttpGet(uri);
+
+			HttpResponse response = httpClient.execute(httpget, localContext);
+			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+            //logger.info("N "+ (boundingBox.getLatNorthE6()* 1E7) + ", S " + boundingBox.getLatSouthE6());
+            logger.info("Fetch "+ httpget.getURI());
+
+			sp.parse(response.getEntity().getContent(), this);
 
 		}catch(SAXException se) {
 			se.printStackTrace();
@@ -48,6 +88,10 @@ public class KeepRightParser extends DefaultHandler{
 			pce.printStackTrace();
 		}catch (IOException ie) {
 			ie.printStackTrace();
+		}
+		catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -87,7 +131,18 @@ public class KeepRightParser extends DefaultHandler{
 	
 	public List<ErrorItem> getItems()
 	{
+		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+        logger.info("getting items : # "+ lItems.size());
+        
 		return lItems;
+	}
+
+	public BoundingBoxE6 getBoundingBox() {
+		return boundingBox;
+	}
+
+	public void setBoundingBox(BoundingBoxE6 boundingBox) {
+		this.boundingBox = boundingBox;
 	}
 	
 	/*

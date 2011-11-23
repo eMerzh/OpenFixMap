@@ -1,6 +1,5 @@
 package net.bmaron.openfixmap;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,10 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.CloudmadeTileSource;
@@ -34,6 +36,7 @@ public class OpenFixMapActivity extends Activity {
     private ScaleBarOverlay mScaleBarOverlay;  
     
     static final int DIALOG_ERROR_ID = 0;
+    private ItemizedIconOverlay<OverlayItem> pointOverlay; 
     
 	private Handler mHandler;
     
@@ -44,7 +47,6 @@ public class OpenFixMapActivity extends Activity {
         mHandler = new Handler(); 
 
         setContentView(R.layout.main);
-        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 
         mapView = (MapView) findViewById(R.id.mapview);
 
@@ -85,7 +87,7 @@ public class OpenFixMapActivity extends Activity {
 		        mHandler.post(new Runnable() {
 				    public void run() { 
 				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this, it.getTitle(), it.mDescription);
-				    	dialog.show();
+				    	 dialog.show();
 				    	}
 				}); 
 		        return false;
@@ -100,33 +102,49 @@ public class OpenFixMapActivity extends Activity {
     	}
 
         OnItemGestureListener<OverlayItem> pOnItemGestureListener = new myItemGestureListener<OverlayItem>();
-
-
-        KeepRightParser parser = new KeepRightParser();
-        try {
-			parser.parseDocument(getAssets().open("points.gpx"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-    		logger.error("Io Error Parsing GPX File :" + e.getMessage());
-		}
+       
+        pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), pOnItemGestureListener);
+        this.mapView.getOverlays().add(pointOverlay);
+      /*  mapView.setOnLongClickListener(new View.OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				loadDataSource();
+				return false;
+			}
+		});*/
+        //loadDataSource();
+    }
+    
+    
+    protected  List<ErrorItem> fetchDatas()
+    {
+        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+        logger.info("Start Fetching");
+        mapView.getBoundingBox();
+    	KeepRightParser parser = new KeepRightParser(mapView.getBoundingBox());
+    	
+    	BoundingBoxE6 bb = mapView.getBoundingBox();
+    	Double t = (Double) (bb.getLatNorthE6() / 1E6);
+    	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
         
+    	parser.parseDocument();
         
-        List<ErrorItem> itemList = parser.getItems();
-        List<OverlayItem> poList = new ArrayList<OverlayItem>();
-
-        for(int i=1; i<= 10 && i < itemList.size(); i++) {
+        return parser.getItems();
+    }
+    
+    protected void loadDataSource()
+    {
+    	pointOverlay.removeAllItems();
+        List<ErrorItem> itemList = fetchDatas();
+        
+        for(int i=0; /*i<= 10 &&*/ i < itemList.size(); i++) {
         	ErrorItem item = itemList.get(i);
             OverlayItem oItem = new OverlayItem(item.getTitle(),item.getDescription(),item.getPoint());
-            poList.add(oItem);
+            pointOverlay.addItem(oItem);
         }
-
-        ItemizedIconOverlay<OverlayItem> pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, poList, pOnItemGestureListener);
-        this.mapView.getOverlays().add(pointOverlay);
-        
-        logger.info("Hello World"+ this.mapView.getOverlays().size());
-        
     }
-
+    
     protected void loadMapSource(int source)
     {
     	switch(source) {
@@ -177,12 +195,14 @@ public class OpenFixMapActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-        case R.id.gotolocation:
-        	goToCurrenLocation();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+    	switch (item.getItemId()) {
+        	case R.id.gotolocation:
+        		goToCurrenLocation();
+        		return true;
+        	case R.id.refresh:
+        		loadDataSource();
+        	default:
+        		return super.onOptionsItemSelected(item);
         }
     }
 }
