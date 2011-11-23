@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import org.osmdroid.util.BoundingBoxE6;
@@ -94,26 +95,18 @@ public class OpenFixMapActivity extends Activity {
 		        return false;
 		    }
 		
-	    @Override
-		    public boolean onItemLongPress(int index, T item) {
-	        	org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-	    		logger.info("Hello 2");
-		        return false;
-		    }
+		    @Override
+		    public boolean onItemLongPress(int index, T item) { return false;}
     	}
 
         OnItemGestureListener<OverlayItem> pOnItemGestureListener = new myItemGestureListener<OverlayItem>();
        
         pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), pOnItemGestureListener);
         this.mapView.getOverlays().add(pointOverlay);
-      /*  mapView.setOnLongClickListener(new View.OnLongClickListener() {
-			
-			@Override
-			public boolean onLongClick(View v) {
-				loadDataSource();
-				return false;
-			}
-		});*/
+        
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+        logger.info("PREF: "+sharedPrefs.getString("password", "noop"));
         //loadDataSource();
     }
     
@@ -131,7 +124,7 @@ public class OpenFixMapActivity extends Activity {
         
     	parser.parseDocument();
     	
-    	Toast toast = Toast.makeText(this, "Download Finished", Toast.LENGTH_SHORT);
+    	Toast toast = Toast.makeText(this, parser.getItems().size()+" items downloaded", Toast.LENGTH_SHORT);
     	toast.show();
         return parser.getItems();
     }
@@ -180,11 +173,11 @@ public class OpenFixMapActivity extends Activity {
     	mHandler.post(new Runnable() {
 		    public void run() { 
 		    	if(mMyLocationOverlay.getMyLocation() != null) {
-            		double lat = ((double)mMyLocationOverlay.getMyLocation().getLatitudeE6())/1000000;
-            		double lon = ((double)mMyLocationOverlay.getMyLocation().getLongitudeE6())/1000000;
-    		        
-    		        GeoPoint p = new GeoPoint(lat, lon);
-    		        mapController.animateTo(p);
+		            org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+		            logger.warn("LOC AT lat "+ mMyLocationOverlay.getMyLocation().getLatitudeE6() +
+		            		" LON: "+mMyLocationOverlay.getMyLocation().getLongitudeE6());
+
+    		        mapController.animateTo(mMyLocationOverlay.getMyLocation());
             		mapController.setZoom(17);
             	}
 		    }
@@ -204,8 +197,12 @@ public class OpenFixMapActivity extends Activity {
         	case R.id.gotolocation:
         		goToCurrenLocation();
         		return true;
+        		
         	case R.id.refresh:
         		loadDataSource();
+        		
+        	case R.id.preferences: 
+        		startActivityForResult(new Intent(this, Preferences.class), 1 /* CODE_RETOUR*/);
         	default:
         		return super.onOptionsItemSelected(item);
         }

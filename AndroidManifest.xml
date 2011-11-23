@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity android:name=".Preferences"></activity>
+            
         <meta-data android:name="CLOUDMADE_KEY" android:value="6b81f3de419d48c7aaaa25202dd81f63"/>
     </application>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> 

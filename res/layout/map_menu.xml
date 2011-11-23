@@ -4,11 +4,12 @@
           android:icon="@drawable/ic_menu_refresh"
           android:title="Refresh" />
     
+    <item android:id="@+id/gotolocation"
+          android:icon="@drawable/ic_menu_mylocation"
+          android:title="My Location" />
+    
     <item android:id="@+id/preferences"
           android:icon="@drawable/ic_menu_preferences"
           android:title="Preferences" />
  
-    <item android:id="@+id/gotolocation"
-          android:icon="@drawable/ic_menu_mylocation"
-          android:title="My Location" />
 </menu>
