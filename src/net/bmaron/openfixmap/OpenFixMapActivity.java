@@ -1,6 +1,7 @@
 package net.bmaron.openfixmap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -104,8 +105,12 @@ public class OpenFixMapActivity extends Activity {
         this.mapView.getOverlays().add(pointOverlay);
         
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        
+    	String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRights"));
+
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-        logger.info("PREF: "+sharedPrefs.getString("password", "noop"));
+
+        logger.info("PREF: "+Arrays.toString(checkers));
         //loadDataSource();
     }
     
@@ -132,7 +137,7 @@ public class OpenFixMapActivity extends Activity {
     	pointOverlay.removeAllItems();
         List<ErrorItem> itemList = fetchDatas();
         
-        for(int i=0; /*i<= 10 &&*/ i < itemList.size(); i++) {
+        for(int i=0; i < itemList.size(); i++) {
         	ErrorItem item = itemList.get(i);
             OverlayItem oItem = new OverlayItem(item.getTitle(),item.getDescription(),item.getPoint());
             pointOverlay.addItem(oItem);
