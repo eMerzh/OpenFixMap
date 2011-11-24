@@ -120,8 +120,9 @@ public class OpenFixMapActivity extends Activity {
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
         logger.info("Start Fetching");
         mapView.getBoundingBox();
-    	KeepRightCSVParser parser = new KeepRightCSVParser(mapView.getBoundingBox());
-    	
+    	//KeepRightCSVParser parser = new KeepRightCSVParser(mapView.getBoundingBox());
+    	OpenStreetBugsRss parser = new OpenStreetBugsRss(mapView.getBoundingBox());
+
     	BoundingBoxE6 bb = mapView.getBoundingBox();
     	Double t = (Double) (bb.getLatNorthE6() / 1E6);
     	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
