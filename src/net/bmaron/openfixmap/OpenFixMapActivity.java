@@ -1,6 +1,5 @@
 package net.bmaron.openfixmap;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +63,6 @@ public class OpenFixMapActivity extends Activity {
         mapController.setZoom(16);
         GeoPoint p = new GeoPoint(50.838599, 4.406551);
         mapController.setCenter(p);
-        
 
         this.mMyLocationOverlay = new MyLocationOverlay(this, this.mapView);                          
         this.mapView.getOverlays().add(mMyLocationOverlay);
@@ -173,12 +171,9 @@ public class OpenFixMapActivity extends Activity {
     	mHandler.post(new Runnable() {
 		    public void run() { 
 		    	if(mMyLocationOverlay.getMyLocation() != null) {
-		            org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-		            logger.warn("LOC AT lat "+ mMyLocationOverlay.getMyLocation().getLatitudeE6() +
-		            		" LON: "+mMyLocationOverlay.getMyLocation().getLongitudeE6());
-
-    		        mapController.animateTo(mMyLocationOverlay.getMyLocation());
+		            // Make sure setZoom is before animateTo ==> may be a Go to sahara animateTo bug 
             		mapController.setZoom(17);
+    		        mapController.animateTo(mMyLocationOverlay.getMyLocation());
             	}
 		    }
     	});       
