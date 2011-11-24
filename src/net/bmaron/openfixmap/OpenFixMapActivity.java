@@ -1,5 +1,6 @@
 package net.bmaron.openfixmap;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,13 +117,12 @@ public class OpenFixMapActivity extends Activity {
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
         logger.info("Start Fetching");
         mapView.getBoundingBox();
-    	KeepRightParser parser = new KeepRightParser(mapView.getBoundingBox());
+    	KeepRightCSVParser parser = new KeepRightCSVParser(mapView.getBoundingBox());
     	
     	BoundingBoxE6 bb = mapView.getBoundingBox();
     	Double t = (Double) (bb.getLatNorthE6() / 1E6);
     	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
-        
-    	parser.parseDocument();
+    	parser.parse();
     	
     	Toast toast = Toast.makeText(this, parser.getItems().size()+" items downloaded", Toast.LENGTH_SHORT);
     	toast.show();
@@ -200,9 +200,10 @@ public class OpenFixMapActivity extends Activity {
         		
         	case R.id.refresh:
         		loadDataSource();
-        		
+        		return true;
         	case R.id.preferences: 
         		startActivityForResult(new Intent(this, Preferences.class), 1 /* CODE_RETOUR*/);
+        		return true;
         	default:
         		return super.onOptionsItemSelected(item);
         }

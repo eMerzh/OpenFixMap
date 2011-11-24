@@ -27,7 +27,7 @@ import java.util.List;
 
 
 // 
-public class KeepRightParser extends DefaultHandler{
+public class KeepRightGPXParser extends DefaultHandler{
 	
 	private List<ErrorItem> lItems;
 	
@@ -36,16 +36,16 @@ public class KeepRightParser extends DefaultHandler{
 	private ErrorItem tempItem;
 	private BoundingBoxE6 boundingBox;
 	
-	public KeepRightParser(){
+	public KeepRightGPXParser(){
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public KeepRightParser(BoundingBoxE6 bb) {
+	public KeepRightGPXParser(BoundingBoxE6 bb) {
 		boundingBox = bb;
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parseDocument() {
+	public void parse() {
 
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -142,43 +142,5 @@ public class KeepRightParser extends DefaultHandler{
 
 	public void setBoundingBox(BoundingBoxE6 boundingBox) {
 		this.boundingBox = boundingBox;
-	}
-	
-	/*
-	 * 
-	 * OLD PARSER WITH TAB
-	 * 
-        try {
-            CSVReader reader = new CSVReader(new InputStreamReader(),'\t', '\0', 0);
-            for(;;) {
-                next = reader.readNext();
-                if(next != null) {
-                    list.add(next);
-                } else {
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-        
-        List<String[]> list = new ArrayList<String[]>();
-
-        
-        List<OverlayItem> pList = new ArrayList<OverlayItem>();
-        for(int i=1; i<= 10; i++) {
-        	logger.info("array is"+Arrays.toString(list.get(i)));
-        	if(list.get(i).length < 12) continue;
-        	logger.info("Hello "+list.get(i)[0]+" World "+list.get(i)[1]);
-        	
-        	GeoPoint point = new GeoPoint(Double.parseDouble(list.get(i)[0]), Double.parseDouble(list.get(i)[1]));
-            OverlayItem myItem = new OverlayItem(list.get(i)[2],list.get(i)[10],point);
-            pList.add(myItem);
-
-        }
-	*/
-	 
+	} 
 }
