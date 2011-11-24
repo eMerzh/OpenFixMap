@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="errorBackend">
+        <item name="1">KeepRights</item>
+        <item name="2">OpenStreetBug</item>
+    </string-array>
+    <string-array name="errorBackendValues">
+        <item name="1">1</item>
+        <item name="2">2</item>
+    </string-array>
+
+</resources>

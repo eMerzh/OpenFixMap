@@ -2,10 +2,13 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory android:title="Utilisateur">
-	    <EditTextPreference
-	        android:key="login"
-	        android:title="Nom d'utilisateur"
-	        android:summary="Entrez votre nom d'utilisateur"
+	    <net.bmaron.openfixmap.MultiSelectListPreference
+	        android:key="checkers"
+	        android:title="Error Reporting Plateform"
+	        android:summary="Choose error reporting plateforms"
+			android:defaultValue="1"
+            android:entries="@array/errorBackend"
+			android:entryValues="@array/errorBackend"
 	        />
 	    
 		<EditTextPreference
@@ -15,19 +18,4 @@
 		    android:password="true"
 			/>
 	</PreferenceCategory>
-	
-	<PreferenceCategory android:title="Notifications">
-	    <RingtonePreference
-	        android:key="sonnerie"
-	        android:title="Sonnerie de notification"
-	        android:summary="Choisissez la sonnerie pour les notifications"
-	        />
-		<CheckBoxPreference
-		    android:key="vibrate"
-		    android:title="Vibreur"
-		    android:summary="Vibre lors d'une notification"
-		    />
-
-	</PreferenceCategory>
-
 </PreferenceScreen>
