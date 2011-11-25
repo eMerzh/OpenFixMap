@@ -11,11 +11,25 @@
 			android:entryValues="@array/errorBackend"
 	        />
 	    
-		<EditTextPreference
-		    android:title="Mot de passe"
-		    android:key="password"
-		    android:summary="Entrez votre mot de passe"
-		    android:password="true"
-			/>
+    	<CheckBoxPreference
+	            android:key="fetch_closed"
+	            android:summary="Enable or disable Closed item fetching"
+	            android:title="Fetch closed items"
+	            android:defaultValue="false"
+	        />
+
+    	<CheckBoxPreference
+	            android:key="go_to_first"
+	            android:summary="Center the map when the first position is recieved"
+	            android:title="Go to first Fix"
+	            android:defaultValue="false"
+	        />
+    	
+		<CheckBoxPreference
+	            android:key="fetch_on_launch"
+	            android:summary="Fetch items directly after launch"
+	            android:title="Fetch on launch"
+	            android:defaultValue="false"
+	        />
 	</PreferenceCategory>
 </PreferenceScreen>

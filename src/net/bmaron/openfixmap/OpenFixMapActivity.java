@@ -63,6 +63,7 @@ public class OpenFixMapActivity extends Activity {
         mapController = this.mapView.getController();
         mapController.setZoom(16);
         GeoPoint p = new GeoPoint(50.838599, 4.406551);
+        p = new GeoPoint(50.80828, 4.432168);
         mapController.setCenter(p);
 
         this.mMyLocationOverlay = new MyLocationOverlay(this, this.mapView);                          
@@ -72,7 +73,10 @@ public class OpenFixMapActivity extends Activity {
 
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
             public void run() {
-            	goToCurrenLocation();
+            	if(sharedPrefs.getBoolean("go_to_first", false)) {
+            		goToCurrenLocation();            		
+            	}
+            	
             }
         });
         
@@ -104,7 +108,9 @@ public class OpenFixMapActivity extends Activity {
         pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), pOnItemGestureListener);
         this.mapView.getOverlays().add(pointOverlay);
 
-        //loadDataSource();
+    	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
+    		loadDataSource();            		
+    	}
     }
     
     
