@@ -40,7 +40,7 @@ public class OpenFixMapActivity extends Activity {
     
     static final int DIALOG_ERROR_ID = 0;
     private ItemizedIconOverlay<OverlayItem> pointOverlay; 
-    
+    private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
     
     /** Called when the activity is first created. */
@@ -48,7 +48,7 @@ public class OpenFixMapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHandler = new Handler(); 
-
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.main);
 
         mapView = (MapView) findViewById(R.id.mapview);
@@ -103,14 +103,7 @@ public class OpenFixMapActivity extends Activity {
        
         pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), pOnItemGestureListener);
         this.mapView.getOverlays().add(pointOverlay);
-        
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        
-    	String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRights"));
 
-        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-
-        logger.info("PREF: "+Arrays.toString(checkers));
         //loadDataSource();
     }
     
@@ -118,19 +111,33 @@ public class OpenFixMapActivity extends Activity {
     protected  List<ErrorItem> fetchDatas()
     {
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-        logger.info("Start Fetching");
-        mapView.getBoundingBox();
-    	//KeepRightCSVParser parser = new KeepRightCSVParser(mapView.getBoundingBox());
-    	OpenStreetBugsRss parser = new OpenStreetBugsRss(mapView.getBoundingBox());
 
-    	BoundingBoxE6 bb = mapView.getBoundingBox();
+        String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRights"));
+        logger.info("PREF: "+Arrays.toString(checkers));
+        List<ErrorItem> items = new ArrayList<ErrorItem>();
+        BoundingBoxE6 bb = mapView.getBoundingBox();
+
     	Double t = (Double) (bb.getLatNorthE6() / 1E6);
     	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
-    	parser.parse();
     	
-    	Toast toast = Toast.makeText(this, parser.getItems().size()+" items downloaded", Toast.LENGTH_SHORT);
+        for(int i = 0; i < checkers.length; i++) {
+        	
+        	if(checkers[i].equals("OpenStreetBug")) {
+        		OpenStreetBugsGPX parser = new OpenStreetBugsGPX(bb);
+            	parser.parse();
+            	items.addAll(parser.getItems());
+            	
+        	} else if(checkers[i].equals("KeepRights")) {
+            	KeepRightCSVParser parser = new KeepRightCSVParser(bb);
+            	parser.parse();
+            	items.addAll(parser.getItems());
+
+        	}
+        }
+        
+    	Toast toast = Toast.makeText(this, items.size()+" items downloaded", Toast.LENGTH_SHORT);
     	toast.show();
-        return parser.getItems();
+        return items;
     }
     
     protected void loadDataSource()

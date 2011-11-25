@@ -25,7 +25,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenStreetBugsRss extends DefaultHandler {
+public class OpenStreetBugsGPX extends DefaultHandler {
 
 //http://openstreetbugs.schokokeks.org/api/0.1/getRSSfeed?b=50.62895&t=50.78353&l=6.89193&r=7.30323
 //https://github.com/emka/openstreetbugs/blob/master/api/0.1/getRSSfeed
@@ -40,11 +40,11 @@ public class OpenStreetBugsRss extends DefaultHandler {
 	private ErrorItem tempItem;
 	private BoundingBoxE6 boundingBox;
 	
-	public OpenStreetBugsRss(){
+	public OpenStreetBugsGPX(){
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public OpenStreetBugsRss(BoundingBoxE6 bb) {
+	public OpenStreetBugsGPX(BoundingBoxE6 bb) {
 		boundingBox = bb;
 		lItems = new ArrayList<ErrorItem>();
 	}
@@ -68,7 +68,7 @@ public class OpenStreetBugsRss extends DefaultHandler {
 			qparams.add(new BasicNameValuePair("r", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
 			qparams.add(new BasicNameValuePair("t", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
 			URI uri;
-			uri = URIUtils.createURI("http", "openstreetbugs.schokokeks.org", -1, "/api/0.1/getRSSfeed", 
+			uri = URIUtils.createURI("http", "openstreetbugs.schokokeks.org", -1, "/api/0.1/getGPX", 
 					URLEncodedUtils.format(qparams, "UTF-8"), null);
 			HttpGet httpget = new HttpGet(uri);
 			
@@ -92,43 +92,44 @@ public class OpenStreetBugsRss extends DefaultHandler {
 		}
 	}
 
-	
+
 
 	//Event Handlers
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		//reset
 		tempVal = "";
-		if(qName.equalsIgnoreCase("item")) {
+		if(qName.equalsIgnoreCase("wpt")) {
 			tempItem = new ErrorItem();
-		}		
+			tempItem.setLat(Double.parseDouble(attributes.getValue("lat")));
+			tempItem.setLon(Double.parseDouble(attributes.getValue("lon")));
+
+		}
 	}
 	
 
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		tempVal = new String(ch,start,length);
+		tempVal = tempVal +new String(ch,start,length);
 	}
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		if(tempItem == null) return; // We are still in the head
-		
-		if(qName.equalsIgnoreCase("item")) {
+		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+
+		if(qName.equalsIgnoreCase("wpt")) {
 			//add it to the list
+			
+			tempItem.setTitle("-");
 			lItems.add(tempItem);
-		}else if (qName.equalsIgnoreCase("geo:lat")) {
-			tempItem.setLat(Double.parseDouble(tempVal));
-		}else if (qName.equalsIgnoreCase("geo:long")) {
-			tempItem.setLon(Double.parseDouble(tempVal));	
-		}else if (qName.equalsIgnoreCase("title")) {
-			tempItem.setTitle(tempVal);
-		/*}else if (qName.equalsIgnoreCase("guid")) {
+			
+		}/*else if (qName.equalsIgnoreCase("Name")) {
+			tempItem.setTitle("-");
+		}*/else if (qName.equalsIgnoreCase("Id")) {
 			tempItem.setId(Integer.parseInt(tempVal));
-			NEED TO split <guid> elem
-			*/
-		}else if (qName.equalsIgnoreCase("Description")) {
+		}else if (qName.equalsIgnoreCase("Desc")) {
 			tempItem.setDescription(tempVal);
 		}
-		/** @TODO: <LINK> element */
+		//type
 	}
+	
 	
 	public List<ErrorItem> getItems()
 	{
