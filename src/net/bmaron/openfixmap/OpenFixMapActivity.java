@@ -1,7 +1,6 @@
 package net.bmaron.openfixmap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import net.bmaron.openfixmap.R;
+import net.bmaron.openfixmap.ErrorParsers.KeepRightCSVParser;
+import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugsGPX;
 
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;

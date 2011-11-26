@@ -1,4 +1,4 @@
-package net.bmaron.openfixmap;
+package net.bmaron.openfixmap.ErrorParsers;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,6 +6,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.bmaron.openfixmap.CSVReader;
+import net.bmaron.openfixmap.ErrorItem;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,10 +22,9 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.osmdroid.util.BoundingBoxE6;
 
-public class KeepRightCSVParser {
+public class KeepRightCSVParser implements IErrorParser {
 	
 	private List<ErrorItem> lItems;
-
 	private BoundingBoxE6 boundingBox;
 
 	public KeepRightCSVParser(BoundingBoxE6 bb) {

@@ -1,8 +1,11 @@
-package net.bmaron.openfixmap;
+package net.bmaron.openfixmap.ErrorParsers;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
+import net.bmaron.openfixmap.ErrorItem;
+import net.bmaron.openfixmap.OpenFixMapActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -25,10 +28,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 
-// 
-public class KeepRightGPXParser extends DefaultHandler{
+//http://openstreetbugs.schokokeks.org/api/0.1/getRSSfeed?b=50.62895&t=50.78353&l=6.89193&r=7.30323
+//https://github.com/emka/openstreetbugs/blob/master/api/0.1/getRSSfeed
 	
+	
+	
+
 	private List<ErrorItem> lItems;
 	
 	//to maintain context
@@ -36,36 +43,18 @@ public class KeepRightGPXParser extends DefaultHandler{
 	private ErrorItem tempItem;
 	private BoundingBoxE6 boundingBox;
 	
-	public KeepRightGPXParser(){
+	public OpenStreetBugsGPX(){
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public KeepRightGPXParser(BoundingBoxE6 bb) {
+	public OpenStreetBugsGPX(BoundingBoxE6 bb) {
 		boundingBox = bb;
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
 	public void parse(int eLevel) {
 
-		//All errors
-		String errorTypes="";
-		switch(eLevel) {
-			case 0:  //All 
-				errorTypes = "0,30,40,50,60,70,90,100,110,120,130,150,160,170,180," +
-						"191,192,193,194,195,196,197,198,201,202,203,204,205,206," +
-						"207,208,210,220,231,232,270,281,282,283,284,291,292,293," +
-						"311,312,313,350,380,411,412,413";
-				break;
-			case 1: //Only on field
-				errorTypes = "90,100,110,170,191,192,193,390";
-				break;
-			case 2:  //Few 
-				errorTypes = "90,100,110,170,191,192,193";
-				//Error 20,300,360,390=> Warnings
-				break;
-		//
-		}
-		
+		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
 		try {
 
@@ -77,16 +66,13 @@ public class KeepRightGPXParser extends DefaultHandler{
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-			qparams.add(new BasicNameValuePair("format", "gpx"));
-			qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
-			qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected 
-			qparams.add(new BasicNameValuePair("left", ""+ String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
-			qparams.add(new BasicNameValuePair("bottom", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
-			qparams.add(new BasicNameValuePair("right", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
-			qparams.add(new BasicNameValuePair("top", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
+			qparams.add(new BasicNameValuePair("l", ""+ String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
+			qparams.add(new BasicNameValuePair("b", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
+			qparams.add(new BasicNameValuePair("r", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
+			qparams.add(new BasicNameValuePair("t", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
 			URI uri;
-			uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/export.php", 
-					URLEncodedUtils.format(qparams, "UTF-8") + "&ch="+errorTypes , null);
+			uri = URIUtils.createURI("http", "openstreetbugs.schokokeks.org", -1, "/api/0.1/getGPX", 
+					URLEncodedUtils.format(qparams, "UTF-8"), null);
 			HttpGet httpget = new HttpGet(uri);
 			
 			HttpResponse response = httpClient.execute(httpget, localContext);
@@ -109,7 +95,7 @@ public class KeepRightGPXParser extends DefaultHandler{
 		}
 	}
 
-	
+
 
 	//Event Handlers
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -125,23 +111,28 @@ public class KeepRightGPXParser extends DefaultHandler{
 	
 
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		tempVal = new String(ch,start,length);
+		tempVal = tempVal +new String(ch,start,length);
 	}
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException {
+		//org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 
 		if(qName.equalsIgnoreCase("wpt")) {
 			//add it to the list
+			
+			tempItem.setTitle("-");
 			lItems.add(tempItem);
 			
-		}else if (qName.equalsIgnoreCase("Name")) {
-			tempItem.setTitle(tempVal);
-		}else if (qName.equalsIgnoreCase("Id")) {
+		}/*else if (qName.equalsIgnoreCase("Name")) {
+			tempItem.setTitle("-");
+		}*/else if (qName.equalsIgnoreCase("Id")) {
 			tempItem.setId(Integer.parseInt(tempVal));
 		}else if (qName.equalsIgnoreCase("Desc")) {
 			tempItem.setDescription(tempVal);
 		}
+		//type
 	}
+	
 	
 	public List<ErrorItem> getItems()
 	{
@@ -159,3 +150,4 @@ public class KeepRightGPXParser extends DefaultHandler{
 		this.boundingBox = boundingBox;
 	} 
 }
+
