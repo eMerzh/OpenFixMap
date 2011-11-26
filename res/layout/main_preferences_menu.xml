@@ -6,7 +6,7 @@
 	        android:key="checkers"
 	        android:title="Error Reporting Plateform"
 	        android:summary="Choose error reporting plateforms"
-			android:defaultValue="1"
+			android:defaultValue="KeepRights"
             android:entries="@array/errorBackend"
 			android:entryValues="@array/errorBackend"
 	        />

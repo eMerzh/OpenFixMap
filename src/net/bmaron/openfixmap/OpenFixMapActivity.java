@@ -59,11 +59,18 @@ public class OpenFixMapActivity extends Activity {
         loadMapSource(2);
         
 
-        /* Set position near Home :) */
+
+        /* Set position of last open or near Home :) */
+
+        SharedPreferences settings = getSharedPreferences("last_position", 0);
+        int lat = settings.getInt("last_position_lat",50838599);
+        int lon = settings.getInt("last_position_lon",4406551);
+        int zoom = settings.getInt("last_position_zoom",16);
+        
         mapController = this.mapView.getController();
-        mapController.setZoom(16);
-        GeoPoint p = new GeoPoint(50.838599, 4.406551);
-        p = new GeoPoint(50.80828, 4.432168);
+        mapController.setZoom(zoom);
+        GeoPoint p = new GeoPoint(lat, lon);
+        
         mapController.setCenter(p);
 
         this.mMyLocationOverlay = new MyLocationOverlay(this, this.mapView);                          
@@ -113,6 +120,23 @@ public class OpenFixMapActivity extends Activity {
     	}
     }
     
+    @Override
+    protected void onStop(){
+       super.onStop();
+
+      // We need an Editor object to make preference changes.
+      // All objects are from android.context.Context
+      SharedPreferences settings = getSharedPreferences("last_position", 0);
+      SharedPreferences.Editor editor = settings.edit();
+      BoundingBoxE6 bb = mapView.getBoundingBox();
+      editor.putInt("last_position_lat", bb.getCenter().getLatitudeE6());
+      editor.putInt("last_position_lon",  bb.getCenter().getLongitudeE6());
+      editor.putInt("last_position_zoom", mapView.getZoomLevel());
+
+      // Commit the edits!
+      editor.commit();
+    }
+
     
     protected  List<ErrorItem> fetchDatas()
     {
