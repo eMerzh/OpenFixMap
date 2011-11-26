@@ -49,7 +49,7 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse() {
+	public void parse(int eLevel) {
 
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();

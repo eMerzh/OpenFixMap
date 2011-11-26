@@ -31,5 +31,14 @@
 	            android:title="Fetch on launch"
 	            android:defaultValue="false"
 	        />
+		
+		  <ListPreference
+	            android:key="display_level"
+	            android:title="Display level"
+	            android:summary="Define the level of the error displayed"
+	            android:defaultValue="1"
+	            android:entries="@array/displayLevel"
+	            android:entryValues="@array/displayLevelValues"
+	        /> 
 	</PreferenceCategory>
 </PreferenceScreen>

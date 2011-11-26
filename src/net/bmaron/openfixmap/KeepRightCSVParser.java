@@ -30,9 +30,29 @@ public class KeepRightCSVParser {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse()
+	public void parse(int eLevel)
 	{
+		
+		//All errors
+		String errorTypes="";
+		switch(eLevel) {
+			case 0:  //All 
+				errorTypes = "0,30,40,50,60,70,90,100,110,120,130,150,160,170,180," +
+						"191,192,193,194,195,196,197,198,201,202,203,204,205,206," +
+						"207,208,210,220,231,232,270,281,282,283,284,291,292,293," +
+						"311,312,313,350,380,411,412,413";
+				break;
+			case 1: //Only on field
+				errorTypes = "90,100,110,170,191,192,193,390";
+				break;
+			case 2:  //Few 
+				errorTypes = "90,100,110,170,191,192,193";
+				//Error 20,300,360,390=> Warnings
+				break;
+		//
+		}
 		String next[] = {};
+
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(KeepRightCSVParser.class);
         try {
         	
@@ -47,9 +67,8 @@ public class KeepRightCSVParser {
         	qparams.add(new BasicNameValuePair("lon", ""+ String.valueOf(boundingBox.getCenter().getLongitudeE6()/ 1E6 ) ));
         	URI uri;
         	uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/points.php", 
-        			URLEncodedUtils.format(qparams, "UTF-8") +
-        			"&ch=0,30,40,50,60,70,90,100,110,120,130,150,160,170,180,191,192,193,194,195,196,197,198,201,202,203,204,205,206,207,208,210,220,231,232,270,281,282,283,284,291,292,293,311,312,313,350,380,411,412,413"
-        			, null);
+					URLEncodedUtils.format(qparams, "UTF-8") + "&ch="+errorTypes , null);
+
         	HttpGet httpget = new HttpGet(uri);
             logger.info("Fetch "+ httpget.getURI());
         	HttpResponse response = httpClient.execute(httpget, localContext);
