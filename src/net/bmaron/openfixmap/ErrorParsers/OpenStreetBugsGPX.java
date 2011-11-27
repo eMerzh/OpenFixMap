@@ -52,7 +52,7 @@ public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse(int eLevel) {
+	public void parse(int eLevel, boolean show_closed) {
 
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -70,6 +70,9 @@ public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 			qparams.add(new BasicNameValuePair("b", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
 			qparams.add(new BasicNameValuePair("r", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
 			qparams.add(new BasicNameValuePair("t", ""+ String.valueOf(boundingBox.getLatNorthE6()/ 1E6)));
+			if( !show_closed)	{
+				qparams.add(new BasicNameValuePair("open", "1"));
+			}
 			URI uri;
 			uri = URIUtils.createURI("http", "openstreetbugs.schokokeks.org", -1, "/api/0.1/getGPX", 
 					URLEncodedUtils.format(qparams, "UTF-8"), null);

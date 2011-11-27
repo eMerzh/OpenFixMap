@@ -39,6 +39,13 @@
 	            android:defaultValue="1"
 	            android:entries="@array/displayLevel"
 	            android:entryValues="@array/displayLevelValues"
-	        /> 
+	        />
+
+			<CheckBoxPreference
+	            android:key="display_closed"
+	            android:summary="Display closed errors"
+	            android:title="Display Closed"
+	            android:defaultValue="false"
+	        />
 	</PreferenceCategory>
 </PreferenceScreen>

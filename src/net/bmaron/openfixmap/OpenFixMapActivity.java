@@ -143,26 +143,23 @@ public class OpenFixMapActivity extends Activity {
     
     protected  List<ErrorItem> fetchDatas()
     {
-        org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-
         String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRights"));
+        boolean show_closed = sharedPrefs.getBoolean("show_closed", false);
         List<ErrorItem> items = new ArrayList<ErrorItem>();
         BoundingBoxE6 bb = mapView.getBoundingBox();
 
-    	Double t = (Double) (bb.getLatNorthE6() / 1E6);
-    	logger.info("N: "+ String.valueOf(t)  + ", S " + bb.getLatSouthE6());
     	
     	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));    	
         for(int i = 0; i < checkers.length; i++) {
         	
         	if(checkers[i].equals("OpenStreetBug")) {
         		OpenStreetBugsGPX parser = new OpenStreetBugsGPX(bb);
-            	parser.parse(display_level);
+            	parser.parse(display_level, show_closed);
             	items.addAll(parser.getItems());
             	
         	} else if(checkers[i].equals("KeepRights")) {
             	KeepRightCSVParser parser = new KeepRightCSVParser(bb);
-            	parser.parse(display_level);
+            	parser.parse(display_level, show_closed);
             	items.addAll(parser.getItems());
 
         	}

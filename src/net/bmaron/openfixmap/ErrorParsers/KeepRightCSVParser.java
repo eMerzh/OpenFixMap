@@ -32,7 +32,7 @@ public class KeepRightCSVParser implements IErrorParser {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse(int eLevel)
+	public void parse(int eLevel, boolean show_closed)
 	{
 		
 		//All errors
@@ -63,8 +63,14 @@ public class KeepRightCSVParser implements IErrorParser {
         	HttpContext localContext = new BasicHttpContext();
         	List<NameValuePair> qparams = new ArrayList<NameValuePair>();
         	qparams.add(new BasicNameValuePair("format", "gpx"));
-        	qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
-        	qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected 
+			if(show_closed)	{
+				qparams.add(new BasicNameValuePair("show_ign", "1")); // Show Ignored 
+				qparams.add(new BasicNameValuePair("show_tmpign", "1")); // Show Corrected
+			}
+			else {
+				qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
+				qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected
+			}
         	qparams.add(new BasicNameValuePair("lat", ""+ String.valueOf(boundingBox.getCenter().getLatitudeE6()/ 1E6) ));
         	qparams.add(new BasicNameValuePair("lon", ""+ String.valueOf(boundingBox.getCenter().getLongitudeE6()/ 1E6 ) ));
         	URI uri;

@@ -48,7 +48,7 @@ public class KeepRightGPXParser extends DefaultHandler implements IErrorParser {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse(int eLevel) {
+	public void parse(int eLevel, boolean show_closed) {
 
 		//All errors
 		String errorTypes="";
@@ -81,8 +81,14 @@ public class KeepRightGPXParser extends DefaultHandler implements IErrorParser {
 			HttpContext localContext = new BasicHttpContext();
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 			qparams.add(new BasicNameValuePair("format", "gpx"));
-			qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
-			qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected 
+			if(show_closed)	{
+				qparams.add(new BasicNameValuePair("show_ign", "1")); // Show Ignored 
+				qparams.add(new BasicNameValuePair("show_tmpign", "1")); // Show Corrected
+			}
+			else {
+				qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
+				qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected
+			}
 			qparams.add(new BasicNameValuePair("left", ""+ String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
 			qparams.add(new BasicNameValuePair("bottom", ""+ String.valueOf(boundingBox.getLatSouthE6()/ 1E6 ) ));
 			qparams.add(new BasicNameValuePair("right", ""+ String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));

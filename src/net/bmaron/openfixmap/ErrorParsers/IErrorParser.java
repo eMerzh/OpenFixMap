@@ -6,7 +6,7 @@ import org.osmdroid.util.BoundingBoxE6;
 
 public interface IErrorParser {
 	
-	public void parse(int eLevel);
+	public void parse(int eLevel, boolean show_closed);
 	
 	public List<ErrorItem> getItems();
 
