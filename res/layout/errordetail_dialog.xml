@@ -27,10 +27,15 @@
 	    />
 	</LinearLayout>
 	
+	<Button
+        android:id="@+id/note_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Note Field infos" />
     <Button
         android:id="@+id/close_button"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:text="Close" />
 
 </LinearLayout>
