@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="errorBackend">
-        <item name="1">KeepRights</item>
-        <item name="2">OpenStreetBug</item>
+        <item name="1">KeepRight</item>
+        <item name="2">OpenStreetBugs</item>
     </string-array>
     <string-array name="errorBackendValues">
         <item name="1">1</item>

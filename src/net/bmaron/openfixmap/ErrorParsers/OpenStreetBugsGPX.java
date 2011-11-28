@@ -105,7 +105,7 @@ public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 		//reset
 		tempVal = "";
 		if(qName.equalsIgnoreCase("wpt")) {
-			tempItem = new ErrorItem();
+			tempItem = new ErrorItem("OpenStreetBugs");
 			tempItem.setLat(Double.parseDouble(attributes.getValue("lat")));
 			tempItem.setLon(Double.parseDouble(attributes.getValue("lon")));
 

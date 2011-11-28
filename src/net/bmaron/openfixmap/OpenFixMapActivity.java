@@ -152,12 +152,12 @@ public class OpenFixMapActivity extends Activity {
     	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));    	
         for(int i = 0; i < checkers.length; i++) {
         	
-        	if(checkers[i].equals("OpenStreetBug")) {
+        	if(checkers[i].equals("OpenStreetBugs")) {
         		OpenStreetBugsGPX parser = new OpenStreetBugsGPX(bb);
             	parser.parse(display_level, show_closed);
             	items.addAll(parser.getItems());
             	
-        	} else if(checkers[i].equals("KeepRights")) {
+        	} else if(checkers[i].equals("KeepRight")) {
             	KeepRightCSVParser parser = new KeepRightCSVParser(bb);
             	parser.parse(display_level, show_closed);
             	items.addAll(parser.getItems());

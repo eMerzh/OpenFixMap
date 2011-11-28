@@ -86,7 +86,7 @@ public class KeepRightCSVParser implements IErrorParser {
 		    for(;;) {
 		    	next = reader.readNext();
 		        if(next != null && next.length == 16) {
-			        ErrorItem tItem = new ErrorItem();
+			        ErrorItem tItem = new ErrorItem("KeepRight");
 			        tItem.setLat(Double.parseDouble(next[0]));
 			        tItem.setLon(Double.parseDouble(next[1]));
 			        tItem.setTitle(next[2]);
