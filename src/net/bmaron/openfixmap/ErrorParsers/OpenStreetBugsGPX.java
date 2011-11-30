@@ -27,6 +27,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OpenStreetBugsGPX extends DefaultHandler {
 
@@ -112,12 +114,12 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 	}
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		//org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 
 		if(qName.equalsIgnoreCase("wpt")) {
 			//add it to the list
 			
-			tempItem.setTitle("-");
+			tempItem.setTitle("New Bug");
 			lItems.add(tempItem);
 			
 		}/*else if (qName.equalsIgnoreCase("Name")) {
@@ -125,7 +127,15 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 		}*/else if (qName.equalsIgnoreCase("Id")) {
 			tempItem.setId(Integer.parseInt(tempVal));
 		}else if (qName.equalsIgnoreCase("Desc")) {
-			tempItem.setDescription(tempVal);
+			
+			Pattern pattern = Pattern.compile("(.+)(\\[.*\\])$");
+			Matcher matcher = pattern.matcher(tempVal);
+			if(matcher.find()) {
+				tempItem.setDescription(matcher.group(1));
+			}
+			logger.info(tempVal);
+			//[Bogumil, 2011-09-13 00:22:30 CEST]	
+			
 		}
 		//type
 	}
