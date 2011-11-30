@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -178,12 +179,14 @@ public class OpenFixMapActivity extends Activity {
     
     protected void loadDataSource()
     {
+    	Resources res = getResources();
     	pointOverlay.removeAllItems();
         List<ErrorItem> itemList = fetchDatas();
         
         for(int i=0; i < itemList.size(); i++) {
         	ErrorItem item = itemList.get(i);
         	OverlayErrorItem oItem = new OverlayErrorItem(item);
+        	oItem.setMarker( res.getDrawable(R.drawable.caution));
             pointOverlay.addItem(oItem);
         }
         mapView.invalidate();
