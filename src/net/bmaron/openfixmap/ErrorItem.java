@@ -1,5 +1,7 @@
 package net.bmaron.openfixmap;
 
+import java.util.Date;
+
 import org.osmdroid.util.GeoPoint;
 
 public class ErrorItem {
@@ -94,6 +96,10 @@ public class ErrorItem {
 
 	public void setIsClosed(boolean is_closed) {
 		this.is_closed = is_closed;
+	}
+	
+	public Date getDate() {
+		return new Date();
 	}
 	
 }

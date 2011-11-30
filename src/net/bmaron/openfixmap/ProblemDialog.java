@@ -3,6 +3,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -27,6 +28,13 @@ public class ProblemDialog extends Dialog{
         } else if(item.getErrorParser() == "OpenStreetBugs") {
         	image.setImageResource(R.drawable.open_bug_marker);
         }
+        
+        
+        TextView parse_name = (TextView) findViewById(R.id.parser);
+        parse_name.setText(item.getErrorParser());
+        
+        TextView error_date = (TextView) findViewById(R.id.error_date);
+        error_date.setText(DateFormat.getMediumDateFormat(context).format(item.getDate()));
         
         Button button = (Button) findViewById(R.id.close_button);
         

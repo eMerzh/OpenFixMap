@@ -35,7 +35,33 @@
 	    android:textColor="#FFF"
 	    android:padding="10dp"
 	/>
-	    
+    
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/layout_root"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+		
+		<TextView
+			android:id="@+id/error_date"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent"
+	        android:layout_weight="1.0"
+			android:textColor="#707070"
+			android:textSize="10sp"
+		/>
+		
+	    <TextView
+	        android:id="@+id/parser"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0"
+			android:textColor="#707070"
+			android:textSize="10sp"
+	         
+	       />
+	</LinearLayout>
+	  
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     	android:id="@+id/layout_root"
     	android:layout_width="fill_parent"
