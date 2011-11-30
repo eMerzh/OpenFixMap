@@ -17,9 +17,7 @@ import android.widget.Toast;
 import net.bmaron.openfixmap.R;
 import net.bmaron.openfixmap.ErrorParsers.ErrorPlateform;
 import net.bmaron.openfixmap.ErrorParsers.KeepRight;
-import net.bmaron.openfixmap.ErrorParsers.KeepRightCSVParser;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
-import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugsGPX;
 
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
@@ -30,7 +28,6 @@ import org.osmdroid.tileprovider.util.CloudmadeUtil;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
-import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.MyLocationOverlay;
 
@@ -45,7 +42,7 @@ public class OpenFixMapActivity extends Activity {
     private ScaleBarOverlay mScaleBarOverlay;  
     
     static final int DIALOG_ERROR_ID = 0;
-    private ItemizedIconOverlay<OverlayItem> pointOverlay; 
+    private ItemizedIconOverlay<OverlayErrorItem> pointOverlay; 
     private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
     
@@ -97,7 +94,7 @@ public class OpenFixMapActivity extends Activity {
         this.mapView.getOverlays().add(mScaleBarOverlay);
         
 
-    	class myItemGestureListener<T extends OverlayItem> implements OnItemGestureListener<T> {
+    	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
 		    
     		private T it;
 		    @Override
@@ -105,7 +102,7 @@ public class OpenFixMapActivity extends Activity {
 		    	it = item;
 		        mHandler.post(new Runnable() {
 				    public void run() { 
-				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this, it.getTitle(), it.mDescription);
+				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this,it.getError());
 				    	 dialog.show();
 				    	}
 				}); 
@@ -116,13 +113,19 @@ public class OpenFixMapActivity extends Activity {
 		    public boolean onItemLongPress(int index, T item) { return false;}
     	}
 
-        OnItemGestureListener<OverlayItem> pOnItemGestureListener = new myItemGestureListener<OverlayItem>();
+        OnItemGestureListener<OverlayErrorItem> pOnItemGestureListener = new myItemGestureListener<OverlayErrorItem>();
        
-        pointOverlay = new ItemizedIconOverlay<OverlayItem>(this, new ArrayList<OverlayItem>(), pOnItemGestureListener);
+        pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(this, new ArrayList<OverlayErrorItem>(), pOnItemGestureListener);
         this.mapView.getOverlays().add(pointOverlay);
 
     	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
-    		loadDataSource();            		
+    		Handler handler=new Handler();
+    		Runnable r=new Runnable() {
+    		    public void run() {
+    		    	loadDataSource();                       
+    		    }
+    		};
+    		handler.postDelayed(r, 2000);    //Wait to Be Painted		           		
     	}
     }
     
@@ -180,7 +183,7 @@ public class OpenFixMapActivity extends Activity {
         
         for(int i=0; i < itemList.size(); i++) {
         	ErrorItem item = itemList.get(i);
-            OverlayItem oItem = new OverlayItem(item.getTitle(),item.getDescription(),item.getPoint());
+        	OverlayErrorItem oItem = new OverlayErrorItem(item);
             pointOverlay.addItem(oItem);
         }
         mapView.invalidate();

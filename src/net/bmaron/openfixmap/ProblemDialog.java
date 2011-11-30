@@ -4,20 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProblemDialog extends Dialog{ 
-	public ProblemDialog(Context context, String title, String desc) {
+	public ProblemDialog(Context context, ErrorItem item) {
 		super(context);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//Remove Default Title
         setContentView(R.layout.errordetail_dialog);
-        setTitle(title);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText(item.getTitle());
 
         TextView text = (TextView) findViewById(R.id.text);
-        text.setText(desc);
+        text.setText(item.getDescription());
         ImageView image = (ImageView) findViewById(R.id.image);
-        image.setImageResource(R.drawable.robot);
+        
+        if(item.getErrorParser() == "KeepRight") {
+        	image.setImageResource(R.drawable.keepright);
+        } else if(item.getErrorParser() == "OpenStreetBugs") {
+        	image.setImageResource(R.drawable.open_bug_marker);
+        }
+        
         Button button = (Button) findViewById(R.id.close_button);
         
         

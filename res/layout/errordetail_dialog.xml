@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent" 
               android:layout_height="fill_parent" 
               android:orientation="vertical" >
+
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     	android:id="@+id/layout_root"
@@ -18,24 +18,44 @@
 	        android:layout_height="fill_parent"
 	        android:layout_marginRight="10dp"
 		/>
-	
-	    <TextView
-	        android:id="@+id/text"
+	 
+		<TextView
+	        android:id="@+id/title"
 	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
 	        android:textColor="#FFF"
 	    />
+
 	</LinearLayout>
 	
-	<Button
-        android:id="@+id/note_info"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Note Field infos" />
-    <Button
-        android:id="@+id/close_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Close" />
+	<TextView
+		android:id="@+id/text"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:textColor="#FFF"
+	    android:padding="10dp"
+	/>
+	    
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/layout_root"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:padding="10dp" >
+		
+		<Button
+	        android:id="@+id/note_info"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0" 
+	        android:text="Edit a Note" />
+	    <Button
+	        android:id="@+id/close_button"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0" 
+	        android:text="Close" />
+	</LinearLayout>
+
 
 </LinearLayout>
