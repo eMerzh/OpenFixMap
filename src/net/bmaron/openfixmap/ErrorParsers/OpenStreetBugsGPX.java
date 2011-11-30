@@ -28,7 +28,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
+public class OpenStreetBugsGPX extends DefaultHandler {
 
 //http://openstreetbugs.schokokeks.org/api/0.1/getRSSfeed?b=50.62895&t=50.78353&l=6.89193&r=7.30323
 //https://github.com/emka/openstreetbugs/blob/master/api/0.1/getRSSfeed
@@ -41,18 +41,12 @@ public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 	//to maintain context
 	private String tempVal;
 	private ErrorItem tempItem;
-	private BoundingBoxE6 boundingBox;
 	
 	public OpenStreetBugsGPX(){
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public OpenStreetBugsGPX(BoundingBoxE6 bb) {
-		boundingBox = bb;
-		lItems = new ArrayList<ErrorItem>();
-	}
-	
-	public void parse(int eLevel, boolean show_closed) {
+	public void parse(int eLevel, boolean show_closed, 	BoundingBoxE6 boundingBox) {
 
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -141,16 +135,7 @@ public class OpenStreetBugsGPX extends DefaultHandler implements IErrorParser {
 	{
 		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
         logger.info("getting items : # "+ lItems.size());
-        
 		return lItems;
 	}
-
-	public BoundingBoxE6 getBoundingBox() {
-		return boundingBox;
-	}
-
-	public void setBoundingBox(BoundingBoxE6 boundingBox) {
-		this.boundingBox = boundingBox;
-	} 
 }
 

@@ -15,7 +15,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import net.bmaron.openfixmap.R;
+import net.bmaron.openfixmap.ErrorParsers.ErrorPlateform;
+import net.bmaron.openfixmap.ErrorParsers.KeepRight;
 import net.bmaron.openfixmap.ErrorParsers.KeepRightCSVParser;
+import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugsGPX;
 
 import org.osmdroid.util.BoundingBoxE6;
@@ -149,20 +152,20 @@ public class OpenFixMapActivity extends Activity {
         BoundingBoxE6 bb = mapView.getBoundingBox();
 
     	
-    	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));    	
+    	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));
+    	ErrorPlateform bugPlateform;
         for(int i = 0; i < checkers.length; i++) {
         	
         	if(checkers[i].equals("OpenStreetBugs")) {
-        		OpenStreetBugsGPX parser = new OpenStreetBugsGPX(bb);
-            	parser.parse(display_level, show_closed);
-            	items.addAll(parser.getItems());
+        		bugPlateform = new OpenStreetBugs(bb, display_level, show_closed);
             	
-        	} else if(checkers[i].equals("KeepRight")) {
-            	KeepRightCSVParser parser = new KeepRightCSVParser(bb);
-            	parser.parse(display_level, show_closed);
-            	items.addAll(parser.getItems());
-
+        	} else// if(checkers[i].equals("KeepRight")) 
+        	{
+        		bugPlateform = new KeepRight(bb, display_level, show_closed);
         	}
+        	
+        	bugPlateform.load();
+        	items.addAll(bugPlateform.getItems());
         }
         
     	Toast toast = Toast.makeText(this, items.size()+" items downloaded", Toast.LENGTH_SHORT);

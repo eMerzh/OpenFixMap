@@ -22,17 +22,15 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.osmdroid.util.BoundingBoxE6;
 
-public class KeepRightCSVParser implements IErrorParser {
+public class KeepRightCSVParser{
 	
 	private List<ErrorItem> lItems;
-	private BoundingBoxE6 boundingBox;
 
-	public KeepRightCSVParser(BoundingBoxE6 bb) {
-		boundingBox = bb;
+	public KeepRightCSVParser() {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void parse(int eLevel, boolean show_closed)
+	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
 	{
 		
 		//All errors
@@ -111,19 +109,10 @@ public class KeepRightCSVParser implements IErrorParser {
         
 	}
 	
-	public List<ErrorItem> getItems()
-	{
+	public List<ErrorItem> getItems() {
 		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(KeepRightCSVParser.class);
         logger.info("getting items : # "+ lItems.size());
         
 		return lItems;
 	}
-
-	public BoundingBoxE6 getBoundingBox() {
-		return boundingBox;
-	}
-
-	public void setBoundingBox(BoundingBoxE6 boundingBox) {
-		this.boundingBox = boundingBox;
-	} 
 }
