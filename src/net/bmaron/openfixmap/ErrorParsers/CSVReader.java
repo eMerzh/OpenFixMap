@@ -1,4 +1,4 @@
-package net.bmaron.openfixmap;
+package net.bmaron.openfixmap.ErrorParsers;
 
 /**
  Copyright 2005 Bytecode Pty Ltd.

@@ -5,9 +5,9 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import net.bmaron.openfixmap.CSVReader;
 import net.bmaron.openfixmap.ErrorItem;
 
 import org.apache.http.HttpResponse;
@@ -83,17 +83,22 @@ public class KeepRightCSVParser{
         	CSVReader reader = new CSVReader(new InputStreamReader(response.getEntity().getContent()),'\t', '\0', 1);
 		    for(;;) {
 		    	next = reader.readNext();
-		        if(next != null && next.length == 16) {
-			        ErrorItem tItem = new ErrorItem("KeepRight");
-			        tItem.setLat(Double.parseDouble(next[0]));
-			        tItem.setLon(Double.parseDouble(next[1]));
-			        tItem.setTitle(next[2]);
-			        tItem.setDescription(next[10]);
-			        tItem.setId(Integer.parseInt(next[9]));
+		        if(next != null){
+		        	if(next.length == 16) {
+		        		ErrorItem tItem = new ErrorItem("KeepRight");
+				        tItem.setLat(Double.parseDouble(next[0]));
+				        tItem.setLon(Double.parseDouble(next[1]));
+				        tItem.setTitle(next[2]);
+				        tItem.setDescription(next[10]);
+				        tItem.setId(Integer.parseInt(next[9]));
+				        
+				        lItems.add(tItem);
+		        	}else {
+			            logger.error("Abord number of field not expected :"+ next.length);
+			            logger.info(Arrays.toString(next));
+		        	}
 			        
-			        lItems.add(tItem);
 		        } else {
-		            logger.error("Abord number of field not expected");
 		        	break;
 		        }
 
