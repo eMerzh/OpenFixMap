@@ -25,9 +25,11 @@ import org.osmdroid.util.BoundingBoxE6;
 public class KeepRightCSVParser{
 	
 	private List<ErrorItem> lItems;
-
-	public KeepRightCSVParser() {
+	protected ErrorPlateform error;
+	
+	public KeepRightCSVParser(ErrorPlateform e) {
 		lItems = new ArrayList<ErrorItem>();
+		error = e;
 	}
 	
 	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
@@ -85,7 +87,7 @@ public class KeepRightCSVParser{
 		    	next = reader.readNext();
 		        if(next != null){
 		        	if(next.length == 16) {
-		        		ErrorItem tItem = new ErrorItem("KeepRight");
+		        		ErrorItem tItem = new ErrorItem(error);
 				        tItem.setLat(Double.parseDouble(next[0]));
 				        tItem.setLon(Double.parseDouble(next[1]));
 				        tItem.setTitle(next[2]);

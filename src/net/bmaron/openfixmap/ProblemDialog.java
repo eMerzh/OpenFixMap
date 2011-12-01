@@ -22,16 +22,12 @@ public class ProblemDialog extends Dialog{
         TextView text = (TextView) findViewById(R.id.text);
         text.setText(item.getDescription());
         ImageView image = (ImageView) findViewById(R.id.image);
-        
-        if(item.getErrorParser() == "KeepRight") {
-        	image.setImageResource(R.drawable.keepright);
-        } else if(item.getErrorParser() == "OpenStreetBugs") {
-        	image.setImageResource(R.drawable.open_bug_marker);
-        }
+
+        image.setImageResource(item.getPlateform().getIcon());
         
         
         TextView parse_name = (TextView) findViewById(R.id.parser);
-        parse_name.setText(item.getErrorParser());
+        parse_name.setText(item.getPlateform().getName());
         
         TextView error_date = (TextView) findViewById(R.id.error_date);
         error_date.setText(DateFormat.getMediumDateFormat(context).format(item.getDate()));

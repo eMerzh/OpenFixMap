@@ -1,6 +1,9 @@
 package net.bmaron.openfixmap.ErrorParsers;
 
+import net.bmaron.openfixmap.R;
+
 import org.osmdroid.util.BoundingBoxE6;
+
 
 
 public class KeepRight extends ErrorPlateform {
@@ -13,8 +16,18 @@ public class KeepRight extends ErrorPlateform {
 
 	@Override
 	public void load() {
-    	KeepRightCSVParser parser = new KeepRightCSVParser();
+    	KeepRightCSVParser parser = new KeepRightCSVParser(this);
     	parser.parse(this.boundingBox, this.eLevel, this.show_closed);
     	lItems.addAll(parser.getItems());
+	}
+	
+	@Override
+	public int getIcon() {
+		return R.drawable.keepright;
+	}
+	
+	@Override
+	public String getName() {
+		return "KeepRight";
 	}
 }

@@ -43,9 +43,11 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 	//to maintain context
 	private String tempVal;
 	private ErrorItem tempItem;
+	protected ErrorPlateform error;
 	
-	public OpenStreetBugsGPX(){
+	public OpenStreetBugsGPX(ErrorPlateform e) {
 		lItems = new ArrayList<ErrorItem>();
+		error = e;
 	}
 	
 	public void parse(int eLevel, boolean show_closed, 	BoundingBoxE6 boundingBox) {
@@ -101,7 +103,7 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 		//reset
 		tempVal = "";
 		if(qName.equalsIgnoreCase("wpt")) {
-			tempItem = new ErrorItem("OpenStreetBugs");
+			tempItem = new ErrorItem(error);
 			tempItem.setLat(Double.parseDouble(attributes.getValue("lat")));
 			tempItem.setLon(Double.parseDouble(attributes.getValue("lon")));
 

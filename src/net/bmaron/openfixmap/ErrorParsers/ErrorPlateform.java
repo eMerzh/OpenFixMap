@@ -7,7 +7,7 @@ import java.util.List;
 import net.bmaron.openfixmap.ErrorItem;
 import org.osmdroid.util.BoundingBoxE6;
 
-public class ErrorPlateform {
+public abstract class ErrorPlateform {
 
 	protected List<ErrorItem> lItems;
 	protected BoundingBoxE6 boundingBox;
@@ -24,8 +24,7 @@ public class ErrorPlateform {
 		lItems = new ArrayList<ErrorItem>();
 	}
 	
-	public void load()
-	{}
+	public abstract void load();
 
 	
 	
@@ -44,4 +43,8 @@ public class ErrorPlateform {
 	public void setBoundingBox(BoundingBoxE6 boundingBox) {
 		this.boundingBox = boundingBox;
 	} 
+	
+	public abstract int getIcon();
+	public abstract String getName();
+	
 }
