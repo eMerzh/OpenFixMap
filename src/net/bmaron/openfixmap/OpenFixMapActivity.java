@@ -13,6 +13,9 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.bmaron.openfixmap.R;
@@ -84,12 +87,32 @@ public class OpenFixMapActivity extends Activity {
 
         mMyLocationOverlay.runOnFirstFix(new Runnable() {
             public void run() {
+            	
+            	mHandler.post(new Runnable() {
+				    public void run() { 
+		                ImageView image = (ImageView) findViewById(R.id.location_ico);
+		                image.setImageResource(R.drawable.ic_menu_mylocation_on);
+		            }
+				}); 
+
             	if(sharedPrefs.getBoolean("go_to_first", false)) {
             		goToCurrenLocation();            		
             	}
-            	
             }
         });
+
+        ImageButton location_but = (ImageButton) findViewById(R.id.location_ico);
+        location_but.setOnClickListener(new View.OnClickListener(){
+        	
+			@Override
+			public void onClick(View v) {
+				if(mMyLocationOverlay.getMyLocation() != null)
+					goToCurrenLocation();
+			}
+        	
+        });
+
+        
         
         this.mScaleBarOverlay = new ScaleBarOverlay(this);                          
         this.mapView.getOverlays().add(mScaleBarOverlay);
@@ -120,13 +143,12 @@ public class OpenFixMapActivity extends Activity {
         this.mapView.getOverlays().add(pointOverlay);
 
     	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
-    		Handler handler=new Handler();
     		Runnable r=new Runnable() {
     		    public void run() {
     		    	loadDataSource();                       
     		    }
     		};
-    		handler.postDelayed(r, 2000);    //Wait to Be Painted		           		
+    		mHandler.postDelayed(r, 2000);    //Wait to Be Painted		   
     	}
     }
     
@@ -241,10 +263,6 @@ public class OpenFixMapActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
     	switch (item.getItemId()) {
-        	case R.id.gotolocation:
-        		goToCurrenLocation();
-        		return true;
-        		
         	case R.id.refresh:
         		loadDataSource();
         		return true;
