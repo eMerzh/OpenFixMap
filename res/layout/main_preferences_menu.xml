@@ -10,13 +10,6 @@
             android:entries="@array/errorBackend"
 			android:entryValues="@array/errorBackend"
 	        />
-	    
-    	<CheckBoxPreference
-	            android:key="fetch_closed"
-	            android:summary="Enable or disable Closed item fetching"
-	            android:title="Fetch closed items"
-	            android:defaultValue="false"
-	        />
 
     	<CheckBoxPreference
 	            android:key="go_to_first"
@@ -42,7 +35,7 @@
 	        />
 
 			<CheckBoxPreference
-	            android:key="display_closed"
+	            android:key="show_closed"
 	            android:summary="Display closed errors"
 	            android:title="Display Closed"
 	            android:defaultValue="false"
