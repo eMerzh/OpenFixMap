@@ -14,6 +14,7 @@ public class ErrorItem {
 	private double lon;
 	private boolean is_closed;
 	private int error_level;
+	private Date date;
 	private ErrorPlateform error_plateform; 
 	
 	
@@ -101,7 +102,11 @@ public class ErrorItem {
 	}
 	
 	public Date getDate() {
-		return new Date();
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

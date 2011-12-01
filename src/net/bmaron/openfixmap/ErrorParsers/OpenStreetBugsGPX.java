@@ -25,7 +25,10 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -130,10 +133,20 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 			tempItem.setId(Integer.parseInt(tempVal));
 		}else if (qName.equalsIgnoreCase("Desc")) {
 			
-			Pattern pattern = Pattern.compile("(.+)(\\[.*\\])$");
+			Pattern pattern = Pattern.compile("(.+)(\\[(.*), (.*) CET\\])$");
 			Matcher matcher = pattern.matcher(tempVal);
 			if(matcher.find()) {
 				tempItem.setDescription(matcher.group(1));
+		        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); 
+				try {
+			        Date dateObj;
+					dateObj = curFormater.parse(matcher.group(4));
+					tempItem.setDate(dateObj);
+
+				} catch (ParseException e) {
+					e.printStackTrace();
+				} 
+		        
 			}
 			logger.info(tempVal);
 			//[Bogumil, 2011-09-13 00:22:30 CEST]	

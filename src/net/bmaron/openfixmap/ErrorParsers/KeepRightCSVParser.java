@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import net.bmaron.openfixmap.ErrorItem;
@@ -95,6 +98,17 @@ public class KeepRightCSVParser{
 				        tItem.setTitle(next[2]);
 				        tItem.setDescription(Html.fromHtml(next[10]).toString());
 				        tItem.setId(Integer.parseInt(next[9]));
+				        
+				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); 
+						try {
+					        Date dateObj;
+							dateObj = curFormater.parse(next[7]);
+					        tItem.setDate(dateObj);
+
+						} catch (ParseException e) {
+							e.printStackTrace();
+						} 
+				        
 				        
 				        lItems.add(tItem);
 		        	}else {
