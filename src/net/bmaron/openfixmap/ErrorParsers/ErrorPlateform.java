@@ -30,7 +30,7 @@ public abstract class ErrorPlateform {
 	
 	public List<ErrorItem> getItems()
 	{
-		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(KeepRightCSVParser.class);
+		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ErrorPlateform.class);
         logger.info("getting items : # "+ lItems.size());
         
 		return lItems;

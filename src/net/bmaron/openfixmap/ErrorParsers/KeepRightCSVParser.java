@@ -22,6 +22,8 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.osmdroid.util.BoundingBoxE6;
 
+import android.text.Html;
+
 public class KeepRightCSVParser{
 	
 	private List<ErrorItem> lItems;
@@ -91,7 +93,7 @@ public class KeepRightCSVParser{
 				        tItem.setLat(Double.parseDouble(next[0]));
 				        tItem.setLon(Double.parseDouble(next[1]));
 				        tItem.setTitle(next[2]);
-				        tItem.setDescription(next[10]);
+				        tItem.setDescription(Html.fromHtml(next[10]).toString());
 				        tItem.setId(Integer.parseInt(next[9]));
 				        
 				        lItems.add(tItem);
