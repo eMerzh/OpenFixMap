@@ -9,21 +9,23 @@
     	android:layout_height="60px"
         android:background="@android:drawable/dark_header"
 	>
-	
-        <ImageButton
-            android:src="@drawable/ic_menu_refresh"
-			android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-        	android:background="@android:drawable/dark_header"
-			android:layout_alignParentLeft="true"
-        />
+
+        <Button
+     		android:id="@+id/refresh"
+     		android:layout_height="wrap_content"
+     		android:layout_width="wrap_content"
+     		android:text="Fetch bugs"
+     		android:drawableLeft="@drawable/ic_menu_refresh"
+     		android:background="@android:color/transparent"
+     		android:textColor="#fff"
+      	/>
         
         <ImageButton
 			android:id="@+id/location_ico"
             android:src="@drawable/ic_menu_mylocation_off"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-        	android:background="@android:drawable/dark_header"
+        	android:background="@android:color/transparent"
 			android:layout_alignParentRight="true"
         />
         

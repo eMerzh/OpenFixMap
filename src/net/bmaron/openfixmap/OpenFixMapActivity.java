@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -49,7 +52,9 @@ public class OpenFixMapActivity extends Activity {
     private ItemizedIconOverlay<OverlayErrorItem> pointOverlay; 
     private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
-    
+	private SharedPreferences settings;
+	private final CharSequence[] layers = {"OSM Mapnik", "No Name", "Mapquest", "Midnight"};
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,13 +68,11 @@ public class OpenFixMapActivity extends Activity {
         mapView.setBuiltInZoomControls(true);
         mapView.setMultiTouchControls(true);
 
-        loadMapSource(2);
-        
-
-
         /* Set position of last open or near Home :) */
 
-        SharedPreferences settings = getSharedPreferences("last_position", 0);
+        settings = getSharedPreferences("last_position", 0);
+        loadMapSource(settings.getInt("map_layer",1));
+
         int lat = settings.getInt("last_position_lat",50838599);
         int lon = settings.getInt("last_position_lon",4406551);
         int zoom = settings.getInt("last_position_zoom",16);
@@ -102,8 +105,7 @@ public class OpenFixMapActivity extends Activity {
         });
 
         ImageButton location_but = (ImageButton) findViewById(R.id.location_ico);
-        location_but.setOnClickListener(new View.OnClickListener(){
-        	
+        location_but.setOnClickListener(new View.OnClickListener(){        	
 			@Override
 			public void onClick(View v) {
 				if(mMyLocationOverlay.getMyLocation() != null)
@@ -111,7 +113,13 @@ public class OpenFixMapActivity extends Activity {
 			}
         	
         });
-
+        Button refresh_but = (Button) findViewById(R.id.refresh);
+        refresh_but.setOnClickListener(new View.OnClickListener(){        	
+			@Override
+			public void onClick(View v) {
+		    	loadDataSource(); 
+        	}
+        });
         
         
         this.mScaleBarOverlay = new ScaleBarOverlay(this);                          
@@ -158,7 +166,6 @@ public class OpenFixMapActivity extends Activity {
 
       // We need an Editor object to make preference changes.
       // All objects are from android.context.Context
-      SharedPreferences settings = getSharedPreferences("last_position", 0);
       SharedPreferences.Editor editor = settings.edit();
       BoundingBoxE6 bb = mapView.getBoundingBox();
       editor.putInt("last_position_lat", bb.getCenter().getLatitudeE6());
@@ -217,24 +224,31 @@ public class OpenFixMapActivity extends Activity {
     
     protected void loadMapSource(int source)
     {
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("map_layer",source);
+        editor.commit();
+		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
+        logger.info("saved default "+ source);
+        
     	switch(source) {
-    		case 1:
-    			CloudmadeTileSource map_source_cloud = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
-    			map_source_cloud.setStyle(999);
-    		    CloudmadeUtil.retrieveCloudmadeKey(this);
-    	        mapView.setTileSource(map_source_cloud);
+    		case 0:
+    			mapView.setTileSource(TileSourceFactory.MAPNIK);
     			break;
-    		case 2:
+    		case 1:
     			CloudmadeTileSource map_source_noname = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
     			map_source_noname.setStyle(3);
     		    CloudmadeUtil.retrieveCloudmadeKey(this);
     	        mapView.setTileSource(map_source_noname);		
     			break;
-    		case 3:
+    		case 2:
     			mapView.setTileSource(TileSourceFactory.MAPQUESTOSM);
     			break;
-    	        /*XYTileSource name = new XYTileSource("name", null, 0, 16, 256, ".png", "http://tilesserver.com/");
-        		mapView.setTileSource(name); */
+    		case 3:
+    			CloudmadeTileSource map_source_cloud = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
+    			map_source_cloud.setStyle(999);
+    		    CloudmadeUtil.retrieveCloudmadeKey(this);
+    	        mapView.setTileSource(map_source_cloud);
+    			break;
     		default:
     			break;
     	}
@@ -263,8 +277,19 @@ public class OpenFixMapActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
     	switch (item.getItemId()) {
-        	case R.id.refresh:
-        		loadDataSource();
+        	case R.id.switch_layer:                
+        		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        		builder.setTitle("Pick a layer");
+        		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
+                logger.info("switch default "+ settings.getInt("map_layer",1));
+                
+        		builder.setSingleChoiceItems(layers, settings.getInt("map_layer",1), new DialogInterface.OnClickListener() {
+        		    public void onClick(DialogInterface dialog, int item) {
+        		    	loadMapSource(item);
+        		    }
+        		});
+        		AlertDialog alert = builder.create();
+        		alert.show();
         		return true;
         	case R.id.preferences: 
         		startActivityForResult(new Intent(this, Preferences.class), 1 /* CODE_RETOUR*/);

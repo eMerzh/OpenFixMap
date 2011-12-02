@@ -11,21 +11,21 @@
 			android:entryValues="@array/errorBackend"
 	        />
 
-    	<CheckBoxPreference
+    		<CheckBoxPreference
 	            android:key="go_to_first"
 	            android:summary="Center the map when the first position is recieved"
 	            android:title="Go to first Fix"
 	            android:defaultValue="false"
 	        />
     	
-		<CheckBoxPreference
+			<CheckBoxPreference
 	            android:key="fetch_on_launch"
 	            android:summary="Fetch items directly after launch"
 	            android:title="Fetch on launch"
 	            android:defaultValue="false"
 	        />
 		
-		  <ListPreference
+		  	<ListPreference
 	            android:key="display_level"
 	            android:title="Display level"
 	            android:summary="Define the level of the error displayed"
