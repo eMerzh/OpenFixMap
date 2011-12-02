@@ -201,7 +201,9 @@ public class OpenFixMapActivity extends Activity {
         	items.addAll(bugPlateform.getItems());
         }
         
-    	Toast toast = Toast.makeText(this, items.size()+" items downloaded", Toast.LENGTH_SHORT);
+    	Toast toast = Toast.makeText(this,
+    			getResources().getQuantityString(R.plurals.numberOfDownloadedItems,  items.size(),items.size()),
+    			Toast.LENGTH_SHORT);
     	toast.show();
         return items;
     }
@@ -279,7 +281,7 @@ public class OpenFixMapActivity extends Activity {
     	switch (item.getItemId()) {
         	case R.id.switch_layer:                
         		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        		builder.setTitle("Pick a layer");
+        		builder.setTitle(getResources().getString(R.string.dialog_switchlayer_title));
         		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
                 logger.info("switch default "+ settings.getInt("map_layer",1));
                 

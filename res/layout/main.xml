@@ -14,7 +14,7 @@
      		android:id="@+id/refresh"
      		android:layout_height="wrap_content"
      		android:layout_width="wrap_content"
-     		android:text="Fetch bugs"
+     		android:text="@string/main_fetch_btn"
      		android:drawableLeft="@drawable/ic_menu_refresh"
      		android:background="@android:color/transparent"
      		android:textColor="#fff"

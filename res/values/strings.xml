@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, OpenFixMapActivity!</string>
     <string name="app_name">OpenFixMap</string>
+	<string name="menu_switchlayer_button">Change Layer</string>
+    <string name="menu_pref_button">Preferences</string>
+    <string name="main_fetch_btn">Fetch bugs</string>
 
+    <string name="pref_platform_title">Error Reporting Platform</string>
+    <string name="pref_platform_sum">Choose error reporting platforms</string>
+    <string name="pref_fix_title">Go to first Fix</string>
+	<string name="pref_fix_sum">Center the map when the first position is received</string>
+    <string name="pref_fetchonlaunch_title">Fetch on launch</string>
+	<string name="pref_fetchonlaunch_sum">Fetch items directly after launch</string>
+    <string name="pref_err_level_title">Display level</string>
+    <string name="pref_err_level_sum">Define the level of the error displayed</string>
+    <string name="pref_closed_title">Display Closed</string>        
+    <string name="pref_closed_sum">Display closed errors</string>
+    
+	<string name="details_close_btn">Close</string>
+	<string name="details_note_btn">Edit a Note</string>
+	<string name="details_bug_title">New Bug</string>
+	
+	<string name="dialog_switchlayer_title">Pick a layer</string>
+	    
+
+    <plurals name="numberOfDownloadedItems">
+        <item quantity="one">One item fetched.</item>
+        <item quantity="other">%d items fetched.</item>
+    </plurals>
+	    
 </resources>

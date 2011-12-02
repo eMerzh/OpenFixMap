@@ -78,13 +78,13 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1.0" 
-	        android:text="Edit a Note" />
+	        android:text="@string/details_note_btn" />
 	    <Button
 	        android:id="@+id/close_button"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1.0" 
-	        android:text="Close" />
+	        android:text="@string/details_close_btn" />
 	</LinearLayout>
 
 

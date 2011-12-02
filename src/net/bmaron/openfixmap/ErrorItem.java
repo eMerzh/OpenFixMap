@@ -46,6 +46,11 @@ public class ErrorItem {
 		return title;
 	}
 
+	public String getTitleOr(String def){
+		if(title==null)
+			return def;
+		return title;
+	}
 	public void setTitle(String title) {
 		this.title = title;
 	}

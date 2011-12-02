@@ -20,7 +20,7 @@ public class ProblemDialog extends Dialog{
         setContentView(R.layout.errordetail_dialog);
 
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText(item.getTitle());
+        title.setText(item.getTitleOr(context.getResources().getString(R.string.details_bug_title)));
 
         TextView text = (TextView) findViewById(R.id.text);
         text.setText(item.getDescription());

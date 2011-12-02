@@ -25,7 +25,7 @@
 	            android:defaultValue="false"
 	        />
 		
-		  	<ListPreference
+		  <ListPreference
 	            android:key="display_level"
 	            android:title="Display level"
 	            android:summary="Define the level of the error displayed"
