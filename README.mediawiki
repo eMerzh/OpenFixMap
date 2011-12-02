@@ -1,0 +1,77 @@
+= OpenFixMap =
+
+OpenFixMap is an android application that shows OpenStreetMap errors
+
+OpenFixMap is built to fetch errors from different places, 
+is can for example fetch error reported by Users on OpenStreetBugs.
+It can also take errors from machine computed error lists as KeepRight.
+
+There are plan to support other plateforms so, if your favorite plateforms
+isn't already supported, is may be added in a near future
+by me or by one of your future patch  ;)
+
+Contributions are Welcome...
+
+
+== Authors ==
+
+This Program is made by Brice Maron < brice @At@ bmaron  @Dot@ net >,
+And use data from other sites like :
+ * http://keepright.ipax.at
+ * http://openstreetbugs.schokokeks.org
+
+Or 
+
+ * http://open.mapquest.com
+ * http://cloudmade.com
+
+== Licences ==
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.<br /><br />
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.<br /><br />
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+== Included external works ==
+
+OpenFixMap include some works made by others:
+
+=== OSMDroid ===
+
+LGPL
+http://code.google.com/p/osmdroid/
+
+==== Map Marker Icon: ====
+
+Nicolas Mollet
+CC BY SA 3.0
+http://mapicons.nicolasmollet.com/
+
+==== Logo Background Map ====
+
+OpenStreetMap Logo (Ken Vermette)
+CC BY SA
+www.openstreetmap.org
+
+==== Logo Bug ====
+Janoos
+GPL
+http://commons.wikimedia.org/wiki/File:Cssed.svg
+
+==== MultiSelectListPreference.java ====
+
+CyanogenMod Project
+Apache License, Version 2.0
+www.cyanogenmod.com
+
+
+==== CSVReader.java ====
+
+Bytecode Pty Ltd.
+Apache License, Version 2.0
