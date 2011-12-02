@@ -179,7 +179,7 @@ public class OpenFixMapActivity extends Activity {
     
     protected  List<ErrorItem> fetchDatas()
     {
-        String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRights"));
+        String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRight"));
         boolean show_closed = sharedPrefs.getBoolean("show_closed", false);
         List<ErrorItem> items = new ArrayList<ErrorItem>();
         BoundingBoxE6 bb = mapView.getBoundingBox();
