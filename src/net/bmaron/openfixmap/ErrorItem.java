@@ -16,6 +16,7 @@ public class ErrorItem {
 	private int error_level;
 	private Date date;
 	private ErrorPlateform error_plateform; 
+	private String link;
 	
 	
     public ErrorItem(long id, String title, String description, double lat, double lon) {
@@ -108,5 +109,12 @@ public class ErrorItem {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
 }

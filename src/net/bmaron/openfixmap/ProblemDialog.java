@@ -11,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProblemDialog extends Dialog{ 
+	protected ErrorItem item;
+	
 	public ProblemDialog(Context context, ErrorItem item) {
 		super(context);
+		this.item = item;
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//Remove Default Title
         setContentView(R.layout.errordetail_dialog);
 
@@ -53,8 +56,9 @@ public class ProblemDialog extends Dialog{
 		        
 		        emailIntent .setType("text/html");
 		         
-		        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"http://bmaron.net\">Here</a>"));
-		        ProblemDialog.this.getContext().startActivity(Intent.createChooser(emailIntent, "Note OSM Bug"));
+		        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+		        		Html.fromHtml("<a href=\""+ProblemDialog.this.item.getLink()+"\">"+ProblemDialog.this.item.getTitle()+"</a>"));
+		        ProblemDialog.this.getContext().startActivity(Intent.createChooser(emailIntent, "Note OSM Error"));
 		        //emailIntent .putExtra(android.content.Intent.EXTRA_SUBJECT, "yeey");
 
 			}

@@ -98,7 +98,7 @@ public class KeepRightCSVParser{
 				        tItem.setTitle(next[2]);
 				        tItem.setDescription(Html.fromHtml(next[10]).toString());
 				        tItem.setId(Integer.parseInt(next[9]));
-				        
+				        tItem.setLink("http://keepright.ipax.at/report_map.php?schema=" +next[8]+ "&error=" + tItem.getId());
 				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); 
 						try {
 					        Date dateObj;

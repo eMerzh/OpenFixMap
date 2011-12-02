@@ -125,6 +125,7 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 			//add it to the list
 			
 			tempItem.setTitle("New Bug");
+			tempItem.setLink("http://openstreetbugs.schokokeks.org/?zoom=18&amp;lat=" + tempItem.getLat() +"&amp;lon="+tempItem.getLon());
 			lItems.add(tempItem);
 			
 		}/*else if (qName.equalsIgnoreCase("Name")) {
