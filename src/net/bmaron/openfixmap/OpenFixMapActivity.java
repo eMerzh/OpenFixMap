@@ -61,6 +61,15 @@ public class OpenFixMapActivity extends Activity {
         super.onCreate(savedInstanceState);
         mHandler = new Handler(); 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        /*
+         * Set Default parser for First launch
+         */
+        if(sharedPrefs.getString("checkers", null) == null ){
+        	SharedPreferences.Editor editor = sharedPrefs.edit();
+        	editor.putString("checkers", "KeepRight");
+        	editor.commit();
+        }
+        
         setContentView(R.layout.main);
 
         mapView = (MapView) findViewById(R.id.mapview);
