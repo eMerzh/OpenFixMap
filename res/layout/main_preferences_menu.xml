@@ -4,8 +4,8 @@
 	<PreferenceCategory android:title="Utilisateur">
 	    <net.bmaron.openfixmap.MultiSelectListPreference
 	        android:key="checkers"
-	        android:title="Error Reporting Plateform"
-	        android:summary="Choose error reporting plateforms"
+	        android:title="@string/pref_platform_title"
+	        android:summary="@string/pref_platform_sum"
 			android:defaultValue="KeepRights"
             android:entries="@array/errorBackend"
 			android:entryValues="@array/errorBackend"
@@ -13,22 +13,22 @@
 
     		<CheckBoxPreference
 	            android:key="go_to_first"
-	            android:summary="Center the map when the first position is recieved"
-	            android:title="Go to first Fix"
+	            android:summary="@string/pref_fix_sum"
+	            android:title="@string/pref_fix_title"
 	            android:defaultValue="false"
 	        />
     	
 			<CheckBoxPreference
 	            android:key="fetch_on_launch"
-	            android:summary="Fetch items directly after launch"
-	            android:title="Fetch on launch"
+	            android:summary="@string/pref_fetchonlaunch_sum"
+	            android:title="@string/pref_fetchonlaunch_title"
 	            android:defaultValue="false"
 	        />
 		
 		  <ListPreference
 	            android:key="display_level"
-	            android:title="Display level"
-	            android:summary="Define the level of the error displayed"
+	            android:title="@string/pref_err_level_title"
+	            android:summary="@string/pref_err_level_sum"
 	            android:defaultValue="1"
 	            android:entries="@array/displayLevel"
 	            android:entryValues="@array/displayLevelValues"
@@ -36,8 +36,8 @@
 
 			<CheckBoxPreference
 	            android:key="show_closed"
-	            android:summary="Display closed errors"
-	            android:title="Display Closed"
+	            android:summary="@string/pref_closed_sum"
+	            android:title="@string/pref_closed_title"
 	            android:defaultValue="false"
 	        />
 	</PreferenceCategory>
