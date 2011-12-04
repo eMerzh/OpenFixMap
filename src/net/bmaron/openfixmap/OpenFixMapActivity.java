@@ -156,11 +156,16 @@ public class OpenFixMapActivity extends Activity {
 
  
         mapView.setGestureDetector(new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+        	private GeoPoint p;
             @Override
             public void onLongPress(MotionEvent e) {
-        		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
-        		GeoPoint p = (GeoPoint) mapView.getProjection().fromPixels(e.getX(), e.getY());
-                logger.info("Broool"+p.getLatitudeE6());
+        		p = (GeoPoint) mapView.getProjection().fromPixels(e.getX(), e.getY());
+		        mHandler.post(new Runnable() {
+				    public void run() { 
+				    	ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p);
+				    	 dialog.show();
+				    	}
+				}); 
             }
         }));
     	

@@ -46,7 +46,6 @@ public abstract class ErrorPlatform {
 	} 
 	
 	public void createBug(ErrorItem i) {
-		
 	}
 	
 	public abstract int getIcon();

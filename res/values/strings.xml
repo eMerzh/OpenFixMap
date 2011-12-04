@@ -21,7 +21,13 @@
 	<string name="details_bug_title">New Bug</string>
 	
 	<string name="dialog_switchlayer_title">Pick a layer</string>
-	    
+
+	<string name="report_dialog_title">Report a Problem</string>
+	<string name="report_title_fld_hint">Title</string>
+	<string name="report_desc_fld_hint">Description</string>
+	<string name="report_cancel_btn">Cancel</string>
+	<string name="report_save_btn">Save</string>
+
 
     <plurals name="numberOfDownloadedItems">
         <item quantity="one">One item fetched.</item>

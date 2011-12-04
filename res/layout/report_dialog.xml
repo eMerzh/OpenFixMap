@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"   
+    android:padding="10dp">
+
+	<EditText  
+        android:id="@+id/report_title"  
+        android:layout_height="wrap_content"  
+        android:hint="@string/report_title_fld_hint"  
+        android:inputType="textLongMessage"  
+        android:layout_width="fill_parent">  
+    </EditText>
+    
+	<EditText  
+        android:id="@+id/report_description"  
+        android:layout_height="wrap_content"  
+        android:hint="@string/report_desc_fld_hint"  
+        android:inputType="textMultiLine"  
+        android:layout_width="fill_parent"
+    	android:lines="4"  
+    />
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/report_layout_buttons"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:padding="10dp" >
+		
+		<Button
+	        android:id="@+id/report_cancel_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0" 
+	        android:text="@string/report_cancel_btn" />
+	    <Button
+	        android:id="@+id/report_save_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0" 
+	        android:text="@string/report_save_btn" />
+	</LinearLayout>
+	    
+</LinearLayout>
