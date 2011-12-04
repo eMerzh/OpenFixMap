@@ -175,9 +175,9 @@ public class OpenFixMapActivity extends Activity {
       // We need an Editor object to make preference changes.
       // All objects are from android.context.Context
       SharedPreferences.Editor editor = settings.edit();
-      BoundingBoxE6 bb = mapView.getBoundingBox();
-      editor.putInt("last_position_lat", bb.getCenter().getLatitudeE6());
-      editor.putInt("last_position_lon",  bb.getCenter().getLongitudeE6());
+      GeoPoint bb = mapView.getBoundingBox().getCenter();
+      editor.putInt("last_position_lat", bb.getLatitudeE6());
+      editor.putInt("last_position_lon",  bb.getLongitudeE6());
       editor.putInt("last_position_zoom", mapView.getZoomLevel());
 
       // Commit the edits!
