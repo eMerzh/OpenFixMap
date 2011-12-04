@@ -12,9 +12,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,24 +30,16 @@ import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.tileprovider.tilesource.CloudmadeTileSource;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.tileprovider.util.CloudmadeUtil;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
-import org.osmdroid.views.overlay.MyLocationOverlay;
 
 		
 public class OpenFixMapActivity extends Activity {
 
 
-    protected MapView mapView;
+    protected FixMapView mapView;
 	
-    private MapController mapController;
-    private MyLocationOverlay mMyLocationOverlay;
     private ScaleBarOverlay mScaleBarOverlay;  
     
     static final int DIALOG_ERROR_ID = 0;
@@ -53,7 +47,6 @@ public class OpenFixMapActivity extends Activity {
     private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
 	private SharedPreferences settings;
-	private final CharSequence[] layers = {"OSM Mapnik", "No Name", "Mapquest", "Midnight"};
 
     /** Called when the activity is first created. */
     @Override
@@ -72,32 +65,23 @@ public class OpenFixMapActivity extends Activity {
         
         setContentView(R.layout.main);
 
-        mapView = (MapView) findViewById(R.id.mapview);
+        mapView = (FixMapView) findViewById(R.id.mapview);
+        mapView.setup();
 
-        mapView.setBuiltInZoomControls(true);
-        mapView.setMultiTouchControls(true);
 
         /* Set position of last open or near Home :) */
 
         settings = getSharedPreferences("last_position", 0);
-        loadMapSource(settings.getInt("map_layer",1));
+    	mapView.loadMapSource(settings.getInt("map_layer",1));
 
         int lat = settings.getInt("last_position_lat",50838599);
         int lon = settings.getInt("last_position_lon",4406551);
         int zoom = settings.getInt("last_position_zoom",16);
         
-        mapController = this.mapView.getController();
-        mapController.setZoom(zoom);
-        GeoPoint p = new GeoPoint(lat, lon);
-        
-        mapController.setCenter(p);
+        mapView.getController().setZoom(zoom);
+        mapView.getController().setCenter(new GeoPoint(lat, lon));
 
-        this.mMyLocationOverlay = new MyLocationOverlay(this, this.mapView);                          
-        this.mapView.getOverlays().add(mMyLocationOverlay);
-        this.mMyLocationOverlay.enableMyLocation();
-        //this.mMyLocationOverlay.enableCompass();
-
-        mMyLocationOverlay.runOnFirstFix(new Runnable() {
+        mapView.getLocationOverlay().runOnFirstFix(new Runnable() {
             public void run() {
             	
             	mHandler.post(new Runnable() {
@@ -108,7 +92,7 @@ public class OpenFixMapActivity extends Activity {
 				}); 
 
             	if(sharedPrefs.getBoolean("go_to_first", false)) {
-            		goToCurrenLocation();            		
+            		mapView.goToCurrentLocation();            		
             	}
             }
         });
@@ -117,8 +101,7 @@ public class OpenFixMapActivity extends Activity {
         location_but.setOnClickListener(new View.OnClickListener(){        	
 			@Override
 			public void onClick(View v) {
-				if(mMyLocationOverlay.getMyLocation() != null)
-					goToCurrenLocation();
+				mapView.goToCurrentLocation();
 			}
         	
         });
@@ -167,7 +150,23 @@ public class OpenFixMapActivity extends Activity {
     		};
     		mHandler.postDelayed(r, 2000);    //Wait to Be Painted		   
     	}
-    }
+    	
+    	
+    	
+
+ 
+        mapView.setGestureDetector(new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public void onLongPress(MotionEvent e) {
+        		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
+        		GeoPoint p = (GeoPoint) mapView.getProjection().fromPixels(e.getX(), e.getY());
+                logger.info("Broool"+p.getLatitudeE6());
+            }
+        }));
+    	
+    	
+    }   
+    
     
     @Override
     protected void onStop(){
@@ -233,50 +232,6 @@ public class OpenFixMapActivity extends Activity {
 
     }
     
-    protected void loadMapSource(int source)
-    {
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("map_layer",source);
-        editor.commit();
-		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
-        logger.info("saved default "+ source);
-        
-    	switch(source) {
-    		case 0:
-    			mapView.setTileSource(TileSourceFactory.MAPNIK);
-    			break;
-    		case 1:
-    			CloudmadeTileSource map_source_noname = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
-    			map_source_noname.setStyle(3);
-    		    CloudmadeUtil.retrieveCloudmadeKey(this);
-    	        mapView.setTileSource(map_source_noname);		
-    			break;
-    		case 2:
-    			mapView.setTileSource(TileSourceFactory.MAPQUESTOSM);
-    			break;
-    		case 3:
-    			CloudmadeTileSource map_source_cloud = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
-    			map_source_cloud.setStyle(999);
-    		    CloudmadeUtil.retrieveCloudmadeKey(this);
-    	        mapView.setTileSource(map_source_cloud);
-    			break;
-    		default:
-    			break;
-    	}
-
-    }
-    protected void goToCurrenLocation()
-    {
-    	mHandler.post(new Runnable() {
-		    public void run() { 
-		    	if(mMyLocationOverlay.getMyLocation() != null) {
-		            // Make sure setZoom is before animateTo ==> may be a Go to sahara animateTo bug 
-            		mapController.setZoom(17);
-    		        mapController.animateTo(mMyLocationOverlay.getMyLocation());
-            	}
-		    }
-    	});       
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -294,9 +249,14 @@ public class OpenFixMapActivity extends Activity {
         		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");
                 logger.info("switch default "+ settings.getInt("map_layer",1));
                 
-        		builder.setSingleChoiceItems(layers, settings.getInt("map_layer",1), new DialogInterface.OnClickListener() {
+        		builder.setSingleChoiceItems(mapView.getLayers(), settings.getInt("map_layer",1), new DialogInterface.OnClickListener() {
         		    public void onClick(DialogInterface dialog, int item) {
-        		    	loadMapSource(item);
+        		    	
+        				SharedPreferences.Editor editor = settings.edit();
+        				editor.putInt("map_layer",item);
+        				editor.commit();
+        				
+        		    	mapView.loadMapSource(item);
         		    }
         		});
         		AlertDialog alert = builder.create();
