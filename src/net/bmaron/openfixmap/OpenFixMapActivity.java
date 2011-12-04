@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.bmaron.openfixmap.R;
-import net.bmaron.openfixmap.ErrorParsers.ErrorPlateform;
+import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 import net.bmaron.openfixmap.ErrorParsers.KeepRight;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 
@@ -194,7 +194,7 @@ public class OpenFixMapActivity extends Activity {
 
     	
     	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));
-    	ErrorPlateform bugPlateform;
+    	ErrorPlatform bugPlateform;
         for(int i = 0; i < checkers.length; i++) {
         	
         	if(checkers[i].equals("OpenStreetBugs")) {

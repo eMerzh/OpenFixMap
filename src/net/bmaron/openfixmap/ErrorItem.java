@@ -2,7 +2,7 @@ package net.bmaron.openfixmap;
 
 import java.util.Date;
 
-import net.bmaron.openfixmap.ErrorParsers.ErrorPlateform;
+import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 
 import org.osmdroid.util.GeoPoint;
 
@@ -15,7 +15,7 @@ public class ErrorItem {
 	private boolean is_closed;
 	private int error_level;
 	private Date date;
-	private ErrorPlateform error_plateform; 
+	private ErrorPlatform error_platform; 
 	private String link;
 	
 	
@@ -27,8 +27,8 @@ public class ErrorItem {
     	this.lon = lon;
     }
     
-    public ErrorItem(ErrorPlateform parser) {
-    	this.error_plateform = parser;
+    public ErrorItem(ErrorPlatform parser) {
+    	this.error_platform = parser;
     }
     public ErrorItem() {
     	
@@ -91,12 +91,12 @@ public class ErrorItem {
 		this.error_level = error_level;
 	}
 
-	public ErrorPlateform getPlateform() {
-		return error_plateform;
+	public ErrorPlatform getPlatform() {
+		return error_platform;
 	}
 
-	public void setPlateform(ErrorPlateform error_parser) {
-		this.error_plateform = error_parser;
+	public void setPlatform(ErrorPlatform error_parser) {
+		this.error_platform = error_parser;
 	}
 
 	public boolean getIsClosed() {
@@ -122,4 +122,16 @@ public class ErrorItem {
 	public void setLink(String link) {
 		this.link = link;
 	}
+
+	public void setPoint(GeoPoint p) {
+		setLat(p.getLatitudeE6()/ 1E6);
+		setLon(p.getLongitudeE6()/ 1E6);
+	}
+
+	public void save() {
+		if(error_platform != null && error_platform.canAdd()) {
+			error_platform.createBug(this);
+		}
+	}
+	
 }

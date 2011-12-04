@@ -6,7 +6,7 @@ import org.osmdroid.util.BoundingBoxE6;
 
 
 
-public class KeepRight extends ErrorPlateform {
+public class KeepRight extends ErrorPlatform {
 	public KeepRight() {
 		super();
 	}
@@ -29,5 +29,9 @@ public class KeepRight extends ErrorPlateform {
 	@Override
 	public String getName() {
 		return "KeepRight";
+	}
+	@Override
+	public boolean canAdd() {
+		return false;
 	}
 }

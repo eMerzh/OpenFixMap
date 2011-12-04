@@ -26,11 +26,11 @@ public class ProblemDialog extends Dialog{
         text.setText(item.getDescription());
         ImageView image = (ImageView) findViewById(R.id.image);
 
-        image.setImageResource(item.getPlateform().getIcon());
+        image.setImageResource(item.getPlatform().getIcon());
         
         
         TextView parse_name = (TextView) findViewById(R.id.parser);
-        parse_name.setText(item.getPlateform().getName());
+        parse_name.setText(item.getPlatform().getName());
         
         TextView error_date = (TextView) findViewById(R.id.error_date);
         error_date.setText(DateFormat.getMediumDateFormat(context).format(item.getDate()));

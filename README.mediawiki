@@ -6,7 +6,7 @@ OpenFixMap is built to fetch errors from different places,
 is can for example fetch error reported by Users on OpenStreetBugs.
 It can also take errors from machine computed error lists as KeepRight.
 
-There are plan to support other plateforms so, if your favorite plateforms
+There are plan to support other platforms so, if your favorite plateforms
 isn't already supported, is may be added in a near future
 by me or by one of your future patch  ;)
 

@@ -30,9 +30,9 @@ import android.text.Html;
 public class KeepRightCSVParser{
 	
 	private List<ErrorItem> lItems;
-	protected ErrorPlateform error;
+	protected ErrorPlatform error;
 	
-	public KeepRightCSVParser(ErrorPlateform e) {
+	public KeepRightCSVParser(ErrorPlatform e) {
 		lItems = new ArrayList<ErrorItem>();
 		error = e;
 	}

@@ -46,9 +46,9 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 	//to maintain context
 	private String tempVal;
 	private ErrorItem tempItem;
-	protected ErrorPlateform error;
+	protected ErrorPlatform error;
 	
-	public OpenStreetBugsGPX(ErrorPlateform e) {
+	public OpenStreetBugsGPX(ErrorPlatform e) {
 		lItems = new ArrayList<ErrorItem>();
 		error = e;
 	}

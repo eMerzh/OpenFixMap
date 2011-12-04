@@ -4,7 +4,7 @@ import net.bmaron.openfixmap.R;
 
 import org.osmdroid.util.BoundingBoxE6;
 
-public class OpenStreetBugs extends ErrorPlateform {
+public class OpenStreetBugs extends ErrorPlatform {
 
 	public OpenStreetBugs() {
 		super();
@@ -30,4 +30,10 @@ public class OpenStreetBugs extends ErrorPlateform {
 	public String getName() {
 		return "OpenStreetBugs";
 	}
+	
+	@Override
+	public boolean canAdd() {
+		return true;
+	}
+	
 }
