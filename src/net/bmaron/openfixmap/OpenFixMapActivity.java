@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,6 +48,7 @@ public class OpenFixMapActivity extends Activity {
     private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
 	private SharedPreferences settings;
+    private ProgressDialog dialog;
 
     /** Called when the activity is first created. */
     @Override
@@ -192,12 +194,14 @@ public class OpenFixMapActivity extends Activity {
     
     protected  List<ErrorItem> fetchDatas()
     {
+ 
         String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRight"));
         boolean show_closed = sharedPrefs.getBoolean("show_closed", false);
         List<ErrorItem> items = new ArrayList<ErrorItem>();
         BoundingBoxE6 bb = mapView.getBoundingBox();
 
-    	
+        
+
     	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));
     	ErrorPlatform bugPlateform;
         for(int i = 0; i < checkers.length; i++) {
@@ -213,27 +217,48 @@ public class OpenFixMapActivity extends Activity {
         	bugPlateform.load();
         	items.addAll(bugPlateform.getItems());
         }
-        
-    	Toast toast = Toast.makeText(this,
-    			getResources().getQuantityString(R.plurals.numberOfDownloadedItems,  items.size(),items.size()),
-    			Toast.LENGTH_SHORT);
-    	toast.show();
         return items;
     }
     
     protected void loadDataSource()
     {
-    	Resources res = getResources();
-    	pointOverlay.removeAllItems();
-        List<ErrorItem> itemList = fetchDatas();
-        
-        for(int i=0; i < itemList.size(); i++) {
-        	ErrorItem item = itemList.get(i);
-        	OverlayErrorItem oItem = new OverlayErrorItem(item);
-        	oItem.setMarker( res.getDrawable(R.drawable.caution));
-            pointOverlay.addItem(oItem);
-        }
-        mapView.invalidate();
+        dialog = ProgressDialog.show(OpenFixMapActivity.this, "", 
+        		getResources().getString(R.string.dialog_loading_message), true);
+
+        new Thread() {
+        	private int num_item = 0;
+            public void run() {
+            	List<ErrorItem> itemList = new ArrayList<ErrorItem>();
+                    try{
+                    	Resources res = getResources();
+                    	pointOverlay.removeAllItems();
+                    	itemList = fetchDatas();
+                        
+                        for(int i=0; i < itemList.size(); i++) {
+                        	ErrorItem item = itemList.get(i);
+                        	OverlayErrorItem oItem = new OverlayErrorItem(item);
+                        	oItem.setMarker( res.getDrawable(R.drawable.caution));
+                            pointOverlay.addItem(oItem);
+                            num_item = itemList.size();
+                        }
+                    } catch (Exception e) { 
+                        e.printStackTrace();
+                    }
+                    // Dismiss the Dialog
+                    mHandler.post(new Runnable(){
+                    	public void run(){
+                            mapView.invalidate();
+                    		dialog.dismiss();
+                        	Toast toast = Toast.makeText(OpenFixMapActivity.this,
+                        			getResources().getQuantityString(R.plurals.numberOfDownloadedItems, num_item ,num_item),
+                        			Toast.LENGTH_SHORT);
+                        	toast.show();
+                    	}
+                    
+                    });
+
+            }
+        }.start();
 
     }
     

@@ -27,7 +27,7 @@
 	<string name="report_desc_fld_hint">Description</string>
 	<string name="report_cancel_btn">Cancel</string>
 	<string name="report_save_btn">Save</string>
-
+	<string name="dialog_loading_message">Loading... Please Wait.</string>
 
     <plurals name="numberOfDownloadedItems">
         <item quantity="one">One item fetched.</item>
