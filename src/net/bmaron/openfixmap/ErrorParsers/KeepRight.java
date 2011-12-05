@@ -17,7 +17,7 @@ public class KeepRight extends ErrorPlatform {
 	@Override
 	public void load() {
     	KeepRightCSVParser parser = new KeepRightCSVParser(this);
-    	parser.parse(this.boundingBox, this.eLevel, this.show_closed);
+    	parser.parse(this.boundingBox, this.eLevel, this.showClosed);
     	lItems.addAll(parser.getItems());
 	}
 	

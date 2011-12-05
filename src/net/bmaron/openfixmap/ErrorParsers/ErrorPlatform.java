@@ -12,15 +12,17 @@ public abstract class ErrorPlatform {
 	protected List<ErrorItem> lItems;
 	protected BoundingBoxE6 boundingBox;
 	protected int eLevel;
-	protected boolean show_closed;
+	protected boolean showClosed;
 	protected boolean can_add;
 	
-	public ErrorPlatform()
-	{}
+	public ErrorPlatform() {
+		lItems = new ArrayList<ErrorItem>();
+
+	}
 
 	public ErrorPlatform(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
 		eLevel = ErrorLevel;
-		this.show_closed = show_closed;
+		showClosed = show_closed;
 		boundingBox = bb;
 		lItems = new ArrayList<ErrorItem>();
 	}
@@ -48,6 +50,18 @@ public abstract class ErrorPlatform {
 	public void createBug(ErrorItem i) {
 	}
 	
+	public void setForFetch(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
+		this.setBoundingBox(bb);
+		this.setErrorLevel(ErrorLevel);
+		this.setShowClosed(show_closed);
+	}
+	
+	public void setErrorLevel(int level) {
+		eLevel = level;
+	}
+	public void setShowClosed(boolean show) {
+		showClosed = show;
+	}
 	public abstract int getIcon();
 	public abstract String getName();
 	public abstract boolean canAdd();

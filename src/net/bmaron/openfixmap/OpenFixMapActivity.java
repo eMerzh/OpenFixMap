@@ -25,11 +25,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.bmaron.openfixmap.R;
-import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
-import net.bmaron.openfixmap.ErrorParsers.KeepRight;
-import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 
-import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
@@ -47,6 +43,8 @@ public class OpenFixMapActivity extends Activity {
     private ItemizedIconOverlay<OverlayErrorItem> pointOverlay; 
     private SharedPreferences sharedPrefs; 
 	private Handler mHandler;
+	
+	private PlatformManager plManager;
 	private SharedPreferences settings;
     private ProgressDialog dialog;
 
@@ -56,14 +54,9 @@ public class OpenFixMapActivity extends Activity {
         super.onCreate(savedInstanceState);
         mHandler = new Handler(); 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        /*
-         * Set Default parser for First launch
-         */
-        if(sharedPrefs.getString("checkers", null) == null ){
-        	SharedPreferences.Editor editor = sharedPrefs.edit();
-        	editor.putString("checkers", "KeepRight");
-        	editor.commit();
-        }
+        plManager = new PlatformManager(sharedPrefs);
+        plManager.setOneCheckerOnFirstLoad();
+
         
         setContentView(R.layout.main);
 
@@ -194,30 +187,11 @@ public class OpenFixMapActivity extends Activity {
     
     protected  List<ErrorItem> fetchDatas()
     {
- 
-        String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRight"));
         boolean show_closed = sharedPrefs.getBoolean("show_closed", false);
-        List<ErrorItem> items = new ArrayList<ErrorItem>();
-        BoundingBoxE6 bb = mapView.getBoundingBox();
-
-        
-
     	int display_level = Integer.parseInt(sharedPrefs.getString("display_level", "1"));
-    	ErrorPlatform bugPlateform;
-        for(int i = 0; i < checkers.length; i++) {
-        	
-        	if(checkers[i].equals("OpenStreetBugs")) {
-        		bugPlateform = new OpenStreetBugs(bb, display_level, show_closed);
-            	
-        	} else// if(checkers[i].equals("KeepRight")) 
-        	{
-        		bugPlateform = new KeepRight(bb, display_level, show_closed);
-        	}
-        	
-        	bugPlateform.load();
-        	items.addAll(bugPlateform.getItems());
-        }
-        return items;
+
+    	plManager.fetchAllData(mapView.getBoundingBox(), display_level, show_closed);
+    	return plManager.getAllItems();
     }
     
     protected void loadDataSource()
