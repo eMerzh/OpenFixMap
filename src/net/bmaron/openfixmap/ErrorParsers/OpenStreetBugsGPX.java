@@ -138,7 +138,7 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 			Matcher matcher = pattern.matcher(tempVal);
 			if(matcher.find()) {
 				tempItem.setDescription(matcher.group(1));
-		        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); 
+		        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 				try {
 			        Date dateObj;
 					dateObj = curFormater.parse(matcher.group(4));
