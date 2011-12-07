@@ -167,9 +167,17 @@ public class OpenFixMapActivity extends Activity {
         		p = (GeoPoint) mapView.getProjection().fromPixels(e.getX(), e.getY());
 		        mHandler.post(new Runnable() {
 				    public void run() { 
-				    	ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p, plManager);
-				    	 dialog.show();
+				    	if(plManager.getActiveAllowAddPlatforms().size() !=0 ) {
+				    		ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p, plManager);
+					    	 dialog.show();	
+				    	} else {
+                        	Toast toast = Toast.makeText(OpenFixMapActivity.this,
+                        			getResources().getString(R.string.report_no_parser),
+                        			Toast.LENGTH_SHORT);
+                        	toast.show();
 				    	}
+				    	
+				    }
 				}); 
             }
         }));

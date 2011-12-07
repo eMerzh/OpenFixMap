@@ -22,6 +22,7 @@
 	
 	<string name="dialog_switchlayer_title">Pick a layer</string>
 
+	<string name="report_no_parser">There is no active platform to report problems</string>
 	<string name="report_platform_txt">Platform</string>
 	<string name="report_platform_spin_title">Choose a platform</string>
 	    	    
