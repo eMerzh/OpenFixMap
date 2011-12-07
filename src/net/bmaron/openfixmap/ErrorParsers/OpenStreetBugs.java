@@ -20,10 +20,12 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.osmdroid.util.BoundingBoxE6;
 
+import android.os.Bundle;
+
 public class OpenStreetBugs extends ErrorPlatform {
 
-	public OpenStreetBugs() {
-		super();
+	public OpenStreetBugs(Bundle prefs) {
+		super(prefs);
 	}
 
 	public OpenStreetBugs(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
@@ -71,8 +73,13 @@ public class OpenStreetBugs extends ErrorPlatform {
 			
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 	        logger.info("Put: "+ uri);
-			//HttpResponse response = httpClient.execute(httpget, localContext);
-			//response.getEntity().getContent();
+    		String env= getPrefBundle().getString("env");
+    		if(env == null || ! env.equals("debug"))
+    		{
+    			HttpResponse response = httpClient.execute(httpget, localContext);
+    			//response.getEntity().getContent();
+    		}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

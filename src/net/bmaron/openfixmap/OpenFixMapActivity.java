@@ -9,6 +9,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,7 +57,14 @@ public class OpenFixMapActivity extends Activity {
         super.onCreate(savedInstanceState);
         mHandler = new Handler(); 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        plManager = new PlatformManager(sharedPrefs);
+    	ApplicationInfo ai = null;
+		try {
+			ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
+		} catch (NameNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        plManager = new PlatformManager(sharedPrefs,ai.metaData);
         plManager.setOneCheckerOnFirstLoad();
 
         
@@ -157,7 +167,7 @@ public class OpenFixMapActivity extends Activity {
         		p = (GeoPoint) mapView.getProjection().fromPixels(e.getX(), e.getY());
 		        mHandler.post(new Runnable() {
 				    public void run() { 
-				    	ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p);
+				    	ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p, plManager);
 				    	 dialog.show();
 				    	}
 				}); 

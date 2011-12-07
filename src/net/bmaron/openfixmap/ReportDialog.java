@@ -1,7 +1,5 @@
 package net.bmaron.openfixmap;
 
-import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
-
 import org.osmdroid.util.GeoPoint;
 
 import android.app.Dialog;
@@ -14,8 +12,10 @@ import android.widget.EditText;
 public class ReportDialog extends Dialog {
 
 	private GeoPoint point;
-	public ReportDialog(Context context, GeoPoint p) {
+	private PlatformManager platforms; 
+	public ReportDialog(Context context, GeoPoint p, PlatformManager pltForms) {
 		super(context);
+		platforms= pltForms;
         setContentView(R.layout.report_dialog);
         point = p;  
         setTitle(context.getResources().getString(R.string.report_dialog_title));
@@ -50,7 +50,8 @@ public class ReportDialog extends Dialog {
 		        i.setTitle(title);
 		        i.setDescription(description);
 		        i.setPoint(point);
-		        i.setPlatform(new OpenStreetBugs());
+		        // TODO: do better choice here
+		        i.setPlatform(platforms.getActiveAllowAddPlatforms().get(0));
 		        i.save();
 		        
 				dismiss();

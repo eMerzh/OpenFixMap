@@ -6,26 +6,32 @@ import java.util.List;
 import org.osmdroid.util.BoundingBoxE6;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 import net.bmaron.openfixmap.ErrorParsers.KeepRight;
+import net.bmaron.openfixmap.ErrorParsers.MapDust;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 
 public class PlatformManager {
 
 
-	
+	private Bundle prefBndl;
 	private List<ErrorPlatform> lPlatforms;
 	private SharedPreferences sharedPrefs;
-	public PlatformManager(SharedPreferences prefs) {
+	public PlatformManager(SharedPreferences prefs, Bundle appPrefs) {
+		prefBndl = appPrefs;
 		sharedPrefs = prefs;
 		lPlatforms = new ArrayList<ErrorPlatform>();
-		lPlatforms.add(new OpenStreetBugs());
-		lPlatforms.add(new KeepRight());
+		lPlatforms.add(new OpenStreetBugs(prefBndl));
+		lPlatforms.add(new KeepRight(prefBndl));
+		lPlatforms.add(new MapDust(prefBndl));
+
 		
 	}
 	
 	public List<ErrorPlatform> getActivePlatforms() {
+		
 		List<ErrorPlatform> activeList = new ArrayList<ErrorPlatform>();
 	
         String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRight"));
@@ -42,6 +48,18 @@ public class PlatformManager {
         return activeList;
 	}
 	
+	public List<ErrorPlatform> getActiveAllowAddPlatforms() {
+
+		List<ErrorPlatform> activeList = getActivePlatforms();
+	
+		for(ErrorPlatform temp : activeList) {
+			if(temp.canAdd()){
+				activeList.add(temp);
+			}
+		}
+        return activeList;
+	}
+
 	public void fetchAllData(BoundingBoxE6 bb, int errorLevel, boolean show_closed)
 	{
 		for(ErrorPlatform temp : getActivePlatforms()) {

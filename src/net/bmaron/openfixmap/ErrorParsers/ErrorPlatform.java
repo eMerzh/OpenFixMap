@@ -7,6 +7,8 @@ import java.util.List;
 import net.bmaron.openfixmap.ErrorItem;
 import org.osmdroid.util.BoundingBoxE6;
 
+import android.os.Bundle;
+
 public abstract class ErrorPlatform {
 
 	protected List<ErrorItem> lItems;
@@ -14,10 +16,11 @@ public abstract class ErrorPlatform {
 	protected int eLevel;
 	protected boolean showClosed;
 	protected boolean can_add;
-	
-	public ErrorPlatform() {
-		lItems = new ArrayList<ErrorItem>();
+	private Bundle prefBndl;
 
+	public ErrorPlatform(Bundle prefs) {
+		lItems = new ArrayList<ErrorItem>();
+		setPrefBundle(prefs);
 	}
 
 	public ErrorPlatform(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
@@ -66,6 +69,12 @@ public abstract class ErrorPlatform {
 	public abstract String getName();
 	public abstract boolean canAdd();
 	
-
+	
+	public Bundle getPrefBundle() {
+		return prefBndl;
+	}
+	public void setPrefBundle(Bundle prefBndl) {
+		this.prefBndl = prefBndl;
+	}
 	
 }
