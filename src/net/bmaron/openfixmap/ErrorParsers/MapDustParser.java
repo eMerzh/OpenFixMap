@@ -44,13 +44,23 @@ public class MapDustParser{
     		else
     			url = "http://www.mapdust.com";
     		
-        	HttpClient httpClient = new DefaultHttpClient();
-        	HttpGet httpget = new HttpGet(url + "/api/getBugs?key=" + key +
+			StringBuilder fullURL = new StringBuilder();
+
+			fullURL.append(url + "/api/getBugs?key=" + key +
         			"&bbox=" + String.valueOf(boundingBox.getLonWestE6()/ 1E6) +
         			"," + String.valueOf(boundingBox.getLatSouthE6()/ 1E6) +
         			"," + String.valueOf(boundingBox.getLonEastE6()/ 1E6) +
         			"," + String.valueOf(boundingBox.getLatNorthE6()/ 1E6) +
         			"&items=30");
+    		if(show_closed)
+    			fullURL.append("&fs=1,2,3");
+    		else
+    			fullURL.append("&fs=1");
+    		if(eLevel == 2){
+    			fullURL.append("&idd=0&minr=3");
+    		}
+        	HttpClient httpClient = new DefaultHttpClient();
+        	HttpGet httpget = new HttpGet(fullURL.toString());
             logger.info("Fetch "+ httpget.getURI());
         	HttpResponse response = httpClient.execute(httpget);
         	StatusLine statusLine = response.getStatusLine();

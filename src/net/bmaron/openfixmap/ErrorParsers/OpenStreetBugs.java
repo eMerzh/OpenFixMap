@@ -8,7 +8,6 @@ import net.bmaron.openfixmap.ErrorItem;
 import net.bmaron.openfixmap.OpenFixMapActivity;
 import net.bmaron.openfixmap.R;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -76,7 +75,8 @@ public class OpenStreetBugs extends ErrorPlatform {
     		String env= getPrefBundle().getString("env");
     		if(env == null || ! env.equals("debug"))
     		{
-    			HttpResponse response = httpClient.execute(httpget, localContext);
+    			//HttpResponse response = 
+    			httpClient.execute(httpget, localContext);
     			//response.getEntity().getContent();
     		}
 

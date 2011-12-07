@@ -149,9 +149,7 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 				} 
 		        
 			}
-			logger.info(tempVal);
-			//[Bogumil, 2011-09-13 00:22:30 CEST]	
-			
+			logger.info(tempVal);			
 		}
 		//type
 	}

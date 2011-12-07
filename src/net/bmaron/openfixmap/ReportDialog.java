@@ -21,11 +21,6 @@ public class ReportDialog extends Dialog {
         setTitle(context.getResources().getString(R.string.report_dialog_title));
         getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
         
-
-		
-		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-        logger.info("wooo");
-        
         Button cancelBtn = (Button) findViewById(R.id.report_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener(){
 			@Override
