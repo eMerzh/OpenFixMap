@@ -64,7 +64,7 @@ public class OpenFixMapActivity extends Activity {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        plManager = new PlatformManager(sharedPrefs,ai.metaData);
+        plManager = new PlatformManager(this, sharedPrefs,ai.metaData);
         plManager.setOneCheckerOnFirstLoad();
 
         

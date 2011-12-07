@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class ReportDialog extends Dialog {
 
 	private GeoPoint point;
 	private PlatformManager platforms; 
+	private ErrorItem item_saved = null;
 	public ReportDialog(Context context, GeoPoint p, PlatformManager pltForms) {
 		super(context);
 		platforms= pltForms;
@@ -38,22 +41,33 @@ public class ReportDialog extends Dialog {
 		        final EditText descriptionField = (EditText) findViewById(R.id.report_description);  
 		        String description = descriptionField.getText().toString();  
 		        
-		        final EditText titleField = (EditText) findViewById(R.id.report_title);  
-		        String title = titleField.getText().toString();
+		        final Spinner titleField = (Spinner) findViewById(R.id.report_title_spin);  
+		        String title = getContext().getResources().getStringArray(R.array.error_type_value)
+		        		[titleField.getSelectedItemPosition()];
 		        
-		        ErrorItem i = new  ErrorItem();
-		        i.setTitle(title);
-		        i.setDescription(description);
-		        i.setPoint(point);
+		        item_saved = new  ErrorItem();
+		        item_saved.setTitle(title);
+		        item_saved.setDescription(description);
+		        item_saved.setPoint(point);
 		        // TODO: do better choice here
-		        i.setPlatform(platforms.getActiveAllowAddPlatforms().get(0));
-		        i.save();
-		        
+		        item_saved.setPlatform(platforms.getActiveAllowAddPlatforms().get(0));
+		        //item_saved.save();        
 				dismiss();
 			}
         	
         });
 	}
-
+	
+	@Override
+	public void dismiss(){
+		super.dismiss();
+		if(item_saved != null){
+			Toast toast = Toast.makeText(getContext(),
+					getContext().getResources().getString(R.string.report_finish_message),
+	    			Toast.LENGTH_LONG);
+	    	toast.show();	
+		}
+    	
+	}
 
 }

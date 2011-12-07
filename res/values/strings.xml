@@ -23,10 +23,15 @@
 	<string name="dialog_switchlayer_title">Pick a layer</string>
 
 	<string name="report_dialog_title">Report a Problem</string>
-	<string name="report_title_fld_hint">Title</string>
+	<string name="report_title_fld_hint">Type</string>
+	<string name="report_title_fld_title">Choose an error type</string>
+	    
+	
 	<string name="report_desc_fld_hint">Description</string>
 	<string name="report_cancel_btn">Cancel</string>
 	<string name="report_save_btn">Save</string>
+	<string name="report_finish_message">Thanks, error reported!
+	     Hit fetch if you want to see your report on the map</string>
 	<string name="dialog_loading_message">Loading... Please Wait.</string>
 
     <plurals name="numberOfDownloadedItems">

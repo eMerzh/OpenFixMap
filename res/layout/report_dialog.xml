@@ -5,14 +5,31 @@
     android:orientation="vertical"   
     android:padding="10dp">
 
-	<EditText  
+	<!-- <EditText  
         android:id="@+id/report_title"  
         android:layout_height="wrap_content"  
-        android:hint="@string/report_title_fld_hint"  
-        android:inputType="textLongMessage"  
+        android:hint=""  
+        android:inputType="errorTypes"  
         android:layout_width="fill_parent">  
     </EditText>
-    
+    -->
+	    
+    <TextView
+		android:id="@+id/report_title"  
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/report_title_fld_hint"
+    />
+
+    <Spinner 
+		android:id="@+id/report_title_spin"  
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/error_type_label"
+        android:prompt="@string/report_title_fld_title"
+    />
+	    
 	<EditText  
         android:id="@+id/report_description"  
         android:layout_height="wrap_content"  

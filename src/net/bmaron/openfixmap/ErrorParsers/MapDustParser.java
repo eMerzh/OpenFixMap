@@ -36,8 +36,8 @@ public class MapDustParser{
 	{
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MapDustParser.class);
         try {
-    		String key= error.getPrefBundle().getString("mapdust_key");
-    		String env= error.getPrefBundle().getString("env");
+    		String key= error.getManager().getPreferences().getString("mapdust_key");
+    		String env= error.getManager().getPreferences().getString("env");
     		String url;
     		if(env != null && env.equals("debug"))
     			url = "http://80.242.147.84/XY";

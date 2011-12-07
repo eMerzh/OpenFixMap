@@ -22,4 +22,26 @@
         <item name="1">1</item>
         <item name="2">2</item>
     </string-array>
+	
+	<string-array name="error_type_label">
+	    <item>Other</item>
+        <item>Wrong turn</item>
+<!--        <item>Bad routing</item>-->
+        <item>Oneway road</item>
+		<item>Blocked street</item>
+        <item>Missing street</item>
+        <item>Roundabout issue</item>
+        <item>Missing speed info</item>
+    </string-array>
+    
+	<string-array name="error_type_value">
+	    <item>other</item>
+        <item>wrong_turn</item>
+<!--        <itembad_routing</item>-->
+        <item>oneway_road</item>
+		<item>blocked_street</item>
+        <item>missing_street</item>
+        <item>wrong_roundabout</item>
+        <item>missing_speedlimit</item>
+    </string-array>
 </resources>

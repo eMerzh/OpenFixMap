@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.osmdroid.util.BoundingBoxE6;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,17 +20,21 @@ public class PlatformManager {
 	private Bundle prefBndl;
 	private List<ErrorPlatform> lPlatforms;
 	private SharedPreferences sharedPrefs;
-	public PlatformManager(SharedPreferences prefs, Bundle appPrefs) {
+	private Context context;
+	public PlatformManager(Context ctx, SharedPreferences prefs, Bundle appPrefs) {
+		setContext(ctx);
 		prefBndl = appPrefs;
 		sharedPrefs = prefs;
 		lPlatforms = new ArrayList<ErrorPlatform>();
-		lPlatforms.add(new OpenStreetBugs(prefBndl));
-		lPlatforms.add(new KeepRight(prefBndl));
-		lPlatforms.add(new MapDust(prefBndl));
+		lPlatforms.add(new OpenStreetBugs(this));
+		lPlatforms.add(new KeepRight(this));
+		lPlatforms.add(new MapDust(this));
 
 		
 	}
-	
+	public Bundle getPreferences() {
+		return prefBndl;
+	}
 	public List<ErrorPlatform> getActivePlatforms() {
 		
 		List<ErrorPlatform> activeList = new ArrayList<ErrorPlatform>();
@@ -86,5 +91,11 @@ public class PlatformManager {
         	editor.putString("checkers", "KeepRight");
         	editor.commit();
         }		
+	}
+	public Context getContext() {
+		return context;
+	}
+	public void setContext(Context context) {
+		this.context = context;
 	}
 }

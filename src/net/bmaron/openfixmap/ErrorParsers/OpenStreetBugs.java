@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.bmaron.openfixmap.ErrorItem;
 import net.bmaron.openfixmap.OpenFixMapActivity;
+import net.bmaron.openfixmap.PlatformManager;
 import net.bmaron.openfixmap.R;
 
 import org.apache.http.NameValuePair;
@@ -17,18 +18,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
-import org.osmdroid.util.BoundingBoxE6;
-
-import android.os.Bundle;
 
 public class OpenStreetBugs extends ErrorPlatform {
 
-	public OpenStreetBugs(Bundle prefs) {
-		super(prefs);
-	}
-
-	public OpenStreetBugs(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
-		super(bb, ErrorLevel, show_closed);
+	public OpenStreetBugs(PlatformManager mgr) {
+		super(mgr);
 	}
 	
 	@Override
@@ -54,15 +48,25 @@ public class OpenStreetBugs extends ErrorPlatform {
 		return true;
 	}
 	
-	public void createBug(ErrorItem i) {
-		super.createBug(i);
+	public void createBug(ErrorItem item) {
+		super.createBug(item);
+		
+		String[] error_types_val = getManager().getContext().getResources().getStringArray(R.array.error_type_value);
+		String[] error_types_lab = getManager().getContext().getResources().getStringArray(R.array.error_type_label);
+		String title="";
+		for(int i=0; i< error_types_val.length;i++) {
+			if(error_types_val[i].equals(item.getTitle())){
+				title = error_types_lab[i];
+			}
+				
+		}
 		//http://openstreetbugs.schokokeks.org/api/0.1/addPOIexec?=brol&lat=50.83374489342907&lon=4.38738708543749&text=tes%20%5Bbrol%5D
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-		qparams.add(new BasicNameValuePair("lat", String.valueOf(i.getLat()) ));
-		qparams.add(new BasicNameValuePair("lon", String.valueOf(i.getLon()) ));
-		qparams.add(new BasicNameValuePair("text", i.getDescription() + " [OpenFixMap]"));
+		qparams.add(new BasicNameValuePair("lat", String.valueOf(item.getLat()) ));
+		qparams.add(new BasicNameValuePair("lon", String.valueOf(item.getLon()) ));
+		qparams.add(new BasicNameValuePair("text", title + " : " +item.getDescription() + " [OpenFixMap]"));
 
 		try {
 			
@@ -73,7 +77,7 @@ public class OpenStreetBugs extends ErrorPlatform {
 			
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 	        logger.info("Put: "+ uri);
-    		String env= getPrefBundle().getString("env");
+    		String env= getManager().getPreferences().getString("env");
     		if(env == null || ! env.equals("debug"))
     		{
     			//HttpResponse response = 

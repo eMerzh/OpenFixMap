@@ -1,21 +1,14 @@
 package net.bmaron.openfixmap.ErrorParsers;
 
+import net.bmaron.openfixmap.PlatformManager;
 import net.bmaron.openfixmap.R;
 
-import org.osmdroid.util.BoundingBoxE6;
-
-import android.os.Bundle;
-
-
-
 public class KeepRight extends ErrorPlatform {
-	public KeepRight(Bundle prefs) {
-		super(prefs);
-	}
-	public KeepRight(BoundingBoxE6 bb, int display_level, boolean show_closed) {
-		super(bb, display_level,show_closed);
-	}
 
+	public KeepRight(PlatformManager mgr) {
+		super(mgr);
+	}
+	
 	@Override
 	public void load() {
 		lItems.clear();

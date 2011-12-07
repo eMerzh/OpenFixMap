@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -15,22 +14,16 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.osmdroid.util.BoundingBoxE6;
-
-import android.os.Bundle;
-
 import net.bmaron.openfixmap.ErrorItem;
 import net.bmaron.openfixmap.OpenFixMapActivity;
+import net.bmaron.openfixmap.PlatformManager;
 import net.bmaron.openfixmap.R;
 
 public class MapDust extends ErrorPlatform {
 
 
-	public MapDust(Bundle prefs) {
-		super(prefs);
-	}
-	public MapDust(BoundingBoxE6 bb, int display_level, boolean show_closed) {
-		super(bb, display_level,show_closed);
+	public MapDust(PlatformManager mgr) {
+		super(mgr);
 	}
 
 	@Override
@@ -69,7 +62,7 @@ nickname=test
 */
 		HttpClient httpclient = new DefaultHttpClient();
 		String url;
-		String env= getPrefBundle().getString("env");
+		String env= getManager().getPreferences().getString("env");
 		if(env == null || ! env.equals("debug")) {
 			url = "http://www.mapdust.com/api/addBug";
 		}
@@ -80,8 +73,8 @@ nickname=test
 		HttpPost httppost = new HttpPost(url);
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("key", getPrefBundle().getString("mapdust_key")));
-			nameValuePairs.add(new BasicNameValuePair("type", "other"));
+			nameValuePairs.add(new BasicNameValuePair("key", getManager().getPreferences().getString("mapdust_key")));
+			nameValuePairs.add(new BasicNameValuePair("type", i.getTitle()));
 			nameValuePairs.add(new BasicNameValuePair("nickname", "NoName"));
 			nameValuePairs.add(new BasicNameValuePair("description", i.getDescription()));
 			nameValuePairs.add(new BasicNameValuePair("coordinates", String.valueOf(i.getLon()) +"," + String.valueOf(i.getLat())) ) ;
