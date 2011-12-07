@@ -35,7 +35,7 @@ public class MapDust extends ErrorPlatform {
 
 	@Override
 	public void load() {
-		
+		lItems.clear();
 		MapDustParser parser = new MapDustParser(this);
     	parser.parse(this.boundingBox, this.eLevel, this.showClosed);
     	lItems.addAll(parser.getItems());

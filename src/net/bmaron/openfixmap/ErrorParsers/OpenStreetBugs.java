@@ -33,6 +33,7 @@ public class OpenStreetBugs extends ErrorPlatform {
 	
 	@Override
 	public void load() {
+		lItems.clear();
 		OpenStreetBugsGPX parser = new OpenStreetBugsGPX(this);
     	parser.parse(this.eLevel, this.showClosed, this.boundingBox);
     	lItems.addAll(parser.getItems());
