@@ -14,8 +14,8 @@
     
 	<string-array name="displayLevel">
 	    <item name="0">All</item>
-        <item name="1">Require on Field</item>
-        <item name="2">Strictly require on Field</item>
+        <item name="1">Medium</item>
+        <item name="2">Only necessary</item>
     </string-array>
     <string-array name="displayLevelValues">
         <item name="0">0</item>
