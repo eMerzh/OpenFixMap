@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.WindowManager.LayoutParams;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,6 +25,16 @@ public class ReportDialog extends Dialog {
         setTitle(context.getResources().getString(R.string.report_dialog_title));
         getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
         
+        // Fill spinner with platforms that accept reports
+        ArrayAdapter<CharSequence> adapter =new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item);
+        for(CharSequence itm : pltForms.getReportPtfms()) {
+        	adapter.add(itm);
+        }
+     
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        Spinner platformField = (Spinner) findViewById(R.id.report_platform_spin);
+        platformField.setAdapter(adapter);
+   		         
         Button cancelBtn = (Button) findViewById(R.id.report_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener(){
 			@Override
@@ -45,13 +56,15 @@ public class ReportDialog extends Dialog {
 		        String title = getContext().getResources().getStringArray(R.array.error_type_value)
 		        		[titleField.getSelectedItemPosition()];
 		        
+		        final Spinner PlatformField = (Spinner) findViewById(R.id.report_platform_spin);  
+
 		        item_saved = new  ErrorItem();
 		        item_saved.setTitle(title);
 		        item_saved.setDescription(description);
 		        item_saved.setPoint(point);
 		        // TODO: do better choice here
-		        item_saved.setPlatform(platforms.getActiveAllowAddPlatforms().get(0));
-		        //item_saved.save();        
+		        item_saved.setPlatform(platforms.getActiveAllowAddPlatforms().get(PlatformField.getSelectedItemPosition()));
+		        item_saved.save();        
 				dismiss();
 			}
         	

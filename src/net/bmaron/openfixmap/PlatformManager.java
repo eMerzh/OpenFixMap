@@ -55,14 +55,14 @@ public class PlatformManager {
 	
 	public List<ErrorPlatform> getActiveAllowAddPlatforms() {
 
-		List<ErrorPlatform> activeList = getActivePlatforms();
-	
-		for(ErrorPlatform temp : activeList) {
+		List<ErrorPlatform> addList = new ArrayList<ErrorPlatform>();
+
+		for(ErrorPlatform temp :  getActivePlatforms()) {
 			if(temp.canAdd()){
-				activeList.add(temp);
+				addList.add(temp);
 			}
 		}
-        return activeList;
+        return addList;
 	}
 
 	public void fetchAllData(BoundingBoxE6 bb, int errorLevel, boolean show_closed)
@@ -97,5 +97,13 @@ public class PlatformManager {
 	}
 	public void setContext(Context context) {
 		this.context = context;
+	}
+	public CharSequence[] getReportPtfms() {
+		List<ErrorPlatform> activeList = getActiveAllowAddPlatforms();
+		CharSequence[] platformList =  new CharSequence[activeList.size()];
+		for(int i=0; i < activeList.size() ; i++) {
+			platformList[i] = activeList.get(i).getName();
+		}
+		return platformList;
 	}
 }

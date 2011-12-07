@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/report_main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"   
     android:padding="10dp">
-
-	<!-- <EditText  
-        android:id="@+id/report_title"  
-        android:layout_height="wrap_content"  
-        android:hint=""  
-        android:inputType="errorTypes"  
-        android:layout_width="fill_parent">  
-    </EditText>
-    -->
-	    
+    
+	<TextView
+		android:id="@+id/report_platform"  
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/report_platform_txt"
+    />
+	
+	<Spinner 
+		android:id="@+id/report_platform_spin"  
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true"
+        android:prompt="@string/report_platform_spin_title"
+    />
     <TextView
 		android:id="@+id/report_title"  
         android:layout_width="fill_parent"
