@@ -53,17 +53,19 @@
     	android:padding="10dp" >
 		
 		<Button
-	        android:id="@+id/report_cancel_btn"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1.0" 
-	        android:text="@string/report_cancel_btn" />
-	    <Button
 	        android:id="@+id/report_save_btn"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1.0" 
 	        android:text="@string/report_save_btn" />
+	    	    
+		<Button
+	        android:id="@+id/report_cancel_btn"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1.0" 
+	        android:text="@string/report_cancel_btn" />
+
 	</LinearLayout>
 	    
 </LinearLayout>
