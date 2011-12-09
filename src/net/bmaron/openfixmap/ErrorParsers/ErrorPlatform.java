@@ -50,7 +50,8 @@ public abstract class ErrorPlatform {
 		this.boundingBox = boundingBox;
 	} 
 	
-	public void createBug(ErrorItem i) {
+	public boolean createBug(ErrorItem i) {
+		return false;
 	}
 	
 	public void setForFetch(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {

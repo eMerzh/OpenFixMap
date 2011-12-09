@@ -1,5 +1,7 @@
 package net.bmaron.openfixmap.ErrorParsers;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import net.bmaron.openfixmap.OpenFixMapActivity;
 import net.bmaron.openfixmap.PlatformManager;
 import net.bmaron.openfixmap.R;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -48,7 +51,8 @@ public class OpenStreetBugs extends ErrorPlatform {
 		return true;
 	}
 	
-	public void createBug(ErrorItem item) {
+	@Override
+	public boolean createBug(ErrorItem item) {
 		super.createBug(item);
 		
 		String[] error_types_val = getManager().getContext().getResources().getStringArray(R.array.error_type_value);
@@ -80,15 +84,17 @@ public class OpenStreetBugs extends ErrorPlatform {
     		String env= getManager().getPreferences().getString("env");
     		if(env == null || ! env.equals("debug"))
     		{
-    			//HttpResponse response = 
-    			httpClient.execute(httpget, localContext);
+    			HttpResponse response = httpClient.execute(httpget, localContext);
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+    			String resp = reader.readLine();
     			//response.getEntity().getContent();
     		}
+    		return true;
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return false;
 	}
 }

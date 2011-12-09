@@ -34,6 +34,7 @@
 	<string name="report_desc_fld_hint">Description</string>
 	<string name="report_cancel_btn">Cancel</string>
 	<string name="report_save_btn">Save</string>
+	<string name="report_error_message">There was a problem. Your report was not send. Please check your description text and try again.</string>
 	<string name="report_finish_message">Thanks, error reported!
 	     Hit fetch if you want to see your report on the map</string>
 	<string name="dialog_loading_message">Loading... Please Wait.</string>

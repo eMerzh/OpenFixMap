@@ -64,23 +64,23 @@ public class ReportDialog extends Dialog {
 		        item_saved.setPoint(point);
 		        // TODO: do better choice here
 		        item_saved.setPlatform(platforms.getActiveAllowAddPlatforms().get(PlatformField.getSelectedItemPosition()));
-		        item_saved.save();        
-				dismiss();
+		        item_saved.save();
+		        Toast toast;
+		        if(item_saved.getStatus() == ErrorItem.ER_CLEAN) {
+		        	dismiss();
+		        	toast = Toast.makeText(getContext(),
+							getContext().getResources().getString(R.string.report_finish_message),
+			    			Toast.LENGTH_LONG);
+		        } else {
+					toast = Toast.makeText(getContext(),
+							getContext().getResources().getString(R.string.report_error_message),
+			    			Toast.LENGTH_LONG);
+		        }
+		    	toast.show();	
+
 			}
         	
         });
-	}
-	
-	@Override
-	public void dismiss(){
-		super.dismiss();
-		if(item_saved != null){
-			Toast toast = Toast.makeText(getContext(),
-					getContext().getResources().getString(R.string.report_finish_message),
-	    			Toast.LENGTH_LONG);
-	    	toast.show();	
-		}
-    	
 	}
 
 }

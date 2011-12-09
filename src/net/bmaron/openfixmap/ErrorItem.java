@@ -7,6 +7,9 @@ import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 import org.osmdroid.util.GeoPoint;
 
 public class ErrorItem {
+	final public static int ER_CLEAN = 0;
+	final public static int ER_DIRTY = 1;
+	
 	private long id;
 	private String title;
 	private String description;
@@ -17,7 +20,8 @@ public class ErrorItem {
 	private Date date;
 	private ErrorPlatform error_platform; 
 	private String link;
-	
+	private int status = 0; // O CLEAN, 1 DIRTY
+
 	
     public ErrorItem(long id, String title, String description, double lat, double lon) {
     	this.id = id;
@@ -39,6 +43,7 @@ public class ErrorItem {
 	}
 
 	public void setId(long id) {
+		setStatus(ER_DIRTY);
 		this.id = id;
 	}
 
@@ -52,14 +57,17 @@ public class ErrorItem {
 		return title;
 	}
 	public void setTitle(String title) {
+		setStatus(ER_DIRTY);
 		this.title = title;
 	}
 
 	public String getDescription() {
+		setStatus(ER_DIRTY);
 		return description;
 	}
 
 	public void setDescription(String description) {
+		setStatus(ER_DIRTY);
 		this.description = description;
 	}
 
@@ -68,6 +76,7 @@ public class ErrorItem {
 	}
 
 	public void setLat(double lat) {
+		setStatus(ER_DIRTY);
 		this.lat = lat;
 	}
 
@@ -76,6 +85,7 @@ public class ErrorItem {
 	}
 
 	public void setLon(double lon) {
+		setStatus(ER_DIRTY);
 		this.lon = lon;
 	}
 	
@@ -88,6 +98,7 @@ public class ErrorItem {
 	}
 
 	public void setErrorLevel(int error_level) {
+		setStatus(ER_DIRTY);
 		this.error_level = error_level;
 	}
 
@@ -104,6 +115,7 @@ public class ErrorItem {
 	}
 
 	public void setIsClosed(boolean is_closed) {
+		setStatus(ER_DIRTY);
 		this.is_closed = is_closed;
 	}
 	
@@ -112,6 +124,7 @@ public class ErrorItem {
 	}
 
 	public void setDate(Date date) {
+		setStatus(ER_DIRTY);
 		this.date = date;
 	}
 
@@ -120,18 +133,30 @@ public class ErrorItem {
 	}
 
 	public void setLink(String link) {
+		setStatus(ER_DIRTY);
 		this.link = link;
 	}
 
 	public void setPoint(GeoPoint p) {
+		setStatus(ER_DIRTY);
 		setLat(p.getLatitudeE6()/ 1E6);
 		setLon(p.getLongitudeE6()/ 1E6);
 	}
 
 	public void save() {
 		if(error_platform != null && error_platform.canAdd()) {
-			error_platform.createBug(this);
+			if(error_platform.createBug(this)) {
+				setStatus(ER_CLEAN);
+			}
 		}
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }

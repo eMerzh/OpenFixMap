@@ -14,6 +14,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import net.bmaron.openfixmap.ErrorItem;
 import net.bmaron.openfixmap.OpenFixMapActivity;
 import net.bmaron.openfixmap.PlatformManager;
@@ -48,7 +51,8 @@ public class MapDust extends ErrorPlatform {
 		return true;
 	}
 	
-	public void createBug(ErrorItem i) {
+	@Override
+	public boolean createBug(ErrorItem i) {
 		super.createBug(i);
 /*
  * Example request:
@@ -86,14 +90,21 @@ nickname=test
 			HttpResponse response = httpclient.execute(httppost);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			String resp = reader.readLine();
-			
+			JSONObject jroot = new JSONObject(resp);
+			if(jroot.has("id")) {
+				return true;
+			}
 			
 	        logger.info("oook : "+resp);
 		} catch (ClientProtocolException e) {
 			//TODO Auto-generated catch block
 		} catch (IOException e) {
 			//TODO Auto-generated catch block
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        return false;
 
 
 	}
