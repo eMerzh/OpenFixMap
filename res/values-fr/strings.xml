@@ -17,7 +17,11 @@
   <string name="details_close_btn">Fermer</string>
   <string name="details_note_btn">Editer une note</string>
   <string name="details_bug_title">Nouvelle erreur</string>
+  <string name="detail_status_title">Status de l\'erreur :</string>
   <string name="dialog_switchlayer_title">Choisissez un fond de carte</string>
+  <string name="dialog_status_open">Ouvert</string>
+  <string name="dialog_status_close">Fermée</string>
+  <string name="dialog_status_invalid">Invalide</string>
   <string name="report_no_parser">Il n\'y a pas de plateform active pour rapporter des erreurs</string>
   <string name="report_platform_txt">Plateforme</string>
   <string name="report_platform_spin_title">Choisissez une plateforme</string>
