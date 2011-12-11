@@ -28,6 +28,13 @@ public class ProblemDialog extends Dialog{
 
         image.setImageResource(item.getPlatform().getIcon());
         
+        TextView status = (TextView) findViewById(R.id.status_txt);
+        if(item.getErrorStatus() == ErrorItem.ST_CLOSE)
+        	status.setText(context.getResources().getString(R.string.dialog_status_close));
+        if(item.getErrorStatus() == ErrorItem.ST_OPEN)
+        	status.setText(context.getResources().getString(R.string.dialog_status_open));
+        if(item.getErrorStatus() == ErrorItem.ST_INVALID)
+        	status.setText(context.getResources().getString(R.string.dialog_status_invalid));
         
         TextView parse_name = (TextView) findViewById(R.id.parser);
         parse_name.setText(item.getPlatform().getName());

@@ -117,7 +117,15 @@ public class KeepRightCSVParser{
 						} catch (ParseException e) {
 							e.printStackTrace();
 						} 
-				        
+						
+						// Check status
+				        if(next[12].equals("ignore")) {
+				        	tItem.setErrorStatus(ErrorItem.ST_INVALID);
+				        }else if(next[12].equals("ignore_t")) {
+				        	tItem.setErrorStatus(ErrorItem.ST_CLOSE);
+				        }else if(next[12].equals("new")) {
+				        	tItem.setErrorStatus(ErrorItem.ST_OPEN);
+				        }
 				        
 				        lItems.add(tItem);
 		        	}else {

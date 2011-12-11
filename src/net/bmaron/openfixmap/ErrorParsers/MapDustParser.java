@@ -92,6 +92,12 @@ public class MapDustParser{
 	        		tItem.setLon((Double) jPoint.get(0));
 	        		tItem.setLat((Double) jPoint.get(1));
 	        		tItem.setTitle(jProp.getString("type"));
+	        		switch(jProp.getInt("status"))
+	        		{
+	        			case 1: tItem.setErrorStatus(ErrorItem.ST_OPEN); break;
+	        			case 2: tItem.setErrorStatus(ErrorItem.ST_CLOSE); break;
+	        			case 3: tItem.setErrorStatus(ErrorItem.ST_INVALID); break;
+	        		}
 	        		tItem.setDescription(jProp.getString("description"));
 
 					try {

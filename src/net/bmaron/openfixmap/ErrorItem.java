@@ -10,6 +10,10 @@ public class ErrorItem {
 	final public static int ER_CLEAN = 0;
 	final public static int ER_DIRTY = 1;
 	
+	final public static int ST_OPEN = 0;
+	final public static int ST_INVALID = 1;
+	final public static int ST_CLOSE = 2;
+	
 	private long id;
 	private String title;
 	private String description;
@@ -20,7 +24,9 @@ public class ErrorItem {
 	private Date date;
 	private ErrorPlatform error_platform; 
 	private String link;
-	private int status = 0; // O CLEAN, 1 DIRTY
+
+	private int err_status = 0; //  ST_CLOSED, ST_OPEN , ST_INVALID
+	private int saved_status = 0; //  CLEAN,  DIRTY
 
 	
     public ErrorItem(long id, String title, String description, double lat, double lon) {
@@ -43,7 +49,7 @@ public class ErrorItem {
 	}
 
 	public void setId(long id) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.id = id;
 	}
 
@@ -57,17 +63,17 @@ public class ErrorItem {
 		return title;
 	}
 	public void setTitle(String title) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.title = title;
 	}
 
 	public String getDescription() {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		return description;
 	}
 
 	public void setDescription(String description) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.description = description;
 	}
 
@@ -76,7 +82,7 @@ public class ErrorItem {
 	}
 
 	public void setLat(double lat) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.lat = lat;
 	}
 
@@ -85,7 +91,7 @@ public class ErrorItem {
 	}
 
 	public void setLon(double lon) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.lon = lon;
 	}
 	
@@ -98,7 +104,7 @@ public class ErrorItem {
 	}
 
 	public void setErrorLevel(int error_level) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.error_level = error_level;
 	}
 
@@ -115,7 +121,7 @@ public class ErrorItem {
 	}
 
 	public void setIsClosed(boolean is_closed) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.is_closed = is_closed;
 	}
 	
@@ -124,7 +130,7 @@ public class ErrorItem {
 	}
 
 	public void setDate(Date date) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.date = date;
 	}
 
@@ -133,12 +139,12 @@ public class ErrorItem {
 	}
 
 	public void setLink(String link) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		this.link = link;
 	}
 
 	public void setPoint(GeoPoint p) {
-		setStatus(ER_DIRTY);
+		setSavedStatus(ER_DIRTY);
 		setLat(p.getLatitudeE6()/ 1E6);
 		setLon(p.getLongitudeE6()/ 1E6);
 	}
@@ -146,17 +152,25 @@ public class ErrorItem {
 	public void save() {
 		if(error_platform != null && error_platform.canAdd()) {
 			if(error_platform.createBug(this)) {
-				setStatus(ER_CLEAN);
+				setSavedStatus(ER_CLEAN);
 			}
 		}
 	}
 
-	public int getStatus() {
-		return status;
+	public int getSavedStatus() {
+		return saved_status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setSavedStatus(int status) {
+		this.saved_status = status;
+	}
+
+	public int getErrorStatus() {
+		return err_status;
+	}
+
+	public void setErrorStatus(int err_status) {
+		this.err_status = err_status;
 	}
 	
 }

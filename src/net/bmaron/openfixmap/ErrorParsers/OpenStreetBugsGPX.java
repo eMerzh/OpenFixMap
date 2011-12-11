@@ -134,19 +134,26 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 			tempItem.setId(Integer.parseInt(tempVal));
 		}else if (qName.equalsIgnoreCase("Desc")) {
 			
-			Pattern pattern = Pattern.compile("(.+)(\\[(.*), (.*) CET\\])$");
-			Matcher matcher = pattern.matcher(tempVal);
-			if(matcher.find()) {
-				tempItem.setDescription(matcher.group(1));
+			Pattern pattern_date = Pattern.compile("(.+)(\\[(.*), (.*) CET\\])$");
+			Matcher matcher_date = pattern_date.matcher(tempVal);
+			if(matcher_date.find()) {
+				tempItem.setDescription(matcher_date.group(1));
 		        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 				try {
+					// Try to fetch date
 			        Date dateObj;
-					dateObj = curFormater.parse(matcher.group(4));
+					dateObj = curFormater.parse(matcher_date.group(4));
 					tempItem.setDate(dateObj);
-
+					
 				} catch (ParseException e) {
 					e.printStackTrace();
 				} 
+				Pattern pattern_type = Pattern.compile("closed bug");
+				if(pattern_type.matcher(tempVal).find()) {
+					tempItem.setErrorStatus(ErrorItem.ST_CLOSE);
+				} else if(Pattern.compile("new bug").matcher(tempVal).find()) {
+					tempItem.setErrorStatus(ErrorItem.ST_OPEN);
+				}
 		        
 			}
 			logger.info(tempVal);			
