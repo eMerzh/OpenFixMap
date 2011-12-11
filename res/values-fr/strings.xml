@@ -1,42 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name"></string>
-  <string name="menu_switchlayer_button"></string>
-  <string name="menu_pref_button"></string>
-  <string name="main_fetch_btn"></string>
-  <string name="pref_platform_title"></string>
-  <string name="pref_platform_sum"></string>
-  <string name="pref_fix_title"></string>
-  <string name="pref_fix_sum"></string>
-  <string name="pref_fetchonlaunch_title"></string>
-  <string name="pref_fetchonlaunch_sum"></string>
-  <string name="pref_err_level_title"></string>
-  <string name="pref_err_level_sum"></string>
-  <string name="pref_closed_title"></string>
-  <string name="pref_closed_sum"></string>
-  <string name="details_close_btn"></string>
-  <string name="details_note_btn"></string>
-  <string name="details_bug_title"></string>
-  <string name="dialog_switchlayer_title"></string>
-  <string name="report_no_parser"></string>
-  <string name="report_platform_txt"></string>
-  <string name="report_platform_spin_title"></string>
-  <string name="report_dialog_title"></string>
-  <string name="report_title_fld_hint"></string>
-  <string name="report_title_fld_title"></string>
-  <string name="report_desc_fld_hint"></string>
-  <string name="report_cancel_btn"></string>
-  <string name="report_save_btn"></string>
-  <string name="report_error_message"></string>
-  <string name="report_finish_message"></string>
-  <string name="dialog_loading_message"></string>
-  <string name="crash_toast_text"></string>
-  <string name="crash_notif_ticker_text"></string>
-  <string name="crash_notif_title"></string>
-  <string name="crash_notif_text"></string>
-  <string name="crash_dialog_title"></string>
-  <string name="crash_dialog_text"></string>
-  <string name="crash_dialog_comment_prompt"></string>
-  <string name="crash_dialog_ok_toast"></string>
-  <plurals name="plurals"><item quantity="one"></item><item quantity="other"></item></plurals>
+  <string name="app_name">OpenFixMap</string>
+  <string name="menu_switchlayer_button">Changer le fond de carte</string>
+  <string name="menu_pref_button">Préférences</string>
+  <string name="main_fetch_btn">Rapatrier les erreurs</string>
+  <string name="pref_platform_title">Plateforme de rapport d\'erreurs</string>
+  <string name="pref_platform_sum">Choisissez les plateformes de rapport d\'erreurs</string>
+  <string name="pref_fix_title">Aller à ma position.</string>
+  <string name="pref_fix_sum">Centrer la carte sur ma position lorsque la localisation à été reçue</string>
+  <string name="pref_fetchonlaunch_title">Rapatrier au lancement</string>
+  <string name="pref_fetchonlaunch_sum">Rapatrier les éléments au lancement de l\'application</string>
+  <string name="pref_err_level_title">Niveau d\'affichage</string>
+  <string name="pref_err_level_sum">Définir le niveau des erreurs affichée</string>
+  <string name="pref_closed_title">Afficher les fermées</string>
+  <string name="pref_closed_sum">Afficher les erreurs fermées</string>
+  <string name="details_close_btn">Fermer</string>
+  <string name="details_note_btn">Editer une note</string>
+  <string name="details_bug_title">Nouvelle erreur</string>
+  <string name="dialog_switchlayer_title">Choisissez un fond de carte</string>
+  <string name="report_no_parser">Il n\'y a pas de plateform active pour rapporter des erreurs</string>
+  <string name="report_platform_txt">Plateforme</string>
+  <string name="report_platform_spin_title">Choisissez une plateforme</string>
+  <string name="report_dialog_title">Rapporter une erreur</string>
+  <string name="report_title_fld_hint">Type</string>
+  <string name="report_title_fld_title">Rapporter le type d\'erreur</string>
+  <string name="report_desc_fld_hint">Description</string>
+  <string name="report_cancel_btn">Annuler</string>
+  <string name="report_save_btn">Sauver</string>
+  <string name="report_error_message">Un problème est survenu. Votre rapport n\'a pas été envoyé. Veuillez vérifier la champs description et essayer à nouveau.</string>
+  <string name="report_finish_message">Merci, l\'erreur à été rapporté!
+     Actualiser les erreurs pour voir votre rapport sur la carte</string>
+  <string name="dialog_loading_message">Chargement... Merci de patienter.</string>
+  <string name="crash_toast_text">Ooooops ! J\'ai planter, mais un rapport d\'erreur à été envoyé au développeur pour aider à corriger le problème.</string>
+  <string name="crash_notif_ticker_text">Erreur inatendue, merci d\'envoyer un rapport...</string>
+  <string name="crash_notif_title">OpenFixMap a planter ...</string>
+  <string name="crash_notif_text">Merci de cliquer pour aider à corriger le problème.</string>
+  <string name="crash_dialog_title">OpenFixMap a planter</string>
+  <string name="crash_dialog_text">Un erreur inattendue à forcé 
+    l\'application à s\'arreter. Merci de nous aider en nous envoyant le rapport d\'erreur,
+    vous n\'avez qu\'a cliquer sur \'OK\'.</string>
+  <string name="crash_dialog_comment_prompt">Vous pouvez ajouter votre commentaire sur le problème ci-dessous:</string>
+  <string name="crash_dialog_ok_toast">Merci !</string>
+  <plurals name="plurals"><item quantity="other">%d éléments rapatriées.</item><item quantity="one">Un élément rapatrié.</item></plurals>
 </resources>
