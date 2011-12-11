@@ -1,47 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-	<string-array name="errorBackend">
-        <item name="1">KeepRight</item>
-        <item name="2">OpenStreetBugs</item>
-		<item name="2">MapDust</item>
-            
-    </string-array>
-    <string-array name="errorBackendValues">
-        <item name="1">1</item>
-        <item name="2">2</item>
-		<item name="3">3</item>
-    </string-array>
-    
-	<string-array name="displayLevel">
-	    <item name="0">Tout</item>
-        <item name="1">Moyen</item>
-        <item name="2">Seulement le nécessaire</item>
-    </string-array>
-    <string-array name="displayLevelValues">
-        <item name="0">0</item>
-        <item name="1">1</item>
-        <item name="2">2</item>
-    </string-array>
-	
-	<string-array name="error_type_label">
-	    <item>Autre</item>
-        <item>Virage erroné</item>
-<!--        <item>Mauvais routage</item>-->
-        <item>Rue à sens unique</item>
-		<item>Rue bloquée</item>
-        <item>Rue manquante</item>
-        <item>Problème de rond-point</item>
-        <item>Info de vitesse manquante</item>
-    </string-array>
-    
-	<string-array name="error_type_value">
-	    <item>other</item>
-        <item>wrong_turn</item>
-<!--        <itembad_routing</item>-->
-        <item>oneway_road</item>
-		<item>blocked_street</item>
-        <item>missing_street</item>
-        <item>wrong_roundabout</item>
-        <item>missing_speedlimit</item>
-    </string-array>
+  <string-array name="errorBackend"><item>KeepRight</item>
+<item>OpenStreetBugs</item>
+<item>MapDust</item>
+</string-array>
+  <string-array name="errorBackendValues"><item>1</item>
+<item>2</item>
+<item>3</item>
+</string-array>
+  <string-array name="displayLevel"><item>Tout</item>
+<item>Moyen</item>
+<item>Seulement le nécessaire</item>
+</string-array>
+  <string-array name="displayLevelValues"><item>0</item>
+<item>1</item>
+<item>2</item>
+</string-array>
+  <string-array name="error_type_label"><item>Autre</item>
+<item>Virage erroné</item>
+<item>Mauvais routage</item>
+<item>Rue à sens unique</item>
+<item>Rue bloquée</item>
+<item>Rue manquante</item>
+<item>Problème de rond-point</item>
+<item>Info de vitesse manquante</item>
+</string-array>
+  <string-array name="error_type_value"><item>other</item>
+<item>wrong_turn</item>
+<item>oneway_road</item>
+<item>blocked_street</item>
+<item>missing_street</item>
+<item>wrong_roundabout</item>
+<item>missing_speedlimit</item>
+</string-array>
 </resources>

@@ -1,0 +1,13 @@
+[main]
+host = https://www.transifex.net
+
+[openfixmap.stringsxml]
+source_file = res/values/strings.xml
+file_filter = res/values-<lang>/strings.xml
+source_lang = en
+
+[openfixmap.arrayxml]
+source_file = res/values/array.xml
+file_filter = res/values-<lang>/array.xml
+source_lang = en
+
