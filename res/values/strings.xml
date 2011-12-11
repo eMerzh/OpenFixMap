@@ -19,7 +19,7 @@
 	<string name="details_close_btn">Close</string>
 	<string name="details_note_btn">Edit a Note</string>
 	<string name="details_bug_title">New Bug</string>
-	<string name="detail_status_title">Error Status</string>
+	<string name="detail_status_title">Error Status :</string>
 	<string name="dialog_switchlayer_title">Pick a layer</string>
 	<string name="dialog_status_open">Open</string>
 	<string name="dialog_status_close">Close</string>

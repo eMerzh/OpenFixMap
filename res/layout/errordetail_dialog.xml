@@ -33,27 +33,28 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:orientation="horizontal" 
+    	android:padding="10dp"
+    	
 		>
 			
 	    <TextView
 	        android:id="@+id/parser"
-	        android:layout_width="fill_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
-	        android:layout_weight="1.0"
 			android:textColor="#707070"
 			android:textSize="10sp"
-			android:gravity="center"
+			android:paddingRight="10dip"
+
 	         
 	       />
 	    <TextView
 			android:id="@+id/error_date"
-	    	android:layout_width="fill_parent"
+	    	android:layout_width="wrap_content"
 	    	android:layout_height="fill_parent"
-	        android:layout_weight="1.0"
 			android:textColor="#707070"
 			android:textSize="10sp"
-			android:gravity="center"
 		/>
+	    
 
 	</LinearLayout>
 
@@ -69,28 +70,26 @@
     	android:id="@+id/elayout_details_status"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:orientation="horizontal" 
+    	android:orientation="horizontal"
+    	android:padding="10dip"
 		>
 			
 	    <TextView
 	        android:id="@+id/status_title"
-	        android:layout_width="fill_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
-	        android:layout_weight="1.0"
 			android:textColor="#707070"
 			android:textSize="10sp"
-			android:gravity="center"
 			android:text="@string/detail_status_title"
+			android:paddingRight="10dip"
 	       />
 	    
 	    <TextView
 			android:id="@+id/status_txt"
-	    	android:layout_width="fill_parent"
+	    	android:layout_width="wrap_content"
 	    	android:layout_height="fill_parent"
-	        android:layout_weight="1.0"
 			android:textColor="#707070"
 			android:textSize="10sp"
-			android:gravity="center"
 		/>
 
 	</LinearLayout>

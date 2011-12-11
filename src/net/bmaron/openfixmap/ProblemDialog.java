@@ -2,6 +2,7 @@ package net.bmaron.openfixmap;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -29,12 +30,16 @@ public class ProblemDialog extends Dialog{
         image.setImageResource(item.getPlatform().getIcon());
         
         TextView status = (TextView) findViewById(R.id.status_txt);
-        if(item.getErrorStatus() == ErrorItem.ST_CLOSE)
+        if(item.getErrorStatus() == ErrorItem.ST_CLOSE) {
+        	status.setTextColor(Color.GREEN);
         	status.setText(context.getResources().getString(R.string.dialog_status_close));
-        if(item.getErrorStatus() == ErrorItem.ST_OPEN)
+        } else if(item.getErrorStatus() == ErrorItem.ST_OPEN) {
+        	status.setTextColor(Color.RED);
         	status.setText(context.getResources().getString(R.string.dialog_status_open));
-        if(item.getErrorStatus() == ErrorItem.ST_INVALID)
+        } else if(item.getErrorStatus() == ErrorItem.ST_INVALID) {
+        	status.setTextColor(Color.YELLOW);
         	status.setText(context.getResources().getString(R.string.dialog_status_invalid));
+        }
         
         TextView parse_name = (TextView) findViewById(R.id.parser);
         parse_name.setText(item.getPlatform().getName());
