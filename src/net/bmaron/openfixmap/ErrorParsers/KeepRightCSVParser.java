@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import net.bmaron.openfixmap.ErrorItem;
 
@@ -76,8 +77,16 @@ public class KeepRightCSVParser{
 				qparams.add(new BasicNameValuePair("show_ign", "0")); // Show Ignored 
 				qparams.add(new BasicNameValuePair("show_tmpign", "0")); // Show Corrected
 			}
-        	qparams.add(new BasicNameValuePair("lat", ""+ String.valueOf(boundingBox.getCenter().getLatitudeE6()/ 1E6) ));
-        	qparams.add(new BasicNameValuePair("lon", ""+ String.valueOf(boundingBox.getCenter().getLongitudeE6()/ 1E6 ) ));
+        	qparams.add(new BasicNameValuePair("lat", String.valueOf(boundingBox.getCenter().getLatitudeE6()/ 1E6) ));
+        	qparams.add(new BasicNameValuePair("lon", String.valueOf(boundingBox.getCenter().getLongitudeE6()/ 1E6 ) ));
+
+            List<String> supportedLang= Arrays.asList("cs","da", "de", "es", "en", "et", "fa", "fi", 
+            		"fr", "hu", "it", "lt", "nb", "nl", "pl", "pt_BR", "ru", "sl", "sv", "uk");
+            String lang="en";
+            if(supportedLang.contains(Locale.getDefault().getLanguage()))
+            	lang=Locale.getDefault().getLanguage();
+        	qparams.add(new BasicNameValuePair("lang", lang));
+
         	URI uri;
         	uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/points.php", 
 					URLEncodedUtils.format(qparams, "UTF-8") + "&ch="+errorTypes , null);
