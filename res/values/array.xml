@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="errorBackend">
-        <item name="1">KeepRight</item>
-        <item name="2">OpenStreetBugs</item>
-		<item name="2">MapDust</item>
+        <item>KeepRight</item>
+        <item>OpenStreetBugs</item>
+		<item>MapDust</item>
             
     </string-array>
     <string-array name="errorBackendValues">
-        <item name="1">1</item>
-        <item name="2">2</item>
-		<item name="3">3</item>
+        <item>1</item>
+        <item>2</item>
+		<item>3</item>
     </string-array>
     
 	<string-array name="displayLevel">
-	    <item name="0">All</item>
-        <item name="1">Medium</item>
-        <item name="2">Only necessary</item>
+	    <item>All</item>
+        <item>Medium</item>
+        <item>Only necessary</item>
     </string-array>
     <string-array name="displayLevelValues">
-        <item name="0">0</item>
-        <item name="1">1</item>
-        <item name="2">2</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 	
 	<string-array name="error_type_label">
 	    <item>Other</item>
         <item>Wrong turn</item>
-<!--        <item>Bad routing</item>-->
         <item>Oneway road</item>
 		<item>Blocked street</item>
         <item>Missing street</item>
@@ -37,7 +36,6 @@
 	<string-array name="error_type_value">
 	    <item>other</item>
         <item>wrong_turn</item>
-<!--        <itembad_routing</item>-->
         <item>oneway_road</item>
 		<item>blocked_street</item>
         <item>missing_street</item>
