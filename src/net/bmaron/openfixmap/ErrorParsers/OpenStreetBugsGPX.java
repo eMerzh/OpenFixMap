@@ -147,18 +147,15 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 					
 				} catch (ParseException e) {
 					e.printStackTrace();
-				} 
-				Pattern pattern_type = Pattern.compile("closed bug");
-				if(pattern_type.matcher(tempVal).find()) {
-					tempItem.setErrorStatus(ErrorItem.ST_CLOSE);
-				} else if(Pattern.compile("new bug").matcher(tempVal).find()) {
-					tempItem.setErrorStatus(ErrorItem.ST_OPEN);
-				}
-		        
+				} 		        
 			}
 			logger.info(tempVal);			
 		}
-		//type
+		else if (qName.equalsIgnoreCase("closed") && tempVal.equals("1")) {
+			//type
+			tempItem.setErrorStatus(ErrorItem.ST_CLOSE);
+		}
+
 	}
 	
 	
