@@ -24,7 +24,10 @@
 	<string name="dialog_status_open">Open</string>
 	<string name="dialog_status_close">Close</string>
 	<string name="dialog_status_invalid">Invalid</string>
-	    
+
+	<string name="dialog_close_message">Thanks, error reported!
+	    Refresh the errors to see the new status of the bug</string>
+
 	<string name="report_no_parser">There is no active platform to report problems</string>
 	<string name="report_platform_txt">Platform</string>
 	<string name="report_platform_spin_title">Choose a platform</string>
@@ -39,7 +42,7 @@
 	<string name="report_save_btn">Save</string>
 	<string name="report_error_message">There was a problem. Your report was not send. Please check your description text and try again.</string>
 	<string name="report_finish_message">Thanks, error reported!
-	     Hit fetch if you want to see your report on the map</string>
+	     Refresh the errors if you want to see your report on the map</string>
 	<string name="dialog_loading_message">Loading... Please Wait.</string>
 
 	    

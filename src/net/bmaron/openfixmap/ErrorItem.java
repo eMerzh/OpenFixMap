@@ -1,6 +1,7 @@
 package net.bmaron.openfixmap;
 
 import java.util.Date;
+import java.util.Hashtable;
 
 import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 
@@ -27,19 +28,13 @@ public class ErrorItem {
 
 	private int err_status = 0; //  ST_CLOSED, ST_OPEN , ST_INVALID
 	private int saved_status = 0; //  CLEAN,  DIRTY
+	private Hashtable<String,Object> extd_info = new Hashtable<String,Object>();
 
-	
-    public ErrorItem(long id, String title, String description, double lat, double lon) {
-    	this.id = id;
-    	this.title = title;
-    	this.description = description;
-    	this.lat = lat;
-    	this.lon = lon;
-    }
     
     public ErrorItem(ErrorPlatform parser) {
     	this.error_platform = parser;
     }
+    
     public ErrorItem() {
     	
     }
@@ -171,6 +166,14 @@ public class ErrorItem {
 
 	public void setErrorStatus(int err_status) {
 		this.err_status = err_status;
+	}
+
+	public Hashtable<String,Object> getExtendedInfo() {
+		return extd_info;
+	}
+
+	public void setExtendedInfo(Hashtable<String,Object> extd_info) {
+		this.extd_info = extd_info;
 	}
 	
 }

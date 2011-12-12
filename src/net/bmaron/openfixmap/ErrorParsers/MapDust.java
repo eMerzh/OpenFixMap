@@ -24,9 +24,17 @@ import net.bmaron.openfixmap.R;
 
 public class MapDust extends ErrorPlatform {
 
-
+	private String base_url;
+	
 	public MapDust(PlatformManager mgr) {
 		super(mgr);
+		String env= getManager().getPreferences().getString("env");
+		if(env == null || ! env.equals("debug")) {
+			base_url = "http://www.mapdust.com/api/";
+		}
+		else {
+			base_url = "http://80.242.147.84/XY/api/";
+		}
 	}
 
 	@Override
@@ -52,29 +60,60 @@ public class MapDust extends ErrorPlatform {
 	}
 	
 	@Override
+	public boolean closeBug(ErrorItem i) {
+		super.closeBug(i);
+		HttpClient httpclient = new DefaultHttpClient();
+
+		base_url = base_url + "changeBugStatus";
+		HttpPost httppost = new HttpPost(base_url);
+		try {
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("key", getManager().getPreferences().getString("mapdust_key")));
+			nameValuePairs.add(new BasicNameValuePair("id", String.valueOf(i.getId())));
+			nameValuePairs.add(new BasicNameValuePair("nickname", "NoName"));
+			nameValuePairs.add(new BasicNameValuePair("comment", "Marked as closed on OpenFixMap"));
+
+    		switch(i.getErrorStatus())
+    		{
+    			case ErrorItem.ST_OPEN : nameValuePairs.add(new BasicNameValuePair("status", String.valueOf(1) )); break;
+    			case ErrorItem.ST_CLOSE : nameValuePairs.add(new BasicNameValuePair("status", String.valueOf(2) )); break;
+    			case ErrorItem.ST_INVALID : nameValuePairs.add(new BasicNameValuePair("status", String.valueOf(3) )); break;
+    		}
+			
+			
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+	        logger.info("Put: "+ httppost.getURI());
+			// Execute HTTP Post Request
+			HttpResponse response = httpclient.execute(httppost);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+			String resp = reader.readLine();
+			JSONObject jroot = new JSONObject(resp);
+			if(jroot.has("id")) {
+				return true;
+			}
+			
+	        logger.info("oook : "+resp);
+		} catch (ClientProtocolException e) {
+			//TODO Auto-generated catch block
+		} catch (IOException e) {
+			//TODO Auto-generated catch block
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return false;
+
+
+	}
+	
+	@Override
 	public boolean createBug(ErrorItem i) {
 		super.createBug(i);
-/*
- * Example request:
-http://www.mapdust.com/api/addBug
-POST:
-key={YOUR_API_KEY}
-coordinates=13.3798017,52.5222716
-type=other
-description=test
-nickname=test
-*/
 		HttpClient httpclient = new DefaultHttpClient();
-		String url;
-		String env= getManager().getPreferences().getString("env");
-		if(env == null || ! env.equals("debug")) {
-			url = "http://www.mapdust.com/api/addBug";
-		}
-		else {
-			url = "http://80.242.147.84/XY/api/addBug";
-		}
-		
-		HttpPost httppost = new HttpPost(url);
+		base_url = base_url + "addBug";
+		HttpPost httppost = new HttpPost(base_url);
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("key", getManager().getPreferences().getString("mapdust_key")));

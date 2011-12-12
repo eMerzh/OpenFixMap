@@ -54,6 +54,10 @@ public abstract class ErrorPlatform {
 		return false;
 	}
 	
+	public boolean closeBug(ErrorItem i) {
+		return false;
+	}
+	
 	public void setForFetch(BoundingBoxE6 bb, int ErrorLevel, boolean show_closed) {
 		this.setBoundingBox(bb);
 		this.setErrorLevel(ErrorLevel);

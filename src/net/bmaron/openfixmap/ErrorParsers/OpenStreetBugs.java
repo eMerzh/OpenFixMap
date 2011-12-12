@@ -24,6 +24,7 @@ import org.apache.http.protocol.HttpContext;
 
 public class OpenStreetBugs extends ErrorPlatform {
 
+	private String base_url="";
 	public OpenStreetBugs(PlatformManager mgr) {
 		super(mgr);
 	}
@@ -52,6 +53,35 @@ public class OpenStreetBugs extends ErrorPlatform {
 	}
 	
 	@Override
+	public boolean closeBug(ErrorItem item) {
+		super.closeBug(item);
+		//http://openstreetbugs.schokokeks.org/api/0.1/closePOIexec?id=620912
+		HttpClient httpClient = new DefaultHttpClient();
+		try {
+			String uri  = "http://openstreetbugs.schokokeks.org/api/0.1/closePOIexec?id=" + item.getId();
+			HttpGet httpget = new HttpGet(uri);
+		
+			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenStreetBugs.class);
+	        logger.info("Put: "+ uri);
+    		String env= getManager().getPreferences().getString("env");
+    		if(env == null || ! env.equals("debug"))
+    		{
+    			HttpResponse response = httpClient.execute(httpget, new BasicHttpContext());
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+    			//reader.readLine();
+    		}
+    		return true;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	
+	}
+	
+	
+	@Override
 	public boolean createBug(ErrorItem item) {
 		super.createBug(item);
 		
@@ -66,7 +96,6 @@ public class OpenStreetBugs extends ErrorPlatform {
 		}
 		//http://openstreetbugs.schokokeks.org/api/0.1/addPOIexec?=brol&lat=50.83374489342907&lon=4.38738708543749&text=tes%20%5Bbrol%5D
 		HttpClient httpClient = new DefaultHttpClient();
-		HttpContext localContext = new BasicHttpContext();
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("lat", String.valueOf(item.getLat()) ));
 		qparams.add(new BasicNameValuePair("lon", String.valueOf(item.getLon()) ));
@@ -77,18 +106,19 @@ public class OpenStreetBugs extends ErrorPlatform {
 			 URI uri = URIUtils.createURI("http", "openstreetbugs.schokokeks.org", -1, "/api/0.1/addPOIexec", 
 					URLEncodedUtils.format(qparams, "UTF-8"), null);
 			HttpGet httpget = new HttpGet(uri);
-			
-			
-			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+				
+			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenStreetBugs.class);
 	        logger.info("Put: "+ uri);
     		String env= getManager().getPreferences().getString("env");
     		if(env == null || ! env.equals("debug"))
     		{
-    			HttpResponse response = httpClient.execute(httpget, localContext);
+    			HttpResponse response = httpClient.execute(httpget, new BasicHttpContext());
     			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
     			String resp = reader.readLine();
     			//response.getEntity().getContent();
     		}
+    		item.setErrorStatus(ErrorItem.ST_CLOSE);
+    		item.setSavedStatus(ErrorItem.ER_CLEAN);
     		return true;
 
 		} catch (Exception e) {

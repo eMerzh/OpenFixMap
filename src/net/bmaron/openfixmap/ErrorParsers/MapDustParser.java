@@ -84,11 +84,13 @@ public class MapDustParser{
 			    SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); 
 
 				for (int i = 0; i < jitemArr.length(); i++) {
+	        		ErrorItem tItem = new ErrorItem(error);
+
 					JSONObject jItem = jitemArr.getJSONObject(i);
 					JSONArray jPoint = jItem.getJSONObject("geometry").getJSONArray("coordinates");
+					tItem.setId(jItem.getInt("id"));
 	        		JSONObject jProp = jItem.getJSONObject("properties");
 
-	        		ErrorItem tItem = new ErrorItem(error);
 	        		
 	        		tItem.setLon((Double) jPoint.get(0));
 	        		tItem.setLat((Double) jPoint.get(1));
