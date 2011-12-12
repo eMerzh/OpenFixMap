@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import net.bmaron.openfixmap.ErrorItem;
+import net.bmaron.openfixmap.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -91,7 +92,17 @@ public class MapDustParser{
 	        		
 	        		tItem.setLon((Double) jPoint.get(0));
 	        		tItem.setLat((Double) jPoint.get(1));
-	        		tItem.setTitle(jProp.getString("type"));
+	        		
+	        		String[] error_types_val = error.getManager().getContext().getResources().getStringArray(R.array.error_type_value);
+	        		String[] error_types_lab = error.getManager().getContext().getResources().getStringArray(R.array.error_type_label);
+	        		String title="";
+	        		for(int i1=0; i1< error_types_val.length;i1++) {
+	        			if(error_types_val[i1].equals(jProp.getString("type"))){
+	        				title = error_types_lab[i1];
+	        			}
+	        		}
+	        		
+	        		tItem.setTitle(title);
 	        		switch(jProp.getInt("status"))
 	        		{
 	        			case 1: tItem.setErrorStatus(ErrorItem.ST_OPEN); break;
