@@ -60,7 +60,7 @@ public class KeepRight extends ErrorPlatform {
 			Uri.Builder b = Uri.parse("http://keepright.ipax.at/comment.php").buildUpon();
     
 			b.appendQueryParameter("id", String.valueOf(item.getId()));
-			int schema = (Integer) item.getExtendedInfo().get("schema");
+			int schema = Integer.parseInt((String) item.getExtendedInfo().get("schema"));
 			b.appendQueryParameter("schema",  String.valueOf(schema));
 			b.appendQueryParameter("co", "Marked as closed on OpenFixMap");
 
