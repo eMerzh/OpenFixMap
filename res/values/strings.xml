@@ -25,7 +25,7 @@
 	<string name="dialog_status_close">Close</string>
 	<string name="dialog_status_invalid">Invalid</string>
 
-	<string name="dialog_close_message">Thanks, error reported!
+	<string name="dialog_close_message">Thanks, error closed!
 	    Refresh the errors to see the new status of the bug</string>
 
 	<string name="report_no_parser">There is no active platform to report problems</string>

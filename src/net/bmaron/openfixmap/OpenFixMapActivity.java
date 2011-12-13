@@ -132,6 +132,7 @@ public class OpenFixMapActivity extends Activity {
 		        mHandler.post(new Runnable() {
 				    public void run() { 
 				    	 ProblemDialog dialog = new ProblemDialog(OpenFixMapActivity.this,it.getError());
+				    	 dialog.setOwnerActivity(OpenFixMapActivity.this);
 				    	 dialog.show();
 				    	}
 				}); 
