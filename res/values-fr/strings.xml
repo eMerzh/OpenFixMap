@@ -22,6 +22,8 @@
   <string name="dialog_status_open">Ouvert</string>
   <string name="dialog_status_close">Fermée</string>
   <string name="dialog_status_invalid">Invalide</string>
+  <string name="dialog_close_message">Merci, erreur fermée!
+    Actualiser les erreurs pour voir le nouveau status de votre rapport.</string>
   <string name="report_no_parser">Il n\'y a pas de plateform active pour rapporter des erreurs</string>
   <string name="report_platform_txt">Plateforme</string>
   <string name="report_platform_spin_title">Choisissez une plateforme</string>
