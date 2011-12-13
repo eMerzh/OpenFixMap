@@ -1,19 +1,9 @@
 package net.bmaron.openfixmap.ErrorParsers;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
+
 
 import android.net.Uri;
 
@@ -76,13 +66,8 @@ public class KeepRight extends ErrorPlatform {
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
 	        logger.info("Put: "+ httpget.getURI());
 			// Execute HTTP Post Request
-    		String env= getManager().getPreferences().getString("env");
-    		if(env == null || ! env.equals("debug"))
-    		{
-    			HttpResponse response = httpclient.execute(httpget);
-    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-    			//reader.readLine();
-    		}
+
+    		httpclient.execute(httpget);
     		return true;
 
 		} catch (Exception e) {
