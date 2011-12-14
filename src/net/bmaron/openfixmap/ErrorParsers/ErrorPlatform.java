@@ -50,11 +50,11 @@ public abstract class ErrorPlatform {
 		this.boundingBox = boundingBox;
 	} 
 	
-	public boolean createBug(ErrorItem i) {
+	public boolean createError(ErrorItem i) {
 		return false;
 	}
 	
-	public boolean closeBug(ErrorItem i) {
+	public boolean closeError(ErrorItem i) {
 		return false;
 	}
 	

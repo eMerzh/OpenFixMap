@@ -146,7 +146,7 @@ public class ErrorItem {
 
 	public void save() {
 		if(error_platform != null && error_platform.canAdd()) {
-			if(error_platform.createBug(this)) {
+			if(error_platform.createError(this)) {
 				setSavedStatus(ER_CLEAN);
 			}
 		}

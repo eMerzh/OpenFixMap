@@ -16,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProblemDialog extends Dialog{ 
+public class DetailsDialog extends Dialog{ 
 	protected ErrorItem item;
 	protected ProgressDialog dialog;
 	protected Boolean return_dialog;
-	public ProblemDialog(Context context, ErrorItem item) {
+	public DetailsDialog(Context context, ErrorItem item) {
 		super(context);
 		this.item = item;		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//Remove Default Title
@@ -67,21 +67,21 @@ public class ProblemDialog extends Dialog{
 			public void onClick(View v) {
 				final CheckBox checkbox = (CheckBox) findViewById(R.id.detail_mark_as_close);
 				//Close the bug if checked and not already closed 
-				if(checkbox.isChecked() && ProblemDialog.this.item.getErrorStatus() != ErrorItem.ST_CLOSE) {
-	                ProblemDialog.this.dismiss();
+				if(checkbox.isChecked() && DetailsDialog.this.item.getErrorStatus() != ErrorItem.ST_CLOSE) {
+	                DetailsDialog.this.dismiss();
 
-					dialog = ProgressDialog.show(ProblemDialog.this.getContext(), "", 
-								ProblemDialog.this.getContext().getResources().getString(R.string.dialog_loading_message), true);
+					dialog = ProgressDialog.show(DetailsDialog.this.getContext(), "", 
+								DetailsDialog.this.getContext().getResources().getString(R.string.dialog_loading_message), true);
 					new Thread() 
 					{
 					    public void run() { 
 
-				    		ProblemDialog.this.item.setErrorStatus(ErrorItem.ST_CLOSE);
-				    		return_dialog = ProblemDialog.this.item.getPlatform().closeBug(ProblemDialog.this.item);
+				    		DetailsDialog.this.item.setErrorStatus(ErrorItem.ST_CLOSE);
+				    		return_dialog = DetailsDialog.this.item.getPlatform().closeError(DetailsDialog.this.item);
 
-							ProblemDialog.this.getOwnerActivity().runOnUiThread(new Runnable() {
+							DetailsDialog.this.getOwnerActivity().runOnUiThread(new Runnable() {
 							    public void run() {
-							    	ProblemDialog.this.dialog.dismiss();
+							    	DetailsDialog.this.dialog.dismiss();
 					                if(return_dialog) {
 					                	Toast toast = Toast.makeText(getContext(),
 					                		getContext().getResources().getString(R.string.dialog_close_message),
@@ -110,8 +110,8 @@ public class ProblemDialog extends Dialog{
 		        emailIntent .setType("text/html");
 		         
 		        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-		        		Html.fromHtml("<a href=\""+ProblemDialog.this.item.getLink()+"\">"+ProblemDialog.this.item.getTitle()+"</a>"));
-		        ProblemDialog.this.getContext().startActivity(Intent.createChooser(emailIntent, "Note OSM Error"));
+		        		Html.fromHtml("<a href=\""+DetailsDialog.this.item.getLink()+"\">"+DetailsDialog.this.item.getTitle()+"</a>"));
+		        DetailsDialog.this.getContext().startActivity(Intent.createChooser(emailIntent, "Note OSM Error"));
 		        //emailIntent .putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
 
 			}

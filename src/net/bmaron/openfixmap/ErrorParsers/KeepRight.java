@@ -42,8 +42,8 @@ public class KeepRight extends ErrorPlatform {
 	}
 	
 	@Override
-	public boolean closeBug(ErrorItem item) {
-		super.closeBug(item);
+	public boolean closeError(ErrorItem item) {
+		super.closeError(item);
 		HttpClient httpclient = new DefaultHttpClient();
 		//http://keepright.ipax.at/comment.php?st=ignore_t&co=&id=<id>&schema=<schema>
 		try {

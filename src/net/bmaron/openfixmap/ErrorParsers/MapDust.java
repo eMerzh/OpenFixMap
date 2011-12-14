@@ -60,8 +60,8 @@ public class MapDust extends ErrorPlatform {
 	}
 	
 	@Override
-	public boolean closeBug(ErrorItem i) {
-		super.closeBug(i);
+	public boolean closeError(ErrorItem i) {
+		super.closeError(i);
 		HttpClient httpclient = new DefaultHttpClient();
 
 		base_url = base_url + "changeBugStatus";
@@ -109,8 +109,8 @@ public class MapDust extends ErrorPlatform {
 	}
 	
 	@Override
-	public boolean createBug(ErrorItem i) {
-		super.createBug(i);
+	public boolean createError(ErrorItem i) {
+		super.createError(i);
 		HttpClient httpclient = new DefaultHttpClient();
 		base_url = base_url + "addBug";
 		HttpPost httppost = new HttpPost(base_url);

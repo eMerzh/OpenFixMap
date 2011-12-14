@@ -53,8 +53,8 @@ public class OpenStreetBugs extends ErrorPlatform {
 	}
 	
 	@Override
-	public boolean closeBug(ErrorItem item) {
-		super.closeBug(item);
+	public boolean closeError(ErrorItem item) {
+		super.closeError(item);
 		//http://openstreetbugs.schokokeks.org/api/0.1/closePOIexec?id=620912
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
@@ -82,8 +82,8 @@ public class OpenStreetBugs extends ErrorPlatform {
 	
 	
 	@Override
-	public boolean createBug(ErrorItem item) {
-		super.createBug(item);
+	public boolean createError(ErrorItem item) {
+		super.createError(item);
 		
 		String[] error_types_val = getManager().getContext().getResources().getStringArray(R.array.error_type_value);
 		String[] error_types_lab = getManager().getContext().getResources().getStringArray(R.array.error_type_label);
