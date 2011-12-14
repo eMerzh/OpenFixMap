@@ -124,18 +124,11 @@ public class OpenFixMapActivity extends Activity {
         
 
     	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
-		    
-    		private T it;
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
-		    	it = item;
-		        mHandler.post(new Runnable() {
-				    public void run() { 
-				    	 DetailsDialog dialog = new DetailsDialog(OpenFixMapActivity.this,it.getError());
-				    	 dialog.setOwnerActivity(OpenFixMapActivity.this);
-				    	 dialog.show();
-				    	}
-				}); 
+		    	ShowDetailsRunnable run = new ShowDetailsRunnable();
+		    	run.setInfo(OpenFixMapActivity.this, item.getError());
+		        mHandler.post(run); 
 		        return false;
 		    }
 		
@@ -146,6 +139,7 @@ public class OpenFixMapActivity extends Activity {
         OnItemGestureListener<OverlayErrorItem> pOnItemGestureListener = new myItemGestureListener<OverlayErrorItem>();
        
         pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(this, new ArrayList<OverlayErrorItem>(), pOnItemGestureListener);
+
         this.mapView.getOverlays().add(pointOverlay);
 
     	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
