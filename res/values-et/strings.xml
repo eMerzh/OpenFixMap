@@ -23,7 +23,7 @@
   <string name="dialog_status_close">Suletud</string>
   <string name="dialog_status_invalid">Vigane</string>
   <string name="dialog_close_message">Täname, viga on suletud!
-<span class=\"whitespace other\" title=\"Tab\">»</span>    Värskenda vigasid, et näha vea uut staatust</string>
+    Värskenda vigasid, et näha vea uut staatust</string>
   <string name="report_no_parser">Ühtegi aktiivset veateavitusplatfomi pole</string>
   <string name="report_platform_txt">Platform</string>
   <string name="report_platform_spin_title">Vali platform</string>
@@ -35,7 +35,7 @@
   <string name="report_save_btn">Salvesta</string>
   <string name="report_error_message">Tekkis probleem. Sinu teadet ei saadetud ära. Palun kontrolli oma kirjeldust ja proovi seejärel uuesti.</string>
   <string name="report_finish_message">Täname, veast on teavitatud!
-<span class=\"whitespace other\" title=\"Tab\">»</span>     Värskenda veateateid, kui sa soovid näha oma veateateid kaardil</string>
+     Värskenda veateateid, kui sa soovid näha oma veateateid kaardil</string>
   <string name="dialog_loading_message">Laadimine... palun oota</string>
   <string name="crash_toast_text">Ups ! Jooksin kokku, aga arendajale saadeti veateade, et ta saaks selle vea parandada !</string>
   <string name="crash_notif_ticker_text">Tundmatu viga, palun saada veateade...</string>
