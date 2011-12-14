@@ -31,6 +31,7 @@
         <item>Missing street</item>
         <item>Roundabout issue</item>
         <item>Missing speed info</item>
+        <item>Bad Routing</item>
     </string-array>
     
 	<string-array name="error_type_value">
@@ -41,5 +42,6 @@
         <item>missing_street</item>
         <item>wrong_roundabout</item>
         <item>missing_speedlimit</item>
+		<item>bad_routing</item>
     </string-array>
 </resources>
