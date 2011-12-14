@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">OpenFixMap</string>
+  <string name="menu_switchlayer_button">Muuda kihti</string>
+  <string name="menu_pref_button">Eelistused</string>
+  <string name="main_fetch_btn">Tõmbamise viga</string>
+  <string name="pref_platform_title">Vigade teatamise platform</string>
+  <string name="pref_platform_sum">Vali veatevituse platformid</string>
+  <string name="pref_fix_title">Mine esimese paranduse juurde</string>
+  <string name="pref_fix_sum">Joonda kaart keskele, kui esimene positsioon on kätte saadud.</string>
+  <string name="pref_fetchonlaunch_title">Tõmba käivitamisel</string>
+  <string name="pref_fetchonlaunch_sum">Tõmba kirjed kohe pärast käivitamist</string>
+  <string name="pref_err_level_title">Näitamise tase</string>
+  <string name="pref_err_level_sum">Määra näidatavate veateadete tase</string>
+  <string name="pref_closed_title">Näita suletuid</string>
+  <string name="pref_closed_sum">Näita tuletud vigasid</string>
+  <string name="details_close_btn">Sulge</string>
+  <string name="details_note_btn">Muuda märkust</string>
+  <string name="details_bug_title">Uus viga</string>
+  <string name="detail_status_title">Vea staatus:</string>
+  <string name="dialog_switchlayer_title">Vali kiht</string>
+  <string name="dialog_status_open">Avatud</string>
+  <string name="dialog_status_close">Suletud</string>
+  <string name="dialog_status_invalid">Vigane</string>
+  <string name="dialog_close_message">Täname, viga on suletud!
+<span class=\"whitespace other\" title=\"Tab\">»</span>    Värskenda vigasid, et näha vea uut staatust</string>
+  <string name="report_no_parser">Ühtegi aktiivset veateavitusplatfomi pole</string>
+  <string name="report_platform_txt">Platform</string>
+  <string name="report_platform_spin_title">Vali platform</string>
+  <string name="report_dialog_title">Teavita veast</string>
+  <string name="report_title_fld_hint">Tüüp</string>
+  <string name="report_title_fld_title">Vali vea tüüp</string>
+  <string name="report_desc_fld_hint">Kirjeldus</string>
+  <string name="report_cancel_btn">Loobu</string>
+  <string name="report_save_btn">Salvesta</string>
+  <string name="report_error_message">Tekkis probleem. Sinu teadet ei saadetud ära. Palun kontrolli oma kirjeldust ja proovi seejärel uuesti.</string>
+  <string name="report_finish_message">Täname, veast on teavitatud!
+<span class=\"whitespace other\" title=\"Tab\">»</span>     Värskenda veateateid, kui sa soovid näha oma veateateid kaardil</string>
+  <string name="dialog_loading_message">Laadimine... palun oota</string>
+  <string name="crash_toast_text">Ups ! Jooksin kokku, aga arendajale saadeti veateade, et ta saaks selle vea parandada !</string>
+  <string name="crash_notif_ticker_text">Tundmatu viga, palun saada veateade...</string>
+  <string name="crash_notif_title">OpenFixMap jooksis kokku...</string>
+  <string name="crash_notif_text">Palun kliki siia, et aidata viga parandada.</string>
+  <string name="crash_dialog_title">OpenFixMap on kokku jooksnud</string>
+  <string name="crash_dialog_text">Tekkis ootamatu viga, mis sundis
+    rakendust peatuma. Palun aita meil seda viga parandada, saates meile vea andmed,
+    Selle tegemiseks pead sa vajutama ainult nuppu \'OK\'.</string>
+  <string name="crash_dialog_comment_prompt">Sa võid soovida lisada allapoole oma kommentaarid probleemi kohta:</string>
+  <string name="crash_dialog_ok_toast">Täname!</string>
+  <plurals name="plurals"><item quantity="other">%d kirjet tõmmatud.</item><item quantity="one">Üks kirje tõmmatud.</item></plurals>
+</resources>

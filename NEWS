@@ -1,0 +1,13 @@
+v0.3.0 (14/12/2011):
+ * Change label order in some dialog to be consistant
+ * Improve error display informations
+ * Improve all error parsers
+ * Add Crash Handler
+ * Add ability to close error
+ * Add fr and et translations
+
+v0.2.0 (07/11/2011):
+ * New Logo
+ * Add MapDust support
+ * Add report interface
+ * Add loading dialog

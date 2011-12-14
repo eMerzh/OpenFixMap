@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string-array name="errorBackend"><item>KeepRight</item>
+<item>OpenStreetBugs</item>
+<item>MapDust</item>
+</string-array>
+  <string-array name="errorBackendValues"><item>1</item>
+<item>2</item>
+<item>3</item>
+</string-array>
+  <string-array name="displayLevel"><item>Kõik</item>
+<item>Keskmine</item>
+<item>Ainult vajalikud</item>
+</string-array>
+  <string-array name="displayLevelValues"><item>0</item>
+<item>1</item>
+<item>2</item>
+</string-array>
+  <string-array name="error_type_label"><item>Muu</item>
+<item>Vale pööre</item>
+<item>Ühesuunaline tee</item>
+<item>Blokeeritud tänav</item>
+<item>Puuduv tänav</item>
+<item>Ümbersuunamise probleem</item>
+<item>Puuduv kiiruse info</item>
+</string-array>
+  <string-array name="error_type_value"><item>other</item>
+<item>wrong_turn</item>
+<item>oneway_road</item>
+<item>blocked_street</item>
+<item>missing_street</item>
+<item>wrong_roundabout</item>
+<item>missing_speedlimit</item>
+</string-array>
+</resources>
