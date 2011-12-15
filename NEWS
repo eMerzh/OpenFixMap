@@ -1,3 +1,9 @@
+v0.3.1 (15/12/2011):
+ * Add translations for bad routing
+ * fix show when multiple point in same place
+ * add compatibility with android 2.2
+ * correct layout for small screens
+
 v0.3.0 (14/12/2011):
  * Change label order in some dialog to be consistant
  * Improve error display informations
