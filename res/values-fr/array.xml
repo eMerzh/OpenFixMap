@@ -24,7 +24,7 @@
 <item>Rue manquante</item>
 <item>Problème de rond-point</item>
 <item>Info de vitesse manquante</item>
-</string-array>
+<item>Mauvais routage</item></string-array>
   <string-array name="error_type_value"><item>other</item>
 <item>wrong_turn</item>
 <item>oneway_road</item>
@@ -32,5 +32,5 @@
 <item>missing_street</item>
 <item>wrong_roundabout</item>
 <item>missing_speedlimit</item>
-</string-array>
+<item>bad_routing</item></string-array>
 </resources>

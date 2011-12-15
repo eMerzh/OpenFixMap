@@ -31,5 +31,6 @@
 <item>missing_street</item>
 <item>wrong_roundabout</item>
 <item>missing_speedlimit</item>
+<item>bad_routing</item>⏎
 </string-array>
 </resources>
