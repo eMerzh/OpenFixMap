@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">OpenFixMap</string>
+  <string name="menu_switchlayer_button">Ebene wechseln</string>
+  <string name="menu_pref_button">Einstellungen</string>
+  <string name="main_fetch_btn">Fehler abrufen</string>
+  <string name="pref_platform_title">Fehlerbericht-Plattform</string>
+  <string name="pref_platform_sum">Fehlerbericht-Plattform auswählen</string>
+  <string name="pref_fix_title">Ersten Bericht aufrufen</string>
+  <string name="pref_fix_sum">Karte auf der ersten Position zentrieren</string>
+  <string name="pref_fetchonlaunch_title">Beim Start abrufen</string>
+  <string name="pref_fetchonlaunch_sum">Fehler direkt beim Start abrufen</string>
+  <string name="pref_err_level_title">Schweregrad der Fehler</string>
+  <string name="pref_err_level_sum">Schweregrad der angezeigten Fehler wählen</string>
+  <string name="pref_closed_title">Geschlossene anzeigen</string>
+  <string name="pref_closed_sum">Geschlossene Fehler anzeigen</string>
+  <string name="details_close_btn">Schließen</string>
+  <string name="details_note_btn">Notiz bearbeiten</string>
+  <string name="details_bug_title">Neuer Fehler</string>
+  <string name="detail_status_title">Fehlerstatus:</string>
+  <string name="dialog_switchlayer_title">Ebene auswählen</string>
+  <string name="dialog_status_open">Öffnen</string>
+  <string name="dialog_status_close">Schließen</string>
+  <string name="dialog_status_invalid">Ungültig</string>
+  <string name="dialog_close_message">Danke. Fehler wurde geschlossen!
+»    Fehler aktualisieren, um den neuen Fehlerstatus zu sehen</string>
+  <string name="report_no_parser">Es gibt keine aktiven Plattformen für Fehlerberichte</string>
+  <string name="report_platform_txt">Plattform</string>
+  <string name="report_platform_spin_title">Plattform wählen</string>
+  <string name="report_dialog_title">Fehler melden</string>
+  <string name="report_title_fld_hint">Art</string>
+  <string name="report_title_fld_title">Fehlerart wählen</string>
+  <string name="report_desc_fld_hint">Beschreibung</string>
+  <string name="report_cancel_btn">Abbrechen</string>
+  <string name="report_save_btn">Speichern</string>
+  <string name="report_error_message">Ein Problem ist aufgetreten. Ihr Bericht wurde nicht gesendet. Prüfen Sie Ihren Beschreibungstext und versuchen Sie es erneut.</string>
+  <string name="report_finish_message">Danke. Fehler wurde gemeldet!
+»    Fehler aktualisieren, um Ihren Fehler auf der Karte zu sehen</string>
+  <string name="dialog_loading_message">Laden... Bitte warten.</string>
+  <string name="crash_toast_text">Uuups! OpenFixMap ist abgestürzt, es wurde aber ein Fehlerbericht an den Entwickler geschickt, um diesen zu beheben.</string>
+  <string name="crash_notif_ticker_text">Unerwarteter Fehler. Bitte einen Fehlerbericht senden...</string>
+  <string name="crash_notif_title">OpenFixMap ist abgestürzt...</string>
+  <string name="crash_notif_text">Hier klicken, um beim Beheben des Fehlers zu helfen.</string>
+  <string name="crash_dialog_title">OpenFixMap ist abgestürzt</string>
+  <string name="crash_dialog_text">Ein unerwarteter Fehler ist aufgetreten, der
+    zum Beenden der Anwendung führte. Helfen Sie uns diesen Fehler
+    zu beheben, indem Sie per Tipp auf \'OK\' einen Fehlerbericht senden.</string>
+  <string name="crash_dialog_comment_prompt">Nachfolgend einen Kommentar zu dem Problem abgeben:</string>
+  <string name="crash_dialog_ok_toast">Vielen Dank!</string>
+  <plurals name="plurals"><item quantity="other">%d Fehler abgerufen</item><item quantity="one">Ein Fehler abgerufen</item></plurals>
+</resources>

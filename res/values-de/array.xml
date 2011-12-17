@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string-array name="errorBackend"><item>KeepRight</item>
+<item>OpenStreetBugs</item>
+<item>MapDust</item>
+</string-array>
+  <string-array name="errorBackendValues"><item>1</item>
+<item>2</item>
+<item>3</item>
+</string-array>
+  <string-array name="displayLevel"><item>Alle</item>
+<item>Mittel</item>
+<item>Nur nötige</item>
+</string-array>
+  <string-array name="displayLevelValues"><item>0</item>
+<item>1</item>
+<item>2</item>
+</string-array>
+  <string-array name="error_type_label"><item>Andere</item>
+<item>Wrong turn</item>
+<item>Einbahnstraße</item>
+<item>Gesperrte Straße</item>
+<item>Fehlende Straße</item>
+<item>Fehler im Kreisverkehr</item>
+<item>Fehlende Geschwindigkeitsbegrenzung</item>
+<item>Schlechte Routenführung</item>
+</string-array>
+  <string-array name="error_type_value"><item>other</item>
+<item>wrong_turn</item>
+<item>oneway_road</item>
+<item>blocked_street</item>
+<item>missing_street</item>
+<item>wrong_roundabout</item>
+<item>missing_speedlimit</item>
+<item>bad_routing</item>
+</string-array>
+</resources>
