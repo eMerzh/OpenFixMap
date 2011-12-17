@@ -6,20 +6,20 @@
     <string name="main_fetch_btn">Fetch errors</string>
 
     <string name="pref_platform_title">Error Reporting Platform</string>
-    <string name="pref_platform_sum">Choose error reporting platforms</string>
-    <string name="pref_fix_title">Go to first Fix</string>
+    <string name="pref_platform_sum">Choose error reporting platform</string>
+    <string name="pref_fix_title">Go to first fix</string>
 	<string name="pref_fix_sum">Center the map when the first position is received</string>
     <string name="pref_fetchonlaunch_title">Fetch on launch</string>
 	<string name="pref_fetchonlaunch_sum">Fetch items directly after launch</string>
     <string name="pref_err_level_title">Display level</string>
-    <string name="pref_err_level_sum">Define the level of the error displayed</string>
+    <string name="pref_err_level_sum">Define the level of the errors displayed</string>
     <string name="pref_closed_title">Display Closed</string>        
     <string name="pref_closed_sum">Display closed errors</string>
     
 	<string name="details_close_btn">Close</string>
 	<string name="details_note_btn">Edit a Note</string>
 	<string name="details_bug_title">New error</string>
-	<string name="detail_status_title">Error Status :</string>
+	<string name="detail_status_title">Error Status:</string>
 	<string name="dialog_switchlayer_title">Pick a layer</string>
 	<string name="dialog_status_open">Open</string>
 	<string name="dialog_status_close">Close</string>
@@ -31,11 +31,10 @@
 	<string name="report_no_parser">There is no active platform to report errors</string>
 	<string name="report_platform_txt">Platform</string>
 	<string name="report_platform_spin_title">Choose a platform</string>
-	    	    
+
 	<string name="report_dialog_title">Report an error</string>
 	<string name="report_title_fld_hint">Type</string>
 	<string name="report_title_fld_title">Choose an error type</string>
-	    
 	
 	<string name="report_desc_fld_hint">Description</string>
 	<string name="report_cancel_btn">Cancel</string>
@@ -43,18 +42,18 @@
 	<string name="report_error_message">There was a problem. Your report was not send. Please check your description text and try again.</string>
 	<string name="report_finish_message">Thanks, error reported!
 	     Refresh the errors if you want to see your report on the map</string>
-	<string name="dialog_loading_message">Loading... Please Wait.</string>
+	<string name="dialog_loading_message">Loading… Please Wait.</string>
 
 	    
 	<string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help him fix the issue !</string>
-	<string name="crash_notif_ticker_text">Unexpected error, please send a report...</string>
-	<string name="crash_notif_title">OpenFixMap has crashed...</string>
+	<string name="crash_notif_ticker_text">Unexpected error, please send a report…</string>
+	<string name="crash_notif_title">OpenFixMap has crashed…</string>
 	<string name="crash_notif_text">Please click here to help fix the issue.</string>
 	    
 	<string name="crash_dialog_title">OpenFixMap has crashed</string>
 	<string name="crash_dialog_text">An unexpected error occurred forcing the
-    application to stop. Please help us fix this by sending us error data,
-    all you have to do is click \'OK\'.</string>
+application to stop. Please help us fix this by sending us error data,
+all you have to do is tap \'OK\'.</string>
 	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
 	<string name="crash_dialog_ok_toast">Thank you !</string>
 
