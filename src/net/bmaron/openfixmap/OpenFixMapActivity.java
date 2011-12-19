@@ -121,25 +121,7 @@ public class OpenFixMapActivity extends Activity {
         
         this.mScaleBarOverlay = new ScaleBarOverlay(this);                          
         this.mapView.getOverlays().add(mScaleBarOverlay);
-        
-
-    	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
-		    @Override
-		    public boolean onItemSingleTapUp(int index, T item) {
-		    	ShowDetailsRunnable run = new ShowDetailsRunnable();
-		    	run.setInfo(OpenFixMapActivity.this, item.getError());
-		        mHandler.post(run); 
-		        return false;
-		    }
-		
-		    @Override
-		    public boolean onItemLongPress(int index, T item) { return false;}
-    	}
-
-        OnItemGestureListener<OverlayErrorItem> pOnItemGestureListener = new myItemGestureListener<OverlayErrorItem>();
-       
-        pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(this, new ArrayList<OverlayErrorItem>(), pOnItemGestureListener);
-
+        createPointOverlay(new ArrayList<OverlayErrorItem>());
         this.mapView.getOverlays().add(pointOverlay);
 
     	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
@@ -197,6 +179,26 @@ public class OpenFixMapActivity extends Activity {
       editor.commit();
     }
 
+    protected ItemizedIconOverlay<OverlayErrorItem> createPointOverlay(ArrayList<OverlayErrorItem> items) {
+
+    	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
+		    @Override
+		    public boolean onItemSingleTapUp(int index, T item) {
+		    	ShowDetailsRunnable run = new ShowDetailsRunnable();
+		    	run.setInfo(OpenFixMapActivity.this, item.getError());
+		        mHandler.post(run); 
+		        return false;
+		    }
+		
+		    @Override
+		    public boolean onItemLongPress(int index, T item) { return false;}
+    	}
+
+        OnItemGestureListener<OverlayErrorItem> pOnItemGestureListener = new myItemGestureListener<OverlayErrorItem>();
+       
+        pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(this, items , pOnItemGestureListener);
+        return pointOverlay;
+    }
     
     protected  List<ErrorItem> fetchDatas()
     {
@@ -217,27 +219,31 @@ public class OpenFixMapActivity extends Activity {
         	private int num_item = 0;
             public void run() {
             	List<ErrorItem> itemList = new ArrayList<ErrorItem>();
+            	ArrayList<OverlayErrorItem> overlayList= new ArrayList<OverlayErrorItem>();
                     try{
                     	Resources res = getResources();
-                    	pointOverlay.removeAllItems();
+                    	//pointOverlay.removeAllItems();
                     	itemList = fetchDatas();
                         
                         for(int i=0; i < itemList.size(); i++) {
                         	ErrorItem item = itemList.get(i);
                         	OverlayErrorItem oItem = new OverlayErrorItem(item);
                         	oItem.setMarker( res.getDrawable(R.drawable.caution));
-                            pointOverlay.addItem(oItem);
+                        	overlayList.add(oItem);
                             num_item = itemList.size();
                         }
+                        mapView.getOverlays().remove(pointOverlay);
+                        createPointOverlay(overlayList);//Change pointOverlay
+                        mapView.getOverlays().add(pointOverlay);
                     } catch (Exception e) { 
                         e.printStackTrace();
                     }
                     // Dismiss the Dialog
                     mHandler.post(new Runnable(){
                     	public void run(){
+                        	if(isFinishing()) return;
                             mapView.invalidate();
                     		dialog.dismiss();
-                        	if(isFinishing()) return;
                         	Toast toast = Toast.makeText(OpenFixMapActivity.this,
                         			getResources().getQuantityString(R.plurals.numberOfDownloadedItems, num_item ,num_item),
                         			Toast.LENGTH_SHORT);
