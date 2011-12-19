@@ -42,7 +42,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
 			android:textColor="#707070"
-			android:textSize="10sp"
+			android:textSize="12sp"
 			android:paddingRight="10dip"
 
 	         
@@ -52,7 +52,7 @@
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="fill_parent"
 			android:textColor="#707070"
-			android:textSize="10sp"
+			android:textSize="12sp"
 		/>
 	    
 
@@ -79,7 +79,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
 			android:textColor="#707070"
-			android:textSize="10sp"
+			android:textSize="12sp"
 			android:text="@string/detail_status_title"
 			android:paddingRight="10dip"
 	       />
@@ -89,7 +89,7 @@
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="fill_parent"
 			android:textColor="#707070"
-			android:textSize="10sp"
+			android:textSize="12sp"
 		/>
 
 	</LinearLayout>
