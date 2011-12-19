@@ -1,5 +1,7 @@
 package net.bmaron.openfixmap;
 
+import java.util.Date;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -56,7 +58,11 @@ public class DetailsDialog extends Dialog{
         parse_name.setText(item.getPlatform().getName());
         
         TextView error_date = (TextView) findViewById(R.id.error_date);
-        error_date.setText(DateFormat.getMediumDateFormat(context).format(item.getDate()));
+        java.text.DateFormat formDate= DateFormat.getMediumDateFormat(context);
+        Date itemDate = item.getDate();
+        if(itemDate == null)
+        	itemDate = new Date();
+        error_date.setText(formDate.format(itemDate));
         
         Button button = (Button) findViewById(R.id.close_button);
         
