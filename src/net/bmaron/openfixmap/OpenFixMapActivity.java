@@ -209,6 +209,7 @@ public class OpenFixMapActivity extends Activity {
     
     protected void loadDataSource()
     {
+    	if(isFinishing()) return;
         dialog = ProgressDialog.show(OpenFixMapActivity.this, "", 
         		getResources().getString(R.string.dialog_loading_message), true);
 
@@ -236,6 +237,7 @@ public class OpenFixMapActivity extends Activity {
                     	public void run(){
                             mapView.invalidate();
                     		dialog.dismiss();
+                        	if(isFinishing()) return;
                         	Toast toast = Toast.makeText(OpenFixMapActivity.this,
                         			getResources().getQuantityString(R.plurals.numberOfDownloadedItems, num_item ,num_item),
                         			Toast.LENGTH_SHORT);
