@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string-array name="errorBackend"><item>KeepRight</item>
+<item>OpenStreetBugs</item>
+<item>MapDust</item>
+</string-array>
+  <string-array name="errorBackendValues"><item>1</item>
+<item>2</item>
+<item>3</item>
+</string-array>
+  <string-array name="displayLevel"><item>Все</item>
+<item>Средний</item>
+<item>Только важные</item>
+</string-array>
+  <string-array name="displayLevelValues"><item>0</item>
+<item>1</item>
+<item>2</item>
+</string-array>
+  <string-array name="error_type_label"><item>Другое</item>
+<item>Поворот не туда</item>
+<item>Односторонняя дорога</item>
+<item>Нет проезда по дороге</item>
+<item>Отсутствует дорога</item>
+<item>Проблема с круговым движением</item>
+<item>Нет информации о скоростном режиме</item>
+<item>Плохой роутинг</item>
+</string-array>
+  <string-array name="error_type_value"><item>other</item>
+<item>wrong_turn</item>
+<item>oneway_road</item>
+<item>blocked_street</item>
+<item>missing_street</item>
+<item>wrong_roundabout</item>
+<item>missing_speedlimit</item>
+<item>bad_routing</item>
+</string-array>
+</resources>
