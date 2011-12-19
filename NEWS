@@ -1,3 +1,9 @@
+v0.3.2 (19/12/2011):
+ * Add German translation
+ * Add Italian translation
+ * Correct 3 crash bugs
+ * Correct translations strings
+
 v0.3.1 (15/12/2011):
  * Add translations for bad routing
  * fix show when multiple point in same place
