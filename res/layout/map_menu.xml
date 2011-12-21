@@ -7,4 +7,8 @@
     <item android:id="@+id/preferences"
           android:icon="@drawable/ic_menu_preferences"
           android:title="@string/menu_pref_button" />
+    
+	<item android:id="@+id/menu_quit"
+          android:icon="@drawable/ic_lock_power_off"
+          android:title="@string/menu_quit_button" />
 </menu>

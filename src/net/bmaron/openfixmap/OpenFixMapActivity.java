@@ -290,6 +290,9 @@ public class OpenFixMapActivity extends Activity {
         	case R.id.preferences: 
         		startActivityForResult(new Intent(this, Preferences.class), 1 /* CODE_RETOUR*/);
         		return true;
+        	case R.id.menu_quit: 
+        		finish();
+        		return true;
         	default:
         		return super.onOptionsItemSelected(item);
         }
