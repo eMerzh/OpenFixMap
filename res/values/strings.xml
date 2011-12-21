@@ -24,7 +24,7 @@
 	<string name="dialog_status_open">Open</string>
 	<string name="dialog_status_close">Close</string>
 	<string name="dialog_status_invalid">Invalid</string>
-  <string name="detail_mark_as_close_btn">Mark as resolved</string>
+    <string name="detail_mark_as_close_btn">Mark as resolved</string>
 	<string name="dialog_close_message">Thanks, error closed!
 	    Refresh the errors to see the new status of the error</string>
 

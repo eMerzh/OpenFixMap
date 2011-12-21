@@ -11,7 +11,6 @@
         <item>2</item>
 		<item>3</item>
     </string-array>
-    
 	<string-array name="displayLevel">
 	    <item>All</item>
         <item>Medium</item>

@@ -14,6 +14,7 @@
   <string name="pref_err_level_sum">Définir le niveau des erreurs affichée</string>
   <string name="pref_closed_title">Afficher les fermées</string>
   <string name="pref_closed_sum">Afficher les erreurs fermées</string>
+  <string name="parser_platform">Récupération d\'erreurs</string>
   <string name="details_close_btn">Fermer</string>
   <string name="details_note_btn">Editer une note</string>
   <string name="details_bug_title">Nouvelle erreur</string>
@@ -22,6 +23,7 @@
   <string name="dialog_status_open">Ouvert</string>
   <string name="dialog_status_close">Fermée</string>
   <string name="dialog_status_invalid">Invalide</string>
+  <string name="detail_mark_as_close_btn">Marquer comme résolu</string>
   <string name="dialog_close_message">Merci, erreur fermée!
     Actualiser les erreurs pour voir le nouveau status de votre rapport.</string>
   <string name="report_no_parser">Il n\'y a pas de plateform active pour rapporter des erreurs</string>
@@ -36,10 +38,10 @@
   <string name="report_error_message">Un problème est survenu. Votre rapport n\'a pas été envoyé. Veuillez vérifier la champs description et essayer à nouveau.</string>
   <string name="report_finish_message">Merci, l\'erreur à été rapporté!
      Actualiser les erreurs pour voir votre rapport sur la carte</string>
-  <string name="dialog_loading_message">Chargement... Merci de patienter.</string>
+  <string name="dialog_loading_message">Chargement… Merci de patienter.</string>
   <string name="crash_toast_text">Ooooops ! J\'ai planter, mais un rapport d\'erreur à été envoyé au développeur pour aider à corriger le problème.</string>
-  <string name="crash_notif_ticker_text">Erreur inatendue, merci d\'envoyer un rapport...</string>
-  <string name="crash_notif_title">OpenFixMap a planter ...</string>
+  <string name="crash_notif_ticker_text">Erreur inatendue, merci d\'envoyer un rapport…</string>
+  <string name="crash_notif_title">OpenFixMap a planter …</string>
   <string name="crash_notif_text">Merci de cliquer pour aider à corriger le problème.</string>
   <string name="crash_dialog_title">OpenFixMap a planter</string>
   <string name="crash_dialog_text">Un erreur inattendue à forcé 
@@ -47,5 +49,5 @@
     vous n\'avez qu\'a cliquer sur \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Vous pouvez ajouter votre commentaire sur le problème ci-dessous:</string>
   <string name="crash_dialog_ok_toast">Merci !</string>
-  <plurals name="plurals"><item quantity="other">%d éléments rapatriées.</item><item quantity="one">Un élément rapatrié.</item></plurals>
+  <plurals name="numberOfDownloadedItems"><item quantity="other">%d éléments rapatriés.</item><item quantity="one">Un élément rapatrié.</item></plurals>
 </resources>

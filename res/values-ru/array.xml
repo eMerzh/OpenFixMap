@@ -4,7 +4,7 @@
 <item>OpenStreetBugs</item>
 <item>MapDust</item>
 </string-array>
-  <string-array name="errorBackendValues"><item>1</item>
+<string-array name="errorBackendValues"><item>1</item>
 <item>2</item>
 <item>3</item>
 </string-array>
@@ -22,7 +22,7 @@
 <item>Нет проезда по дороге</item>
 <item>Отсутствует дорога</item>
 <item>Проблема с круговым движением</item>
-<item>Нет информации о скоростном режиме</item>
+<item>Неизв. скоростной режим</item>
 <item>Плохой роутинг</item>
 </string-array>
   <string-array name="error_type_value"><item>other</item>

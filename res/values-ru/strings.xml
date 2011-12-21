@@ -14,14 +14,16 @@
   <string name="pref_err_level_sum">Показывать ошибки по уровню тяжести</string>
   <string name="pref_closed_title">Показывать закрытые</string>
   <string name="pref_closed_sum">Показывать уже закрытые ошибки</string>
+  <string name="parser_platform"></string>
   <string name="details_close_btn">Закрыть</string>
-  <string name="details_note_btn">Редактировать </string>
+  <string name="details_note_btn">Редактировать</string>
   <string name="details_bug_title">Новая ошибка</string>
   <string name="detail_status_title">Статус ошибки:</string>
-  <string name="dialog_switchlayer_title">Выберите слой</string>
-  <string name="dialog_status_open">Открыть</string>
-  <string name="dialog_status_close">Закрыть</string>
-  <string name="dialog_status_invalid">Неверный</string>
+  <string name="dialog_switchlayer_title">Выбор подложки</string>
+  <string name="dialog_status_open">Открыта</string>
+  <string name="dialog_status_close">Закрыта</string>
+  <string name="dialog_status_invalid">Неопределено</string>
+  <string name="detail_mark_as_close_btn"></string>
   <string name="dialog_close_message">Ошибка закрыта, спасибо! Обновите ошибки, чтобы увидеть изменения</string>
   <string name="report_no_parser">Не выбран сервис, позволяющий добавлять ошибки</string>
   <string name="report_platform_txt">Сервис</string>
@@ -34,14 +36,14 @@
   <string name="report_save_btn">Сохранить</string>
   <string name="report_error_message">Произошел сбой, ваше описание не отправлено. Пожалуйста, проверьте все поля и попробуйте снова.</string>
   <string name="report_finish_message">Ошибка добавлена, спасибо! Обновите ошибки, чтобы увидеть изменения</string>
-  <string name="dialog_loading_message">Идет загрузка, подождите...</string>
+  <string name="dialog_loading_message">Идет загрузка, подождите…</string>
   <string name="crash_toast_text">Ой! Я рухнул, но отчет о сбое отправлен моему разработчику, он все исправит!</string>
-  <string name="crash_notif_ticker_text">Неожиданная ошибка, пожалуйста, пришлите отчет...</string>
+  <string name="crash_notif_ticker_text">Неожиданная ошибка, пожалуйста, пришлите отчет…</string>
   <string name="crash_notif_title">OpenFixMap - сбой</string>
   <string name="crash_notif_text">Пожалуйста, нажмите здесь, чтобы помочь исправить ошибку.</string>
   <string name="crash_dialog_title">OpenFixMap - сбой</string>
   <string name="crash_dialog_text">Неожиданная ошибка привела к вынужденной остановке приложения. Пожалуйста, помогите нам исправить её, пришлите отчет о сбое - для этого нажмите \'ОК\'.</string>
   <string name="crash_dialog_comment_prompt">Здесь можно добавить ваши замечания о проблеме:</string>
   <string name="crash_dialog_ok_toast">Спасибо!</string>
-  <plurals name="plurals"><item quantity="few">Загружено %d объекта.</item><item quantity="other">Загружено %d объектов.</item><item quantity="one">Загружен один объект.</item></plurals>
+  <plurals name="numberOfDownloadedItems"><item quantity="few">Загружено %d объекта.</item><item quantity="other">Загружено %d объектов.</item><item quantity="one">Загружен один объект.</item></plurals>
 </resources>
