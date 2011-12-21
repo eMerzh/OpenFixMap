@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="Utilisateur">
+	<PreferenceCategory android:title="@string/parser_platform">
 	    <net.bmaron.openfixmap.MultiSelectListPreference
 	        android:key="checkers"
 	        android:title="@string/pref_platform_title"

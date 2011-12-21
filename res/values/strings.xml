@@ -15,7 +15,7 @@
     <string name="pref_err_level_sum">Define the level of the errors displayed</string>
     <string name="pref_closed_title">Display Closed</string>        
     <string name="pref_closed_sum">Display closed errors</string>
-    
+  <string name="string/parser_platform">Error fetching</string>
 	<string name="details_close_btn">Close</string>
 	<string name="details_note_btn">Edit a Note</string>
 	<string name="details_bug_title">New error</string>
@@ -24,7 +24,7 @@
 	<string name="dialog_status_open">Open</string>
 	<string name="dialog_status_close">Close</string>
 	<string name="dialog_status_invalid">Invalid</string>
-
+  <string name="detail_mark_as_close_btn">Mark as resolved</string>
 	<string name="dialog_close_message">Thanks, error closed!
 	    Refresh the errors to see the new status of the error</string>
 
