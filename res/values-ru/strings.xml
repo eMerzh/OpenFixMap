@@ -4,6 +4,7 @@
   <string name="menu_switchlayer_button">Выбрать подложку</string>
   <string name="menu_pref_button">Настройки</string>
   <string name="main_fetch_btn">Скачать ошибки</string>
+  <string name="menu_quit_button">Выход</string>
   <string name="pref_platform_title">Сервисы сбора ошибок</string>
   <string name="pref_platform_sum">Выберите сервисы сбора ошибок</string>
   <string name="pref_fix_title">Показывать позицию GPS</string>
@@ -14,16 +15,16 @@
   <string name="pref_err_level_sum">Показывать ошибки по уровню тяжести</string>
   <string name="pref_closed_title">Показывать закрытые</string>
   <string name="pref_closed_sum">Показывать уже закрытые ошибки</string>
-  <string name="parser_platform"></string>
+  <string name="parser_platform">Ошибка загрузки</string>
   <string name="details_close_btn">Закрыть</string>
-  <string name="details_note_btn">Редактировать</string>
+  <string name="details_note_btn">Заметка</string>
   <string name="details_bug_title">Новая ошибка</string>
   <string name="detail_status_title">Статус ошибки:</string>
   <string name="dialog_switchlayer_title">Выбор подложки</string>
   <string name="dialog_status_open">Открыта</string>
   <string name="dialog_status_close">Закрыта</string>
   <string name="dialog_status_invalid">Неопределено</string>
-  <string name="detail_mark_as_close_btn"></string>
+  <string name="detail_mark_as_close_btn">Исправлено</string>
   <string name="dialog_close_message">Ошибка закрыта, спасибо! Обновите ошибки, чтобы увидеть изменения</string>
   <string name="report_no_parser">Не выбран сервис, позволяющий добавлять ошибки</string>
   <string name="report_platform_txt">Сервис</string>

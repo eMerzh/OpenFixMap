@@ -4,6 +4,7 @@
   <string name="menu_switchlayer_button">Changer le fond de carte</string>
   <string name="menu_pref_button">Préférences</string>
   <string name="main_fetch_btn">Rapatrier les erreurs</string>
+  <string name="menu_quit_button">Quitter</string>
   <string name="pref_platform_title">Plateformes de rapport d\'erreurs</string>
   <string name="pref_platform_sum">Choisissez les plateformes de rapport d\'erreurs</string>
   <string name="pref_fix_title">Aller à ma position.</string>
@@ -16,7 +17,7 @@
   <string name="pref_closed_sum">Afficher les erreurs fermées</string>
   <string name="parser_platform">Récupération d\'erreurs</string>
   <string name="details_close_btn">Fermer</string>
-  <string name="details_note_btn">Editer une note</string>
+  <string name="details_note_btn">Éditer une note</string>
   <string name="details_bug_title">Nouvelle erreur</string>
   <string name="detail_status_title">Status de l\'erreur :</string>
   <string name="dialog_switchlayer_title">Choisissez un fond de carte</string>
@@ -26,7 +27,7 @@
   <string name="detail_mark_as_close_btn">Marquer comme résolu</string>
   <string name="dialog_close_message">Merci, erreur fermée!
     Actualiser les erreurs pour voir le nouveau status de votre rapport.</string>
-  <string name="report_no_parser">Il n\'y a pas de plateform active pour rapporter des erreurs</string>
+  <string name="report_no_parser">Il n\'y a pas de plateforme active pour rapporter des erreurs</string>
   <string name="report_platform_txt">Plateforme</string>
   <string name="report_platform_spin_title">Choisissez une plateforme</string>
   <string name="report_dialog_title">Rapporter une erreur</string>
@@ -40,12 +41,12 @@
      Actualiser les erreurs pour voir votre rapport sur la carte</string>
   <string name="dialog_loading_message">Chargement… Merci de patienter.</string>
   <string name="crash_toast_text">Ooooops ! J\'ai planter, mais un rapport d\'erreur à été envoyé au développeur pour aider à corriger le problème.</string>
-  <string name="crash_notif_ticker_text">Erreur inatendue, merci d\'envoyer un rapport…</string>
+  <string name="crash_notif_ticker_text">Erreur inattendue, merci d\'envoyer un rapport…</string>
   <string name="crash_notif_title">OpenFixMap a planter …</string>
   <string name="crash_notif_text">Merci de cliquer pour aider à corriger le problème.</string>
   <string name="crash_dialog_title">OpenFixMap a planter</string>
   <string name="crash_dialog_text">Un erreur inattendue à forcé 
-    l\'application à s\'arreter. Merci de nous aider en nous envoyant le rapport d\'erreur,
+    l\'application à s’arrêter. Merci de nous aider en nous envoyant le rapport d\'erreur,
     vous n\'avez qu\'a cliquer sur \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Vous pouvez ajouter votre commentaire sur le problème ci-dessous:</string>
   <string name="crash_dialog_ok_toast">Merci !</string>
