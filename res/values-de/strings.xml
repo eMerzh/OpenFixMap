@@ -4,7 +4,7 @@
   <string name="menu_switchlayer_button">Ebene wechseln</string>
   <string name="menu_pref_button">Einstellungen</string>
   <string name="main_fetch_btn">Fehler abrufen</string>
-  <string name="menu_quit_button"></string>
+  <string name="menu_quit_button">Beenden</string>
   <string name="pref_platform_title">Fehlerbericht-Plattform</string>
   <string name="pref_platform_sum">Fehlerbericht-Plattform auswählen</string>
   <string name="pref_fix_title">Ersten Bericht aufrufen</string>
@@ -15,16 +15,16 @@
   <string name="pref_err_level_sum">Schweregrad der angezeigten Fehler wählen</string>
   <string name="pref_closed_title">Geschlossene anzeigen</string>
   <string name="pref_closed_sum">Geschlossene Fehler anzeigen</string>
-  <string name="parser_platform"></string>
+  <string name="parser_platform">Fehlerdarstellung</string>
   <string name="details_close_btn">Schließen</string>
   <string name="details_note_btn">Notiz bearbeiten</string>
   <string name="details_bug_title">Neuer Fehler</string>
   <string name="detail_status_title">Fehlerstatus:</string>
   <string name="dialog_switchlayer_title">Ebene auswählen</string>
-  <string name="dialog_status_open">Öffnen</string>
-  <string name="dialog_status_close">Schließen</string>
+  <string name="dialog_status_open">Offen</string>
+  <string name="dialog_status_close">Geschlossen</string>
   <string name="dialog_status_invalid">Ungültig</string>
-  <string name="detail_mark_as_close_btn"></string>
+  <string name="detail_mark_as_close_btn">Als behoben markieren</string>
   <string name="dialog_close_message">Danke. Fehler wurde geschlossen!
     Fehler aktualisieren, um den neuen Fehlerstatus zu sehen</string>
   <string name="report_no_parser">Es gibt keine aktiven Plattformen für Fehlerberichte</string>
