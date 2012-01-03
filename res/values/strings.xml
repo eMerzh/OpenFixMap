@@ -56,7 +56,7 @@ application to stop. Please help us fix this by sending us error data,
 all you have to do is tap \'OK\'.</string>
 	<string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
 	<string name="crash_dialog_ok_toast">Thank you !</string>
-
+	<string name="acd_go_to_location">Go to current location</string>
     <plurals name="numberOfDownloadedItems">
         <item quantity="one">One item fetched.</item>
         <item quantity="other">%d items fetched.</item>

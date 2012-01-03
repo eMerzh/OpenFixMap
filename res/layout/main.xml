@@ -27,6 +27,7 @@
             android:layout_height="fill_parent"
         	android:background="@android:color/transparent"
 			android:layout_alignParentRight="true"
+			android:contentDescription="@string/acd_go_to_location"
         />
         
 	</RelativeLayout>
