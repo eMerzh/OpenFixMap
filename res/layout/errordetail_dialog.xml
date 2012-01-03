@@ -4,29 +4,15 @@
               android:layout_height="fill_parent" 
               android:orientation="vertical" >
 
+	<TextView
+		android:id="@+id/title"
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:textColor="#FFF"
+	    android:paddingLeft="10dp"
+	    android:drawablePadding="10dp"
+	/>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:id="@+id/elayout_title"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:orientation="horizontal"
-    	android:padding="10dp" >
-	
-	    <ImageView
-	        android:id="@+id/image"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:layout_marginRight="10dp"
-		/>
-	 
-		<TextView
-	        android:id="@+id/title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
-	        android:textColor="#FFF"
-	    />
-
-	</LinearLayout>
 	
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     	android:id="@+id/elayout_details_desc"

@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -14,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +34,11 @@ public class DetailsDialog extends Dialog{
 
         TextView text = (TextView) findViewById(R.id.text);
         text.setText(item.getDescription());
-        ImageView image = (ImageView) findViewById(R.id.image);
 
-        image.setImageResource(item.getPlatform().getIcon());
+        Drawable img = context.getResources().getDrawable(item.getPlatform().getIcon());
+        img.setBounds( 0, 0, 16, 16 );
+        
+        title.setCompoundDrawables(img, null, null, null);
         if(item.getErrorStatus() == ErrorItem.ST_CLOSE) {
     		CheckBox checkbox = (CheckBox) findViewById(R.id.detail_mark_as_close);
     		checkbox.setEnabled(false);
