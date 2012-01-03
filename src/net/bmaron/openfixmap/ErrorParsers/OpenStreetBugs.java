@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.bmaron.openfixmap.ErrorItem;
-import net.bmaron.openfixmap.OpenFixMapActivity;
 import net.bmaron.openfixmap.PlatformManager;
 import net.bmaron.openfixmap.R;
 
@@ -20,11 +19,9 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 public class OpenStreetBugs extends ErrorPlatform {
 
-	private String base_url="";
 	public OpenStreetBugs(PlatformManager mgr) {
 		super(mgr);
 	}
@@ -67,7 +64,7 @@ public class OpenStreetBugs extends ErrorPlatform {
     		if(env == null || ! env.equals("debug"))
     		{
     			HttpResponse response = httpClient.execute(httpget, new BasicHttpContext());
-    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+    			/*BufferedReader reader = */new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
     			//reader.readLine();
     		}
     		return true;
@@ -113,8 +110,8 @@ public class OpenStreetBugs extends ErrorPlatform {
     		if(env == null || ! env.equals("debug"))
     		{
     			HttpResponse response = httpClient.execute(httpget, new BasicHttpContext());
-    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-    			String resp = reader.readLine();
+    			/*BufferedReader reader = */new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+    			//String resp = reader.readLine();
     			//response.getEntity().getContent();
     		}
     		item.setErrorStatus(ErrorItem.ST_CLOSE);

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
-  <string name="menu_switchlayer_button">Changer le fond de carte</string>
+  <string name="menu_switchlayer_button">Changer la carte</string>
   <string name="menu_pref_button">Préférences</string>
   <string name="main_fetch_btn">Rapatrier les erreurs</string>
   <string name="menu_quit_button">Quitter</string>
