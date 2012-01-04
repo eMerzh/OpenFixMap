@@ -46,5 +46,6 @@
   <string name="crash_dialog_text">Si è verificato un errore inatteso che ha bloccato l\'applicazione. Aiutaci a risolvere il problema mandandoci una segnalazione. Devi solo premere il bottone \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Aggiungi per cortesia una descrizione/commento riguardo l\'errore:</string>
   <string name="crash_dialog_ok_toast">Grazie!</string>
+  <string name="acd_go_to_location">Vai alla posizione corrente</string>
   <plurals name="numberOfDownloadedItems"><item quantity="other">%d oggetti sono stati scaricati.</item><item quantity="one">Un oggetto è stato scaricato.</item></plurals>
 </resources>

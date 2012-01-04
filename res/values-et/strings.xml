@@ -50,5 +50,6 @@
     Selle tegemiseks pead sa vajutama ainult nuppu \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Sa võid soovida lisada allapoole oma kommentaarid probleemi kohta:</string>
   <string name="crash_dialog_ok_toast">Täname!</string>
+  <string name="acd_go_to_location"></string>
   <plurals name="numberOfDownloadedItems"><item quantity="other">%d kirjet tõmmatud.</item><item quantity="one">Üks kirje tõmmatud.</item></plurals>
 </resources>

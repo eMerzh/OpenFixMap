@@ -46,5 +46,6 @@
   <string name="crash_dialog_text">Неожиданная ошибка привела к вынужденной остановке приложения. Пожалуйста, помогите нам исправить её, пришлите отчет о сбое - для этого нажмите \'ОК\'.</string>
   <string name="crash_dialog_comment_prompt">Здесь можно добавить ваши замечания о проблеме:</string>
   <string name="crash_dialog_ok_toast">Спасибо!</string>
+  <string name="acd_go_to_location"></string>
   <plurals name="numberOfDownloadedItems"><item quantity="few">Загружено %d объекта.</item><item quantity="other">Загружено %d объектов.</item><item quantity="one">Загружен один объект.</item></plurals>
 </resources>

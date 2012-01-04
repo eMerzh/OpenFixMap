@@ -50,5 +50,6 @@
     vous n\'avez qu\'a cliquer sur \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Vous pouvez ajouter votre commentaire sur le problème ci-dessous:</string>
   <string name="crash_dialog_ok_toast">Merci !</string>
+  <string name="acd_go_to_location">Allez à la position actuelle</string>
   <plurals name="numberOfDownloadedItems"><item quantity="other">%d éléments rapatriés.</item><item quantity="one">Un élément rapatrié.</item></plurals>
 </resources>

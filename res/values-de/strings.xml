@@ -50,5 +50,6 @@
     zu beheben, indem Sie per Tipp auf \'OK\' einen Fehlerbericht senden.</string>
   <string name="crash_dialog_comment_prompt">Nachfolgend einen Kommentar zu dem Problem abgeben:</string>
   <string name="crash_dialog_ok_toast">Vielen Dank!</string>
-  <plurals name="numberOfDownloadedItems"><item quantity="other">%d Fehler abgerufen</item><item quantity="one">Ein Fehler abgerufen</item></plurals>
+  <string name="acd_go_to_location">Aktuellen Standort aufrufen</string>
+  <plurals name="numberOfDownloadedItems"><item quantity="other">%d Fehler abgerufen</item><item quantity="one">Einen Fehler abgerufen</item></plurals>
 </resources>
