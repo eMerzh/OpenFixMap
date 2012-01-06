@@ -1,3 +1,11 @@
+v0.3.3 (06/12/2012):
+ * Update translations
+ * More accessibility strings
+ * Tiny changes in layout
+ * Correct ellipsis chars
+ * Correct some lint warnings 
+ * Add Quit button in menu
+
 v0.3.2 (19/12/2011):
  * Add German translation
  * Add Italian translation
