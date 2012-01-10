@@ -32,15 +32,11 @@ import net.bmaron.openfixmap.R;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
-import org.osmdroid.views.overlay.ScaleBarOverlay;
-
 		
 public class OpenFixMapActivity extends Activity {
 
 
     protected FixMapView mapView;
-	
-    private ScaleBarOverlay mScaleBarOverlay;  
     
     static final int DIALOG_ERROR_ID = 0;
     private ItemizedIconOverlay<OverlayErrorItem> pointOverlay; 
@@ -71,7 +67,7 @@ public class OpenFixMapActivity extends Activity {
         setContentView(R.layout.main);
 
         mapView = (FixMapView) findViewById(R.id.mapview);
-        mapView.setup();
+        mapView.setup(this);
 
 
         /* Set position of last open or near Home :) */
@@ -110,6 +106,7 @@ public class OpenFixMapActivity extends Activity {
 			}
         	
         });
+        
         Button refresh_but = (Button) findViewById(R.id.refresh);
         refresh_but.setOnClickListener(new View.OnClickListener(){        	
 			@Override
@@ -118,9 +115,7 @@ public class OpenFixMapActivity extends Activity {
         	}
         });
         
-        
-        this.mScaleBarOverlay = new ScaleBarOverlay(this);                          
-        this.mapView.getOverlays().add(mScaleBarOverlay);
+       
         createPointOverlay(new ArrayList<OverlayErrorItem>());
         this.mapView.getOverlays().add(pointOverlay);
 
@@ -133,9 +128,6 @@ public class OpenFixMapActivity extends Activity {
     		mHandler.postDelayed(r, 2000);    //Wait to Be Painted		   
     	}
     	
-    	
-    	
-
  
         mapView.setGestureDetector(new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
         	private GeoPoint p;
@@ -145,7 +137,7 @@ public class OpenFixMapActivity extends Activity {
 		        mHandler.post(new Runnable() {
 				    public void run() { 
 				    	if(plManager.getActiveAllowAddPlatforms().size() !=0 ) {
-				    		ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p, plManager);
+				    		ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p);
 					    	 dialog.show();	
 				    	} else {
                         	Toast toast = Toast.makeText(OpenFixMapActivity.this,
@@ -158,8 +150,6 @@ public class OpenFixMapActivity extends Activity {
 				}); 
             }
         }));
-    	
-    	
     }   
     
     

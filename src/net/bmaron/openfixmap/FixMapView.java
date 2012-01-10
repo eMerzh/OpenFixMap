@@ -59,17 +59,16 @@ public class FixMapView extends MapView {
 		return layers;
 	}
 	
-	public void setup()
+	public void setup(Context ctx)
 	{
         mHandler = new Handler(); 
         setBuiltInZoomControls(true);
         setMultiTouchControls(true);
         
-        locationOverlay = new MyLocationOverlay(getContext(), this);   
+        locationOverlay = new MyLocationOverlay(ctx, this);   
         getOverlays().add(locationOverlay);
         locationOverlay.enableMyLocation();
-        
-        getOverlays().add(new Overlay(getContext()) {
+        getOverlays().add(new Overlay(ctx) {
             @Override
             public boolean onTouchEvent(MotionEvent e, MapView mapView) {
                 mGestureDetector.onTouchEvent(e);
@@ -136,5 +135,4 @@ public class FixMapView extends MapView {
 	public void setGestureDetector(GestureDetector d) {
 		mGestureDetector = d;
 	}
-
 }

@@ -17,9 +17,9 @@ public class ReportDialog extends Dialog {
 	private GeoPoint point;
 	private PlatformManager platforms; 
 	private ErrorItem item_saved = null;
-	public ReportDialog(Context context, GeoPoint p, PlatformManager pltForms) {
+	public ReportDialog(Context context, GeoPoint p) {
 		super(context);
-		platforms= pltForms;
+		platforms= PlatformManager.getInstance();
         setContentView(R.layout.report_dialog);
         point = p;  
         setTitle(context.getResources().getString(R.string.report_dialog_title));
@@ -27,7 +27,7 @@ public class ReportDialog extends Dialog {
         
         // Fill spinner with platforms that accept reports
         ArrayAdapter<CharSequence> adapter =new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item);
-        for(CharSequence itm : pltForms.getReportPtfms()) {
+        for(CharSequence itm : platforms.getReportPtfms()) {
         	adapter.add(itm);
         }
      
