@@ -15,7 +15,7 @@ import net.bmaron.openfixmap.ErrorParsers.MapDust;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
 
 public class PlatformManager {
-
+	private static PlatformManager instance;
 
 	private Bundle prefBndl;
 	private List<ErrorPlatform> lPlatforms;
@@ -29,12 +29,19 @@ public class PlatformManager {
 		lPlatforms.add(new OpenStreetBugs(this));
 		lPlatforms.add(new KeepRight(this));
 		lPlatforms.add(new MapDust(this));
-
-		
 	}
+	
+	public static PlatformManager getInstance() {
+		/*if(instance == null) {
+			instance = new PlatformManager(null, null, null); //Hum Hum not this!!
+		}*/
+		return instance;
+	}
+	
 	public Bundle getPreferences() {
 		return prefBndl;
 	}
+	
 	public List<ErrorPlatform> getActivePlatforms() {
 		
 		List<ErrorPlatform> activeList = new ArrayList<ErrorPlatform>();

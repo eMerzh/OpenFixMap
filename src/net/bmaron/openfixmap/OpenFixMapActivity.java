@@ -52,7 +52,7 @@ public class OpenFixMapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHandler = new Handler(); 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	ApplicationInfo ai = null;
 		try {
 			ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
@@ -60,8 +60,11 @@ public class OpenFixMapActivity extends Activity {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        plManager = new PlatformManager(this, sharedPrefs,ai.metaData);
-        plManager.setOneCheckerOnFirstLoad();
+		plManager = PlatformManager.getInstance();
+		if(plManager == null) {
+			plManager = new PlatformManager(getApplication(), sharedPrefs,ai.metaData);
+			plManager.setOneCheckerOnFirstLoad();
+		}
 
         
         setContentView(R.layout.main);
@@ -97,7 +100,7 @@ public class OpenFixMapActivity extends Activity {
             	}
             }
         });
-
+/*** OOK **/
         ImageButton location_but = (ImageButton) findViewById(R.id.location_ico);
         location_but.setOnClickListener(new View.OnClickListener(){        	
 			@Override
@@ -186,7 +189,7 @@ public class OpenFixMapActivity extends Activity {
 
         OnItemGestureListener<OverlayErrorItem> pOnItemGestureListener = new myItemGestureListener<OverlayErrorItem>();
        
-        pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(this, items , pOnItemGestureListener);
+        pointOverlay = new ItemizedIconOverlay<OverlayErrorItem>(getApplication(), items , pOnItemGestureListener);
         return pointOverlay;
     }
     
@@ -304,6 +307,8 @@ public class OpenFixMapActivity extends Activity {
     @Override
     protected void onDestroy() {
     	mapView.getLocationOverlay().disableMyLocation();
+    	mapView.getTileProvider().clearTileCache();
+    	System.gc();
     	super.onDestroy();
     }
 }
