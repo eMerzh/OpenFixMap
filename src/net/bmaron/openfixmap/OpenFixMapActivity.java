@@ -287,4 +287,23 @@ public class OpenFixMapActivity extends Activity {
         		return super.onOptionsItemSelected(item);
         }
     }
+    
+    @Override
+    protected void onPause() {
+    	mapView.getLocationOverlay().disableMyLocation();
+    	super.onPause();
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	mapView.getLocationOverlay().enableMyLocation();
+
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	mapView.getLocationOverlay().disableMyLocation();
+    	super.onDestroy();
+    }
 }
