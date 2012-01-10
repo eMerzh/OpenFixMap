@@ -6,17 +6,19 @@
 
 	<TextView
 		android:id="@+id/title"
-	    android:layout_width="wrap_content"
-	    android:layout_height="fill_parent"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
 	    android:textColor="#FFF"
 	    android:paddingLeft="10dp"
+		android:textSize="14sp"
 	    android:drawablePadding="10dp"
+	    android:background="@android:drawable/title_bar"
 	/>
 
 	
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     	android:id="@+id/elayout_details_desc"
-    	android:layout_width="fill_parent"
+    	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:orientation="horizontal" 
     	android:padding="10dp"
@@ -47,7 +49,7 @@
 	<TextView
 		android:id="@+id/text"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
+	    android:layout_height="wrap_content"
 	    android:textColor="#FFF"
 	    android:padding="10dp"
 	/>
@@ -63,7 +65,7 @@
 	    <TextView
 	        android:id="@+id/status_title"
 	        android:layout_width="wrap_content"
-	        android:layout_height="fill_parent"
+	        android:layout_height="wrap_content"
 			android:textColor="#707070"
 			android:textSize="12sp"
 			android:text="@string/detail_status_title"
@@ -73,7 +75,7 @@
 	    <TextView
 			android:id="@+id/status_txt"
 	    	android:layout_width="wrap_content"
-	    	android:layout_height="fill_parent"
+	    	android:layout_height="wrap_content"
 			android:textColor="#707070"
 			android:textSize="12sp"
 		/>
@@ -95,14 +97,14 @@
 		<Button
 	        android:id="@+id/note_info"
 	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
+	        android:layout_height="wrap_content"
 	        android:layout_weight="1.0" 
 	        android:text="@string/details_note_btn" />
 		
 	    <Button
 	        android:id="@+id/close_button"
 	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
+	        android:layout_height="wrap_content"
 	        android:layout_weight="1.0" 
 	        android:text="@string/details_close_btn" />
 	</LinearLayout>

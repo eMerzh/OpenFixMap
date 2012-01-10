@@ -114,4 +114,13 @@ public class PlatformManager {
 		}
 		return platformList;
 	}
+
+	public ErrorItem getItem(String tmp_pltform, Integer tmp_id) {
+		for(ErrorItem temp : getAllItems()) {
+			if(temp.getPlatform().getName().equals(tmp_pltform) && temp.getId() == tmp_id) {
+				return temp;
+			}
+		}
+		return null;
+	}
 }

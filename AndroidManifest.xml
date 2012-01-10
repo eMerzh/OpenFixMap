@@ -31,10 +31,15 @@
         
 		<activity
 		    android:name=".ReportActivity"
-		    android:label="@string/report_dialog_title">		    
+		    android:label="@string/report_dialog_title"
 		    >
       	</activity>
       	
+		<activity
+		    android:name=".ErrorDetailsActivity"
+		    android:theme="@android:style/Theme.NoTitleBar"    
+		    >
+      	</activity>
 		<activity android:name="org.acra.CrashReportDialog"
         	android:theme="@android:style/Theme.Dialog"
         	android:launchMode="singleInstance"

@@ -181,9 +181,12 @@ public class OpenFixMapActivity extends Activity {
     	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
 		    @Override
 		    public boolean onItemSingleTapUp(int index, T item) {
-		    	ShowDetailsRunnable run = new ShowDetailsRunnable();
-		    	run.setInfo(OpenFixMapActivity.this, item.getError());
-		        mHandler.post(run); 
+		    	//run.setInfo(OpenFixMapActivity.this, item.getError());
+		        //mHandler.post(run);
+	            Intent i = new Intent(OpenFixMapActivity.this, ErrorDetailsActivity.class);
+	            i.putExtra("error_platform", item.getError().getPlatform().getName());
+	            i.putExtra("error_id", (int)item.getError().getId());
+	            startActivity(i);
 		        return false;
 		    }
 		
