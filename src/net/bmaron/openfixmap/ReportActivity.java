@@ -2,31 +2,29 @@ package net.bmaron.openfixmap;
 
 import org.osmdroid.util.GeoPoint;
 
-import android.app.Dialog;
-import android.content.Context;
+import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ReportDialog extends Dialog {
+public class ReportActivity extends Activity {
 
 	private GeoPoint point;
 	private PlatformManager platforms; 
 	private ErrorItem item_saved = null;
-	public ReportDialog(Context context, GeoPoint p) {
-		super(context);
-		platforms= PlatformManager.getInstance();
+	
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.report_dialog);
-        point = p;  
-        setTitle(context.getResources().getString(R.string.report_dialog_title));
-        getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		platforms= PlatformManager.getInstance();
+		point = new GeoPoint(getIntent().getIntExtra("p_lat", 0), getIntent().getIntExtra("p_lon", 0));
         
         // Fill spinner with platforms that accept reports
-        ArrayAdapter<CharSequence> adapter =new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter =new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item);
         for(CharSequence itm : platforms.getReportPtfms()) {
         	adapter.add(itm);
         }
@@ -39,7 +37,7 @@ public class ReportDialog extends Dialog {
         cancelBtn.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				dismiss();
+				finish();
 			}
         	
         });
@@ -53,7 +51,7 @@ public class ReportDialog extends Dialog {
 		        String description = descriptionField.getText().toString();  
 		        
 		        final Spinner titleField = (Spinner) findViewById(R.id.report_title_spin);  
-		        String title = getContext().getResources().getStringArray(R.array.error_type_value)
+		        String title = getResources().getStringArray(R.array.error_type_value)
 		        		[titleField.getSelectedItemPosition()];
 		        
 		        final Spinner PlatformField = (Spinner) findViewById(R.id.report_platform_spin);  
@@ -67,13 +65,13 @@ public class ReportDialog extends Dialog {
 		        item_saved.save();
 		        Toast toast;
 		        if(item_saved.getSavedStatus() == ErrorItem.ER_CLEAN) {
-		        	dismiss();
-		        	toast = Toast.makeText(getContext(),
-							getContext().getResources().getString(R.string.report_finish_message),
+		        	finish();
+		        	toast = Toast.makeText(ReportActivity.this,
+							getResources().getString(R.string.report_finish_message),
 			    			Toast.LENGTH_LONG);
 		        } else {
-					toast = Toast.makeText(getContext(),
-							getContext().getResources().getString(R.string.report_error_message),
+					toast = Toast.makeText(ReportActivity.this,
+							getResources().getString(R.string.report_error_message),
 			    			Toast.LENGTH_LONG);
 		        }
 		    	toast.show();	

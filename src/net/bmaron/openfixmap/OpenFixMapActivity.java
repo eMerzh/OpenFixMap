@@ -142,8 +142,10 @@ public class OpenFixMapActivity extends Activity {
 		        mHandler.post(new Runnable() {
 				    public void run() { 
 				    	if(plManager.getActiveAllowAddPlatforms().size() !=0 ) {
-				    		ReportDialog dialog = new ReportDialog(OpenFixMapActivity.this, p);
-					    	 dialog.show();	
+				            Intent i = new Intent(OpenFixMapActivity.this, ReportActivity.class);
+				            i.putExtra("p_lat", p.getLatitudeE6());
+				            i.putExtra("p_lon", p.getLongitudeE6());
+				            startActivity(i);
 				    	} else {
                         	Toast toast = Toast.makeText(OpenFixMapActivity.this,
                         			getResources().getString(R.string.report_no_parser),

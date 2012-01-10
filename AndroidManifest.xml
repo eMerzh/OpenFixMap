@@ -28,6 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+		<activity
+		    android:name=".ReportActivity"
+		    android:label="@string/report_dialog_title">		    
+		    >
+      	</activity>
+      	
 		<activity android:name="org.acra.CrashReportDialog"
         	android:theme="@android:style/Theme.Dialog"
         	android:launchMode="singleInstance"
