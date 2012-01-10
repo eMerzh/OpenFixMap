@@ -1,4 +1,11 @@
-v0.3.3 (06/12/2012):
+v0.4.0 (10/01/2012):
+ * Remove Scale from the map
+ * Disable gps when activity is in pause (#3)
+ * Rewrite dialogs to activities
+ * Avoid Mem leak and sea sickness
+ * Keep state while rotating the device
+
+v0.3.3 (06/01/2012):
  * Update translations
  * More accessibility strings
  * Tiny changes in layout
