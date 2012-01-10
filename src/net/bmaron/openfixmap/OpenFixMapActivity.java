@@ -51,6 +51,7 @@ public class OpenFixMapActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mHandler = new Handler(); 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	ApplicationInfo ai = null;
@@ -65,8 +66,7 @@ public class OpenFixMapActivity extends Activity {
 			plManager = new PlatformManager(getApplication(), sharedPrefs,ai.metaData);
 			plManager.setOneCheckerOnFirstLoad();
 		}
-
-        
+		
         setContentView(R.layout.main);
 
         mapView = (FixMapView) findViewById(R.id.mapview);
@@ -100,7 +100,7 @@ public class OpenFixMapActivity extends Activity {
             	}
             }
         });
-/*** OOK **/
+
         ImageButton location_but = (ImageButton) findViewById(R.id.location_ico);
         location_but.setOnClickListener(new View.OnClickListener(){        	
 			@Override
@@ -120,6 +120,8 @@ public class OpenFixMapActivity extends Activity {
         
        
         createPointOverlay(new ArrayList<OverlayErrorItem>());
+        ItemizeOverlay();
+        
         this.mapView.getOverlays().add(pointOverlay);
 
     	if(sharedPrefs.getBoolean("fetch_on_launch", false)) {
@@ -202,6 +204,24 @@ public class OpenFixMapActivity extends Activity {
     	return plManager.getAllItems();
     }
     
+    protected void ItemizeOverlay()
+    {
+    	Resources res = getResources();
+    	List<ErrorItem> itemList = plManager.getAllItems();
+    	ArrayList<OverlayErrorItem> overlayList= new ArrayList<OverlayErrorItem>();
+    	
+        for(int i=0; i < itemList.size(); i++) {
+        	ErrorItem item = itemList.get(i);
+        	OverlayErrorItem oItem = new OverlayErrorItem(item);
+        	oItem.setMarker( res.getDrawable(R.drawable.caution));
+        	overlayList.add(oItem);
+            //num_item = itemList.size();
+        }
+        mapView.getOverlays().remove(pointOverlay);
+        createPointOverlay(overlayList);//Change pointOverlay
+        mapView.getOverlays().add(pointOverlay);
+    }
+    
     protected void loadDataSource()
     {
     	if(isFinishing()) return;
@@ -209,42 +229,28 @@ public class OpenFixMapActivity extends Activity {
         		getResources().getString(R.string.dialog_loading_message), true);
 
         new Thread() {
-        	private int num_item = 0;
             public void run() {
-            	List<ErrorItem> itemList = new ArrayList<ErrorItem>();
-            	ArrayList<OverlayErrorItem> overlayList= new ArrayList<OverlayErrorItem>();
-                    try{
-                    	Resources res = getResources();
-                    	//pointOverlay.removeAllItems();
-                    	itemList = fetchDatas();
-                        
-                        for(int i=0; i < itemList.size(); i++) {
-                        	ErrorItem item = itemList.get(i);
-                        	OverlayErrorItem oItem = new OverlayErrorItem(item);
-                        	oItem.setMarker( res.getDrawable(R.drawable.caution));
-                        	overlayList.add(oItem);
-                            num_item = itemList.size();
-                        }
-                        mapView.getOverlays().remove(pointOverlay);
-                        createPointOverlay(overlayList);//Change pointOverlay
-                        mapView.getOverlays().add(pointOverlay);
-                    } catch (Exception e) { 
-                        e.printStackTrace();
-                    }
-                    // Dismiss the Dialog
-                    mHandler.post(new Runnable(){
-                    	public void run(){
-                        	if(isFinishing()) return;
-                            mapView.invalidate();
-                    		dialog.dismiss();
-                        	Toast toast = Toast.makeText(OpenFixMapActivity.this,
-                        			getResources().getQuantityString(R.plurals.numberOfDownloadedItems, num_item ,num_item),
-                        			Toast.LENGTH_SHORT);
-                        	toast.show();
-                    	}
+            	try{
+            		fetchDatas();
+            		ItemizeOverlay();
+            	} catch (Exception e) { 
+            		e.printStackTrace();
+            	}
                     
-                    });
-
+            	//Dismiss the Dialog
+            	mHandler.post(new Runnable(){
+            		public void run(){
+            			if(isFinishing()) return;
+            			mapView.invalidate();
+                    	dialog.dismiss();
+                        Toast toast = Toast.makeText(OpenFixMapActivity.this,
+                        		getResources().getQuantityString(R.plurals.numberOfDownloadedItems,
+                        			plManager.getAllItems().size(),
+                        			plManager.getAllItems().size()),
+                        		Toast.LENGTH_SHORT);
+                        toast.show();
+            		}
+            	});
             }
         }.start();
 

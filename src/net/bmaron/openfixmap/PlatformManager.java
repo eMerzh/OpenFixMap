@@ -29,6 +29,7 @@ public class PlatformManager {
 		lPlatforms.add(new OpenStreetBugs(this));
 		lPlatforms.add(new KeepRight(this));
 		lPlatforms.add(new MapDust(this));
+		instance=this;
 	}
 	
 	public static PlatformManager getInstance() {
