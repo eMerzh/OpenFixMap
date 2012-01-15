@@ -4,12 +4,13 @@
         <item>KeepRight</item>
         <item>OpenStreetBugs</item>
 		<item>MapDust</item>
-            
+		<item>Osmose</item>
     </string-array>
     <string-array name="errorBackendValues">
         <item>1</item>
         <item>2</item>
 		<item>3</item>
+		<item>4</item>
     </string-array>
 	<string-array name="displayLevel">
 	    <item>All</item>

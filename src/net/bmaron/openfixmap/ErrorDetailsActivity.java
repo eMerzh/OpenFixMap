@@ -130,5 +130,13 @@ public class ErrorDetailsActivity extends Activity{
 
 
 	}
-
+    
+    @Override  
+    protected void onStop() {  
+     super.onStop();  
+     if (dialog != null) {  
+    	 dialog.dismiss();  
+    	 dialog = null;  
+     }  
+    }  
 }

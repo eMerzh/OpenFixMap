@@ -13,6 +13,8 @@ import net.bmaron.openfixmap.ErrorParsers.ErrorPlatform;
 import net.bmaron.openfixmap.ErrorParsers.KeepRight;
 import net.bmaron.openfixmap.ErrorParsers.MapDust;
 import net.bmaron.openfixmap.ErrorParsers.OpenStreetBugs;
+import net.bmaron.openfixmap.ErrorParsers.Osmose;
+
 
 public class PlatformManager {
 	private static PlatformManager instance;
@@ -29,6 +31,7 @@ public class PlatformManager {
 		lPlatforms.add(new OpenStreetBugs(this));
 		lPlatforms.add(new KeepRight(this));
 		lPlatforms.add(new MapDust(this));
+		lPlatforms.add(new Osmose(this));
 		instance=this;
 	}
 	

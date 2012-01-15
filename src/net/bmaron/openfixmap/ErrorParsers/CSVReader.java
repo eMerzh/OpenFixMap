@@ -158,7 +158,7 @@ public class CSVReader {
                     break;
             }
             for (int i = 0; i < nextLine.length(); i++) {
-
+            	nextLine = nextLine.replaceAll(", ", ",");
                 char c = nextLine.charAt(i);
                 if (c == quotechar) {
                 	// this gets complex... the quote may end a quoted block, or escape another quote.
