@@ -19,7 +19,7 @@ import android.view.MotionEvent;
 
 public class FixMapView extends MapView {
 	private Handler mHandler;
-	private final CharSequence[] layers = {"OSM Mapnik", "No Name", "Mapquest", "Midnight"};
+	private final CharSequence[] layers = {"OSM Mapnik", "No Name", "Mapquest", "Midnight", "CycleMap"};
 	private MyLocationOverlay locationOverlay;
     GestureDetector mGestureDetector;
 
@@ -102,6 +102,8 @@ public class FixMapView extends MapView {
 			CloudmadeUtil.retrieveCloudmadeKey(getContext());
 			setTileSource(map_source_cloud);
 			break;
+		case 4:
+			setTileSource(TileSourceFactory.CYCLEMAP);
 		default:
 			break;
 		}
