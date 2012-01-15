@@ -286,6 +286,7 @@ public class OpenFixMapActivity extends Activity {
         				editor.commit();
         				
         		    	mapView.loadMapSource(item);
+        		    	dialog.dismiss();
         		    }
         		});
         		AlertDialog alert = builder.create();
