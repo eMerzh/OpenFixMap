@@ -41,14 +41,14 @@ public class OsmoseParser{
 		//All errors
 		String errorTypes="";
 		switch(eLevel) {
-			case 0:  //All 
-				errorTypes = "2060";
+			case 0:  //All
+				errorTypes = "0,1010,1020,1030,1040,1050,1060,1070,1080,1090,1100,1110,1120,1130,2010,2020,2030,2040,2050,2060,3010,3020,3030,3031,3032,3040,3050,3060,3070,3080,4010,4020,4030,4040,4050,4060,4070,4080,5010,5020,5030,5040,5050,6010,6020,6030,6040,6050,6060,7010,7020,7030,7040";
 				break;
 			case 1: //Only on field
-				errorTypes = "2060";
+				errorTypes = "2020,2030,2050,2060,4060,4070,5030,6030,5050,7011";
 				break;
 			case 2:  //Few 
-				errorTypes = "2060";
+				errorTypes = "2020,2030,2050,4060,4070,5030,6030";
 				break;
 		}
 		String next[] = {};
@@ -60,14 +60,20 @@ public class OsmoseParser{
         	HttpClient httpClient = new DefaultHttpClient();
         	HttpContext localContext = new BasicHttpContext();
         	List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-        	//# timestamp, username, error_id, lon, lat, title, subtitle, item
+
         	qparams.add(new BasicNameValuePair("b", String.valueOf(boundingBox.getLatSouthE6()/ 1E6) ));
         	qparams.add(new BasicNameValuePair("r", String.valueOf(boundingBox.getLonEastE6()/ 1E6) ));
         	qparams.add(new BasicNameValuePair("l", String.valueOf(boundingBox.getLonWestE6()/ 1E6) ));
         	qparams.add(new BasicNameValuePair("t", String.valueOf(boundingBox.getLatNorthE6()/ 1E6) ));
 
-        	URI uri;
-        	uri = URIUtils.createURI("http", "osmose.openstreetmap.fr", -1, "/api/0.1/getBugsByUser", 
+        	String host;
+        	String env= error.getManager().getPreferences().getString("env");
+    		if(env != null && env.equals("debug"))
+    			host = "dev.osmose.openstreetmap.fr";
+    		else
+    			host = "osmose.openstreetmap.fr";
+    		
+        	URI uri = URIUtils.createURI("http", host, -1, "/api/0.1/getBugsByUser", 
 					URLEncodedUtils.format(qparams, "UTF-8") + "&item="+errorTypes , null);
 
         	HttpGet httpget = new HttpGet(uri);
@@ -76,6 +82,7 @@ public class OsmoseParser{
 
         	
         	CSVReader reader = new CSVReader(new InputStreamReader(response.getEntity().getContent()), ',', '"', 1);
+        	int i= 0;
 		    for(;;) {
 		    	next = reader.readNext();
 		        if(next != null){
@@ -83,8 +90,9 @@ public class OsmoseParser{
 		        		ErrorItem tItem = new ErrorItem(error);
 				        tItem.setLat(Double.parseDouble(next[4]));
 				        tItem.setLon(Double.parseDouble(next[3]));
-				        tItem.setTitle("");
-				        tItem.setDescription(next[5]);
+				        tItem.setTitle(next[5]);
+				        //Set description to subtitle or title if empty
+				        tItem.setDescription(next[6].equals("") ? next[5] : next[6]);
 				        tItem.getExtendedInfo().put("id",next[2]);
 				        tItem.setLink("http://osmose.openstreetmap.fr/map/?zoom=18&lat=" + tItem.getLat() + "&lon=" +tItem.getLon());
 				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.00"); 
@@ -97,17 +105,8 @@ public class OsmoseParser{
 							e.printStackTrace();
 						} 
 						tItem.setErrorStatus(ErrorItem.ST_OPEN);
-
-						/*
-						// Check status
-				        if(next[12].equals("ignore")) {
-				        	tItem.setErrorStatus(ErrorItem.ST_INVALID);
-				        }else if(next[12].equals("ignore_t")) {
-				        	tItem.setErrorStatus(ErrorItem.ST_CLOSE);
-				        }else if(next[12].equals("new")) {
-				        	tItem.setErrorStatus(ErrorItem.ST_OPEN);
-				        }*/
-				        
+						tItem.setId(i++); //Dummy Id for usability
+										        
 				        lItems.add(tItem);
 		        	}else {
 			            logger.error("Abord number of field not expected :"+ next.length);
