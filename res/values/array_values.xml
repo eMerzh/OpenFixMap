@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="errorBackend">
+        <item>KeepRight</item>
+        <item>OpenStreetBugs</item>
+		<item>MapDust</item>
+		<item>Osmose</item>
+    </string-array>
+    
+    <string-array name="errorBackendValues">
+        <item>1</item>
+        <item>2</item>
+		<item>3</item>
+		<item>4</item>
+    </string-array>
+        
+	<string-array name="err_type_mapdust_values">
+	    <item>other</item>
+        <item>wrong_turn</item>
+        <item>oneway_road</item>
+		<item>blocked_street</item>
+        <item>missing_street</item>
+        <item>wrong_roundabout</item>
+        <item>missing_speedlimit</item>
+		<item>bad_routing</item>
+    </string-array>
+    
+ 
+	<string-array name="err_type_osmose_values">
+		<item>0</item>
+		<item>1010</item>
+		<item>1020</item>
+		<item>1030</item>
+		<item>1040</item>
+		<item>1050</item>
+		<item>1060</item>
+		<item>1070</item>
+		<item>1080</item>
+		<item>1090</item>
+		<item>1100</item>
+		<item>1110</item>
+		<item>1120</item>
+		<item>1130</item>
+		<item>2010</item>
+		<item>2020</item>
+		<item>2030</item>
+		<item>2040</item>
+		<item>2050</item>
+		<item>2060</item>
+		<item>3010</item>
+		<item>3020</item>
+		<item>3030</item>
+		<item>3031</item>
+		<item>3032</item>
+		<item>3040</item>
+		<item>3050</item>
+		<item>3060</item>
+		<item>3070</item>
+		<item>3080</item>
+		<item>4010</item>
+		<item>4020</item>
+		<item>4030</item>
+		<item>4040</item>
+		<item>4050</item>
+		<item>4060</item>
+		<item>4070</item>
+		<item>4080</item>
+		<item>5010</item>
+		<item>5020</item>
+		<item>5030</item>
+		<item>5040</item>
+		<item>5050</item>
+		<item>6010</item>
+		<item>6020</item>
+		<item>6030</item>
+		<item>6040</item>
+		<item>6050</item>
+		<item>6060</item>
+		<item>7010</item>
+		<item>7020</item>
+		<item>7030</item>
+		<item>7040</item>
+	</string-array>
+	
+	<string-array name="err_type_keepright_values">
+		<item>30</item>
+		<item>40</item>
+		<item>50</item>
+		<item>60</item>
+		<item>70</item>
+		<item>90</item>
+		<item>100</item>
+		<item>110</item>
+		<item>120</item>
+		<item>130</item>
+		<item>150</item>
+		<item>160</item>
+		<item>170</item>
+		<item>180</item>
+		<item>191</item>
+		<item>192</item>
+		<item>193</item>
+		<item>194</item>
+		<item>195</item>
+		<item>196</item>
+		<item>197</item>
+		<item>198</item>
+		<item>201</item>
+		<item>202</item>
+		<item>203</item>
+		<item>204</item>
+		<item>205</item>
+		<item>206</item>
+		<item>207</item>
+		<item>208</item>
+		<item>210</item>
+		<item>220</item>
+		<item>231</item>
+		<item>232</item>
+		<item>270</item>
+		<item>281</item>
+		<item>282</item>
+		<item>283</item>
+		<item>284</item>
+		<item>291</item>
+		<item>292</item>
+		<item>293</item>
+		<item>311</item>
+		<item>312</item>
+		<item>313</item>
+		<item>350</item>
+		<item>380</item>
+		<item>411</item>
+		<item>412</item>
+		<item>413</item>
+		<item>20</item>
+		<item>300</item>
+		<item>360</item>
+		<item>390</item>
+	</string-array>	
+</resources>

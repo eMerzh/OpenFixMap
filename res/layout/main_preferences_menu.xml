@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="@string/parser_platform">
-	    <net.bmaron.openfixmap.MultiSelectListPreference
-	        android:key="checkers"
-	        android:title="@string/pref_platform_title"
-	        android:summary="@string/pref_platform_sum"
-			android:defaultValue="KeepRights"
-            android:entries="@array/errorBackend"
-			android:entryValues="@array/errorBackend"
-	        />
-
+	<PreferenceCategory android:title="Browsing Preferences">
+	    
     		<CheckBoxPreference
 	            android:key="go_to_first"
 	            android:summary="@string/pref_fix_sum"
@@ -25,20 +17,43 @@
 	            android:defaultValue="false"
 	        />
 		
-		  <ListPreference
-	            android:key="display_level"
-	            android:title="@string/pref_err_level_title"
-	            android:summary="@string/pref_err_level_sum"
-	            android:defaultValue="1"
-	            android:entries="@array/displayLevel"
-	            android:entryValues="@array/displayLevelValues"
-	        />
-
 			<CheckBoxPreference
 	            android:key="show_closed"
 	            android:summary="@string/pref_closed_sum"
 	            android:title="@string/pref_closed_title"
 	            android:defaultValue="false"
+	        />
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="@string/parser_platform" android:key="platforms_pref">
+	    <net.bmaron.openfixmap.MultiSelectListPreference
+	        android:key="checkers"
+	        android:title="@string/pref_platform_title"
+	        android:summary="@string/pref_platform_sum"
+			android:defaultValue="KeepRights"
+            android:entries="@array/errorBackend"
+			android:entryValues="@array/errorBackend"
+	        />
+	    <net.bmaron.openfixmap.MultiSelectListPreference
+	        android:key="pl_errors_mapdust"
+	        android:title="MapDust Errors"
+	        android:summary="Choose errors you want to display"
+            android:entries="@array/err_type_mapdust_labels"
+			android:entryValues="@array/err_type_mapdust_values"
+	        />
+	    <net.bmaron.openfixmap.MultiSelectListPreference
+	        android:key="pl_errors_osmose"
+	        android:title="Osmose Errors"
+	        android:summary="Choose errors you want to display"
+            android:entries="@array/err_type_osmose_labels"
+			android:entryValues="@array/err_type_osmose_values"
+	        />
+	    <net.bmaron.openfixmap.MultiSelectListPreference
+	        android:key="pl_errors_keepright"
+	        android:title="Keepright Errors"
+	        android:summary="Choose errors you want to display"
+            android:entries="@array/err_type_keepright_labels"
+			android:entryValues="@array/err_type_keepright_values"
 	        />
 	</PreferenceCategory>
 </PreferenceScreen>

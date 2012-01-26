@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="errorBackend">
-        <item>KeepRight</item>
-        <item>OpenStreetBugs</item>
-		<item>MapDust</item>
-		<item>Osmose</item>
-    </string-array>
-    <string-array name="errorBackendValues">
-        <item>1</item>
-        <item>2</item>
-		<item>3</item>
-		<item>4</item>
-    </string-array>
-	<string-array name="displayLevel">
-	    <item>All</item>
-        <item>Medium</item>
-        <item>Only necessary</item>
-    </string-array>
-    <string-array name="displayLevelValues">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-	
-	<string-array name="error_type_label">
+	<string-array name="err_type_mapdust_labels">
 	    <item>Other</item>
         <item>Wrong turn</item>
         <item>Oneway road</item>
@@ -34,14 +11,116 @@
         <item>Bad Routing</item>
     </string-array>
     
-	<string-array name="error_type_value">
-	    <item>other</item>
-        <item>wrong_turn</item>
-        <item>oneway_road</item>
-		<item>blocked_street</item>
-        <item>missing_street</item>
-        <item>wrong_roundabout</item>
-        <item>missing_speedlimit</item>
-		<item>bad_routing</item>
+   	<string-array name="err_type_osmose_labels">
+		<item>bâtiments se recouvrant</item>
+		<item>nœud répété</item>
+		<item>way without node</item>
+		<item>way 1 nœud</item>
+		<item>polygone non valide</item>
+		<item>rond-point à l\'envers</item>
+		<item>boundary intersect</item>
+		<item>highway vs building</item>
+		<item>noeuds orphelins</item>
+		<item>types de routes disparates</item>
+		<item>area=yes non fermé</item>
+		<item>mauvaise connection *_link</item>
+		<item>continuité rompue des highway</item>
+		<item>ferme basque</item>
+		<item>junction=roundabout</item>
+		<item>ele=…</item>
+		<item>oneway=</item>
+		<item>source=…</item>
+		<item>tag parent</item>
+		<item>numéros de rue</item>
+		<item>highway roundabout</item>
+		<item>mauvais tag source</item>
+		<item>tagwatch cleaner</item>
+		<item>wikipedia</item>
+		<item>liens entre tags</item>
+		<item>tag incorrect</item>
+		<item>mauvaise clé de tag</item>
+		<item>valeurs similaires</item>
+		<item>valeurs multiples</item>
+		<item>piscine en natural=water</item>
+		<item>abandonné</item>
+		<item>sur junction=roundabout</item>
+		<item>tags incompatibles</item>
+		<item>ref in name</item>
+		<item>miettes corine</item>
+		<item>seamark:fixme</item>
+		<item>construction</item>
+		<item>POI en double</item>
+		<item>orthographe</item>
+		<item>type voie</item>
+		<item>2 noms</item>
+		<item>toponymie</item>
+		<item>test soundex</item>
+		<item>polygone ouvert</item>
+		<item>way dupliqué</item>
+		<item>place sans name</item>
+		<item>code INSEE</item>
+		<item>admin_level</item>
+		<item>trou admin_level=8</item>
+		<item>bâtiment géodésique</item>
+		<item>limite admin</item>
+		<item>OpenStreetBugs</item>
+		<item>lignes électriques</item>
+	</string-array>
+
+	<string-array name="err_type_keepright_labels">
+	    <item>non-closed areas</item>
+	    <item>dead-ended one-ways</item>
+        <item>almost-junctions</item>
+        <item>deprecated tags</item>
+        <item>missing tags</item>
+        <item>motorways without ref</item>
+        <item>places of worship without religion</item>
+        <item>point of interest without name</item>
+        <item>ways without nodes</item>
+        <item>floating islands</item>
+        <item>railway crossings without tag</item>
+        <item>wrongly used railway crossing tag</item>
+        <item>fixme-tagged items</item>
+        <item>relations without type</item>
+        <item>highway-highway</item>
+        <item>highway-waterway</item>
+        <item>highway-riverbank</item>
+        <item>waterway-waterway</item>
+        <item>cycleway-cycleway</item>
+        <item>highway-cycleway</item>
+        <item>cycleway-waterway</item>
+        <item>cycleway-riverbank</item>
+        <item>highway-highway</item>
+        <item>highway-waterway</item>
+        <item>highway-riverbank</item>
+        <item>waterway-waterway</item>
+        <item>cycleway-cycleway</item>
+        <item>highway-cycleway</item>
+        <item>cycleway-waterway</item>
+        <item>cycleway-riverbank</item>
+        <item>loopings</item>
+        <item>misspelled tags</item>
+        <item>mixed layers intersections</item>
+        <item>strange layers</item>
+        <item>motorways connected directly</item>
+        <item>missing name</item>
+        <item>missing admin_level</item>
+        <item>not closed loop</item>
+        <item>splitting boundary</item>
+        <item>missing type</item>
+        <item>missing from way</item>
+        <item>missing to way</item>
+        <item>not closed loop</item>
+        <item>wrong direction</item>
+        <item>faintly connected</item>
+        <item>bridge-tags</item>
+        <item>non-physical use of sport-tag</item>
+        <item>http error</item>
+        <item>domain hijacking</item>
+        <item>non-match</item>
+        <item>multiple nodes on the same spot</item>
+        <item>missing maxspeed</item>
+        <item>language unknown</item>
+        <item>missing tracktype</item>
     </string-array>
 </resources>

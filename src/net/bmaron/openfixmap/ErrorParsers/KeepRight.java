@@ -77,6 +77,4 @@ public class KeepRight extends ErrorPlatform {
 		return false;
 	
 	}
-	
-	
 }

@@ -46,16 +46,7 @@ public class Osmose extends ErrorPlatform {
 		//http://osmose.openstreetmap.fr/cgi-bin/status.py?e=248-1-0-way102341452_way102341423&s=false
 		try {
 			Uri.Builder b = Uri.parse("http://osmose.openstreetmap.fr/api/0.1/closePOIexec").buildUpon();
-    
 			b.appendQueryParameter("id", (String) item.getExtendedInfo().get("id"));
-
-    		/*switch(item.getErrorStatus())
-    		{
-    			case ErrorItem.ST_OPEN : b.appendQueryParameter("st", ""); break;
-    			case ErrorItem.ST_CLOSE : b.appendQueryParameter("st", "ignore_t"); break;
-    			case ErrorItem.ST_INVALID : b.appendQueryParameter("st", "ignore"); break;
-    		}*/
-			
     		HttpGet httpget = new HttpGet(b.build().toString());
 
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);

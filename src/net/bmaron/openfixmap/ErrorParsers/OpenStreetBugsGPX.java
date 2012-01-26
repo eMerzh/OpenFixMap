@@ -54,7 +54,6 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 	}
 	
 	public void parse(int eLevel, boolean show_closed, 	BoundingBoxE6 boundingBox) {
-
 		//get a factory
 		SAXParserFactory spf = SAXParserFactory.newInstance();
 		try {

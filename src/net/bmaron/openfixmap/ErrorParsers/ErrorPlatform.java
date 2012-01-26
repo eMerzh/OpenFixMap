@@ -81,5 +81,4 @@ public abstract class ErrorPlatform {
 	public void setManager(PlatformManager mgr) {
 		this.mgr = mgr;
 	}
-	
 }

@@ -38,27 +38,19 @@ public class KeepRightCSVParser{
 		error = e;
 	}
 	
+	protected String getChosenErrorsString() {
+
+        StringBuilder sb = new StringBuilder();
+        String [] checkers = error.getManager().getErrorsChoices("keepright", "");
+        for(int i=0; i < checkers.length; i++) {
+        	sb.append(checkers[i]+",");       	
+        }
+        sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
+	}
+	
 	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
 	{
-		
-		//All errors
-		String errorTypes="";
-		switch(eLevel) {
-			case 0:  //All 
-				errorTypes = "0,30,40,50,60,70,90,100,110,120,130,150,160,170,180," +
-						"191,192,193,194,195,196,197,198,201,202,203,204,205,206," +
-						"207,208,210,220,231,232,270,281,282,283,284,291,292,293," +
-						"311,312,313,350,380,411,412,413";
-				break;
-			case 1: //Only on field
-				errorTypes = "90,100,110,170,191,192,193,390";
-				break;
-			case 2:  //Few 
-				errorTypes = "90,100,110,170,191,192,193";
-				//Error 20,300,360,390=> Warnings
-				break;
-		//
-		}
 		String next[] = {};
 
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(KeepRightCSVParser.class);
@@ -89,7 +81,7 @@ public class KeepRightCSVParser{
 
         	URI uri;
         	uri = URIUtils.createURI("http", "keepright.ipax.at", -1, "/points.php", 
-					URLEncodedUtils.format(qparams, "UTF-8") + "&ch="+errorTypes , null);
+					URLEncodedUtils.format(qparams, "UTF-8") + "&ch=" + getChosenErrorsString() , null);
 
         	HttpGet httpget = new HttpGet(uri);
             logger.info("Fetch "+ httpget.getURI());

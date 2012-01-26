@@ -272,7 +272,7 @@ public class OpenFixMapActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
     	switch (item.getItemId()) {
-        	case R.id.switch_layer:                
+        	case R.id.switch_layer:
         		AlertDialog.Builder builder = new AlertDialog.Builder(this);
         		builder.setTitle(getResources().getString(R.string.dialog_switchlayer_title));
         		org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger("LAYER");

@@ -35,22 +35,19 @@ public class OsmoseParser{
 		error = e;
 	}
 	
+	protected String getChosenErrorsString() {
+
+        StringBuilder sb = new StringBuilder();
+        String [] checkers = error.getManager().getErrorsChoices("osmose", "");
+        for(int i=0; i < checkers.length; i++) {
+        	sb.append(checkers[i]+",");       	
+        }
+        sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
+	}
+	
 	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
 	{
-		
-		//All errors
-		String errorTypes="";
-		switch(eLevel) {
-			case 0:  //All
-				errorTypes = "0,1010,1020,1030,1040,1050,1060,1070,1080,1090,1100,1110,1120,1130,2010,2020,2030,2040,2050,2060,3010,3020,3030,3031,3032,3040,3050,3060,3070,3080,4010,4020,4030,4040,4050,4060,4070,4080,5010,5020,5030,5040,5050,6010,6020,6030,6040,6050,6060,7010,7020,7030,7040";
-				break;
-			case 1: //Only on field
-				errorTypes = "2020,2030,2050,2060,4060,4070,5030,6030,5050,7011";
-				break;
-			case 2:  //Few 
-				errorTypes = "2020,2030,2050,4060,4070,5030,6030";
-				break;
-		}
 		String next[] = {};
 
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OsmoseParser.class);
@@ -74,7 +71,7 @@ public class OsmoseParser{
     			host = "osmose.openstreetmap.fr";
     		
         	URI uri = URIUtils.createURI("http", host, -1, "/api/0.1/getBugsByUser", 
-					URLEncodedUtils.format(qparams, "UTF-8") + "&item="+errorTypes , null);
+					URLEncodedUtils.format(qparams, "UTF-8") + "&item=" + getChosenErrorsString() , null);
 
         	HttpGet httpget = new HttpGet(uri);
             logger.info("Fetch "+ httpget.getURI());

@@ -32,6 +32,17 @@ public class MapDustParser{
 		lItems = new ArrayList<ErrorItem>();
 		error = e;
 	}
+
+	protected String getChosenErrorsString() {
+
+        StringBuilder sb = new StringBuilder();
+        String [] checkers = error.getManager().getErrorsChoices("mapdust", "");
+        for(int i=0; i < checkers.length; i++) {
+        	sb.append(checkers[i]+",");       	
+        }
+        sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
+	}
 	
 	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
 	{
@@ -52,7 +63,10 @@ public class MapDustParser{
         			"," + String.valueOf(boundingBox.getLatSouthE6()/ 1E6) +
         			"," + String.valueOf(boundingBox.getLonEastE6()/ 1E6) +
         			"," + String.valueOf(boundingBox.getLatNorthE6()/ 1E6) +
+        			"&ft=" + getChosenErrorsString() +
         			"&items=30");
+			
+			//ft=wrong,bad,other,...
     		if(show_closed)
     			fullURL.append("&fs=1,2,3");
     		else
