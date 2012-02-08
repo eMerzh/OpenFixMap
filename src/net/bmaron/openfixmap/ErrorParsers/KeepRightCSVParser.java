@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 import net.bmaron.openfixmap.ErrorItem;
+import net.bmaron.openfixmap.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -41,7 +42,8 @@ public class KeepRightCSVParser{
 	protected String getChosenErrorsString() {
 
         StringBuilder sb = new StringBuilder();
-        String [] checkers = error.getManager().getErrorsChoices("keepright", "");
+        String [] checkers = error.getManager().getErrorsChoices("keepright",R.array.err_type_keepright_values);
+        
         for(int i=0; i < checkers.length; i++) {
         	sb.append(checkers[i]+",");       	
         }

@@ -46,8 +46,15 @@ public class PlatformManager {
 		return prefBndl;
 	}
 	
-	public String [] getErrorsChoices(String name, String deflt) {
-		return MultiSelectListPreference.parseStoredValue( sharedPrefs.getString("pl_errors_" + name, deflt));
+	public String [] getErrorsChoices(String name, int array_ref) {
+        String[] dflt = context.getResources().getStringArray( array_ref);
+        return getErrorsChoices(name, dflt);
+	}
+	
+	public String [] getErrorsChoices(String name, String[] deflt) {
+		String [] ret =MultiSelectListPreference.parseStoredValue( sharedPrefs.getString("pl_errors_" + name, null));
+		if( ret != null) return ret;
+		return deflt;
 	}
 	public List<ErrorPlatform> getActivePlatforms() {
 		

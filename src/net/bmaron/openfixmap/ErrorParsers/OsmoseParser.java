@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import net.bmaron.openfixmap.ErrorItem;
+import net.bmaron.openfixmap.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -36,9 +37,8 @@ public class OsmoseParser{
 	}
 	
 	protected String getChosenErrorsString() {
-
         StringBuilder sb = new StringBuilder();
-        String [] checkers = error.getManager().getErrorsChoices("osmose", "");
+        String [] checkers = error.getManager().getErrorsChoices("osmose", R.array.err_type_osmose_values);
         for(int i=0; i < checkers.length; i++) {
         	sb.append(checkers[i]+",");       	
         }

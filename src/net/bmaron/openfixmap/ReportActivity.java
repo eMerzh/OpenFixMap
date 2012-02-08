@@ -51,7 +51,7 @@ public class ReportActivity extends Activity {
 		        String description = descriptionField.getText().toString();  
 		        
 		        final Spinner titleField = (Spinner) findViewById(R.id.report_title_spin);  
-		        String title = getResources().getStringArray(R.array.error_type_value)
+		        String title = getResources().getStringArray(R.array.err_type_mapdust_values)
 		        		[titleField.getSelectedItemPosition()];
 		        
 		        final Spinner PlatformField = (Spinner) findViewById(R.id.report_platform_spin);  

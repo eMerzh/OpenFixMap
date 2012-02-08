@@ -36,14 +36,14 @@ public class MapDustParser{
 	protected String getChosenErrorsString() {
 
         StringBuilder sb = new StringBuilder();
-        String [] checkers = error.getManager().getErrorsChoices("mapdust", "");
+        String [] checkers = error.getManager().getErrorsChoices("mapdust", R.array.err_type_mapdust_values);
         for(int i=0; i < checkers.length; i++) {
         	sb.append(checkers[i]+",");       	
         }
         sb.deleteCharAt(sb.length()-1);
 		return sb.toString();
 	}
-	
+    
 	public void parse(BoundingBoxE6 boundingBox , int eLevel, boolean show_closed)
 	{
         org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MapDustParser.class);
@@ -109,8 +109,8 @@ public class MapDustParser{
 	        		tItem.setLon((Double) jPoint.get(0));
 	        		tItem.setLat((Double) jPoint.get(1));
 	        		
-	        		String[] error_types_val = error.getManager().getContext().getResources().getStringArray(R.array.error_type_value);
-	        		String[] error_types_lab = error.getManager().getContext().getResources().getStringArray(R.array.error_type_label);
+	        		String[] error_types_val = error.getManager().getContext().getResources().getStringArray(R.array.err_type_mapdust_values);
+	        		String[] error_types_lab = error.getManager().getContext().getResources().getStringArray(R.array.err_type_mapdust_labels);
 	        		String title="";
 	        		for(int i1=0; i1< error_types_val.length;i1++) {
 	        			if(error_types_val[i1].equals(jProp.getString("type"))){

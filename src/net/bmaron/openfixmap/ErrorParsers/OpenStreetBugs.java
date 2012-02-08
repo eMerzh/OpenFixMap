@@ -82,8 +82,8 @@ public class OpenStreetBugs extends ErrorPlatform {
 	public boolean createError(ErrorItem item) {
 		super.createError(item);
 		
-		String[] error_types_val = getManager().getContext().getResources().getStringArray(R.array.error_type_value);
-		String[] error_types_lab = getManager().getContext().getResources().getStringArray(R.array.error_type_label);
+		String[] error_types_val = getManager().getContext().getResources().getStringArray(R.array.err_type_mapdust_values);
+		String[] error_types_lab = getManager().getContext().getResources().getStringArray(R.array.err_type_mapdust_labels);
 		String title="";
 		for(int i=0; i< error_types_val.length;i++) {
 			if(error_types_val[i].equals(item.getTitle())){
