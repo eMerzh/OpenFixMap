@@ -131,6 +131,10 @@ public class MapDust extends ErrorPlatform {
 			String resp = reader.readLine();
 			JSONObject jroot = new JSONObject(resp);
 			if(jroot.has("id")) {
+	    		i.setErrorStatus(ErrorItem.ST_OPEN);
+	    		i.setSavedStatus(ErrorItem.ER_CLEAN);
+	    		i.setId(jroot.getInt("id"));
+	    		lItems.add(i);
 				return true;
 			}
 			

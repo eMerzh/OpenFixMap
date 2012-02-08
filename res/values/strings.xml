@@ -25,9 +25,7 @@
 	<string name="dialog_status_close">Closed</string>
 	<string name="dialog_status_invalid">Invalid</string>
     <string name="detail_mark_as_close_btn">Mark as resolved</string>
-	<string name="dialog_close_message">Thanks, error closed!
-	    Refresh the errors to see the new status of the error</string>
-
+	<string name="dialog_close_message">Thanks, error closed!</string>
 	<string name="report_no_parser">There is no active platform to report errors</string>
 	<string name="report_platform_txt">Platform</string>
 	<string name="report_platform_spin_title">Choose a platform</string>
@@ -40,8 +38,7 @@
 	<string name="report_cancel_btn">Cancel</string>
 	<string name="report_save_btn">Save</string>
 	<string name="report_error_message">There was a problem. Your report was not send. Please check your description text and try again.</string>
-	<string name="report_finish_message">Thanks, error reported!
-	     Refresh the errors if you want to see your report on the map</string>
+	<string name="report_finish_message">Thanks, error reported!</string>
 	<string name="dialog_loading_message">Loading… Please Wait.</string>
 
 	    

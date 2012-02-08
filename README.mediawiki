@@ -21,6 +21,7 @@ And use data from other sites like :
 * http://keepright.ipax.at
 * http://openstreetbugs.schokokeks.org
 * http://mapdust.com
+* http://osmose.openstreetmap.fr
 
 Or 
 

@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.bmaron.openfixmap.R;
-
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
@@ -38,6 +37,8 @@ public class OpenFixMapActivity extends Activity {
 
     protected FixMapView mapView;
     
+    static final int ACT_DETAILS = 0;
+    static final int ACT_REPORT = 1;
     static final int DIALOG_ERROR_ID = 0;
     private ItemizedIconOverlay<OverlayErrorItem> pointOverlay; 
     private SharedPreferences sharedPrefs; 
@@ -145,7 +146,7 @@ public class OpenFixMapActivity extends Activity {
 				            Intent i = new Intent(OpenFixMapActivity.this, ReportActivity.class);
 				            i.putExtra("p_lat", p.getLatitudeE6());
 				            i.putExtra("p_lon", p.getLongitudeE6());
-				            startActivity(i);
+				            startActivityForResult(i, ACT_REPORT);
 				    	} else {
                         	Toast toast = Toast.makeText(OpenFixMapActivity.this,
                         			getResources().getString(R.string.report_no_parser),
@@ -175,7 +176,15 @@ public class OpenFixMapActivity extends Activity {
       // Commit the edits!
       editor.commit();
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
+    	logger.info("OPEN");
+    	if (requestCode == ACT_DETAILS || requestCode == ACT_REPORT) {
+    		ItemizeOverlay();
+    	}
+    }
+    
     protected ItemizedIconOverlay<OverlayErrorItem> createPointOverlay(ArrayList<OverlayErrorItem> items) {
 
     	class myItemGestureListener<T extends OverlayErrorItem> implements OnItemGestureListener<T> {
@@ -186,7 +195,7 @@ public class OpenFixMapActivity extends Activity {
 	            Intent i = new Intent(OpenFixMapActivity.this, ErrorDetailsActivity.class);
 	            i.putExtra("error_platform", item.getError().getPlatform().getName());
 	            i.putExtra("error_id", (int)item.getError().getId());
-	            startActivity(i);
+	            startActivityForResult(i, ACT_DETAILS);
 		        return false;
 		    }
 		
@@ -296,7 +305,7 @@ public class OpenFixMapActivity extends Activity {
         		alert.show();
         		return true;
         	case R.id.preferences: 
-        		startActivityForResult(new Intent(this, Preferences.class), 1 /* CODE_RETOUR*/);
+        		startActivityForResult(new Intent(this, Preferences.class), 2 /* CODE_RETOUR*/);
         		return true;
         	case R.id.menu_quit: 
         		finish();

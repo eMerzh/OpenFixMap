@@ -110,12 +110,15 @@ public class OpenStreetBugs extends ErrorPlatform {
     		if(env == null || ! env.equals("debug"))
     		{
     			HttpResponse response = httpClient.execute(httpget, new BasicHttpContext());
-    			/*BufferedReader reader = */new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-    			//String resp = reader.readLine();
-    			//response.getEntity().getContent();
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+    			String resp = reader.readLine() + reader.readLine();
+    			
+    			resp = resp.substring(2);//ok630772
+    			item.setId(Integer.parseInt(resp));		 
     		}
-    		item.setErrorStatus(ErrorItem.ST_CLOSE);
+    		item.setErrorStatus(ErrorItem.ST_OPEN);
     		item.setSavedStatus(ErrorItem.ER_CLEAN);
+    		lItems.add(item);
     		return true;
 
 		} catch (Exception e) {
