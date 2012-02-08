@@ -43,7 +43,8 @@ public class ErrorDetailsActivity extends Activity{
         title.setCompoundDrawables(img, null, null, null);
         if(item.getErrorStatus() == ErrorItem.ST_CLOSE) {
     		CheckBox checkbox = (CheckBox) findViewById(R.id.detail_mark_as_close);
-    		checkbox.setVisibility(2);
+    		checkbox.setEnabled(false);
+    		checkbox.setVisibility(View.GONE);
         }
         
         TextView status = (TextView) findViewById(R.id.status_txt);

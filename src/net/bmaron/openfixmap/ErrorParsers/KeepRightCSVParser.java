@@ -88,6 +88,7 @@ public class KeepRightCSVParser{
         	HttpGet httpget = new HttpGet(uri);
             logger.info("Fetch "+ httpget.getURI());
         	HttpResponse response = httpClient.execute(httpget, localContext);
+            logger.info("DONE");
 
         	
         	CSVReader reader = new CSVReader(new InputStreamReader(response.getEntity().getContent()),'\t', '\0', 1);
