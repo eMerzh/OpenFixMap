@@ -218,14 +218,12 @@ public class OpenFixMapActivity extends Activity {
         for(int i=0; i < itemList.size(); i++) {
         	ErrorItem item = itemList.get(i);
         	OverlayErrorItem oItem = new OverlayErrorItem(item);
-			if(item.getErrorStatus() == 2) { 
-				// ToDo: Better check against constant from ErrorItem, e.g. ErrorStatus == ErrorItem.ST_CLOSE 
+			if(item.getErrorStatus() == ErrorItem.ST_CLOSE) { 
 				oItem.setMarker( res.getDrawable(R.drawable.resolved));
 			} else {
 			   	oItem.setMarker( res.getDrawable(R.drawable.caution));
 			}
         	overlayList.add(oItem);
-            //num_item = itemList.size();
         }
         mapView.getOverlays().remove(pointOverlay);
         createPointOverlay(overlayList);//Change pointOverlay
