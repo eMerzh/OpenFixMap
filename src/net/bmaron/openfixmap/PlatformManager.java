@@ -61,7 +61,8 @@ public class PlatformManager {
 		List<ErrorPlatform> activeList = new ArrayList<ErrorPlatform>();
 	
         String [] checkers = MultiSelectListPreference.parseStoredValue(sharedPrefs.getString("checkers", "KeepRight"));
-
+        if(checkers == null) return activeList;
+        
         for(int i = 0; i < checkers.length; i++) {
         	for(ErrorPlatform temp : lPlatforms) {
             	if(temp.getName().equals(checkers[i])){
