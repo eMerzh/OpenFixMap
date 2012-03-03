@@ -30,7 +30,17 @@ public class ErrorDetailsActivity extends Activity{
 		
 		PlatformManager plManager = PlatformManager.getInstance();
 		item = plManager.getItem(tmp_pltform, tmp_id);
-		
+		if( item == null) {
+			runOnUiThread(new Runnable() {
+				public void run() {
+					finish();
+					Toast toast = Toast.makeText(ErrorDetailsActivity.this,
+								getResources().getString(R.string.error_not_found),
+								Toast.LENGTH_LONG);
+					toast.show();
+				}
+			});
+		}
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(item.getTitleOr(getResources().getString(R.string.details_bug_title)));
 

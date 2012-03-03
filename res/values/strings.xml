@@ -26,6 +26,7 @@
 	<string name="dialog_status_invalid">Invalid</string>
     <string name="detail_mark_as_close_btn">Mark as resolved</string>
 	<string name="dialog_close_message">Thanks, error closed!</string>
+	<string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
 	<string name="report_no_parser">There is no active platform to report errors</string>
 	<string name="report_platform_txt">Platform</string>
 	<string name="report_platform_spin_title">Choose a platform</string>

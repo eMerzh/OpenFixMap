@@ -164,7 +164,7 @@ public class OpenFixMapActivity extends Activity {
     @Override
     protected void onStop(){
        super.onStop();
-
+       dialog = null;
       // We need an Editor object to make preference changes.
       // All objects are from android.context.Context
       SharedPreferences.Editor editor = settings.edit();
@@ -259,7 +259,9 @@ public class OpenFixMapActivity extends Activity {
             		public void run(){
             			if(isFinishing()) return;
             			mapView.invalidate();
-                    	dialog.dismiss();
+            			if (dialog != null) { 
+            				dialog.dismiss();
+            			}
                         Toast toast = Toast.makeText(OpenFixMapActivity.this,
                         		getResources().getQuantityString(R.plurals.numberOfDownloadedItems,
                         			plManager.getAllItems().size(),
