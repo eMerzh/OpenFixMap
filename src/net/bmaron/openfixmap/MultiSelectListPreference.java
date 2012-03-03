@@ -16,6 +16,7 @@
 
 package net.bmaron.openfixmap;
 
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,8 +40,20 @@ public class MultiSelectListPreference extends ListPreference {
 
     @Override
     protected void onPrepareDialogBuilder(Builder builder) {
-        CharSequence[] entries = getEntries();
-        CharSequence[] entryValues = getEntryValues();
+    	//CharSequence[] entries = getEntries();
+    	CharSequence[] oentries = getEntries();
+    	CharSequence[] entries = new CharSequence[oentries.length+1];
+    	entries[0] = "All / None";
+    	for(int i =1; i < entries.length; i++)
+    		entries[i]=oentries[i-1];
+    	
+        //CharSequence[] entryValues = getEntryValues();
+    	CharSequence[] oentriesValues = getEntryValues();
+    	CharSequence[] entryValues = new CharSequence[oentriesValues.length+1];
+    	entryValues[0] = "all";
+    	for(int i =1; i < entryValues.length; i++)
+    		entryValues[i]=oentriesValues[i-1];
+    	
 
         if (entries == null || entryValues == null || entries.length != entryValues.length) {
             throw new IllegalStateException(
@@ -53,7 +66,14 @@ public class MultiSelectListPreference extends ListPreference {
         builder.setMultiChoiceItems(entries, mClickedDialogEntryIndices, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
                 mClickedDialogEntryIndices[which] = isChecked;
+                if(which == 0) {
+                	for(int i = 1; i< mClickedDialogEntryIndices.length;  i++) {
+                		mClickedDialogEntryIndices[i] = isChecked;
+                        ((AlertDialog) dialog).getListView().setItemChecked(i, isChecked);
+                	}
+                }
             }
         });
     }
@@ -75,16 +95,24 @@ public class MultiSelectListPreference extends ListPreference {
                 for (int i = 0; i < entryValues.length; i++) {
                     CharSequence entry = entryValues[i];
                     if (entry.equals(val)) {
-                        mClickedDialogEntryIndices[i] = true;
+                        mClickedDialogEntryIndices[i+1] = true;
                         break;
                     }
                 }
             }
         } else {
             for (int i = 0; i < entryValues.length; i++) {
-                mClickedDialogEntryIndices[i] = false;
+                mClickedDialogEntryIndices[i+1] = false;
             }
         }
+        boolean all_checked = true;
+        for (int i = 1; i < entryValues.length; i++) {
+        	if(mClickedDialogEntryIndices[i] != true){
+        		all_checked = false;
+        		break;
+        	}
+        }
+        mClickedDialogEntryIndices[0] = all_checked;
     }
 
     @Override
@@ -94,7 +122,7 @@ public class MultiSelectListPreference extends ListPreference {
         if (positiveResult && entryValues != null) {
             StringBuilder value = new StringBuilder();
             for (int i = 0; i < entryValues.length; i++) {
-                if (mClickedDialogEntryIndices[i]) {
+                if (mClickedDialogEntryIndices[i+1]) {
                     if (value.length() > 0) {
                         value.append(SEPARATOR);
                     }
