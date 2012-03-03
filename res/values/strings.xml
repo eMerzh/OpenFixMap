@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OpenFixMap</string>
+    <string name="multiselect_all">All / None</string>
 	<string name="menu_switchlayer_button">Change Layer</string>
     <string name="menu_pref_button">Preferences</string>
     <string name="main_fetch_btn">Fetch errors</string>

@@ -43,7 +43,8 @@ public class MultiSelectListPreference extends ListPreference {
     	//CharSequence[] entries = getEntries();
     	CharSequence[] oentries = getEntries();
     	CharSequence[] entries = new CharSequence[oentries.length+1];
-    	entries[0] = "All / None";
+    	entries[0] = getContext().getResources().getString(R.string.multiselect_all);
+    	
     	for(int i =1; i < entries.length; i++)
     		entries[i]=oentries[i-1];
     	
