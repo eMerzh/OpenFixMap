@@ -64,8 +64,8 @@ public class MapDust extends ErrorPlatform {
 		super.closeError(i);
 		HttpClient httpclient = new DefaultHttpClient();
 
-		base_url = base_url + "changeBugStatus";
-		HttpPost httppost = new HttpPost(base_url);
+		String url = base_url + "changeBugStatus";
+		HttpPost httppost = new HttpPost(url);
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("key", getManager().getPreferences().getString("mapdust_key")));
@@ -84,17 +84,17 @@ public class MapDust extends ErrorPlatform {
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-	        logger.info("Put: "+ httppost.getURI());
+	        logger.info("Put: "+ httppost.getURI() + " ==>id" +String.valueOf(i.getId()));
 			// Execute HTTP Post Request
 			HttpResponse response = httpclient.execute(httppost);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			String resp = reader.readLine();
+	        logger.info("oook : "+resp);
 			JSONObject jroot = new JSONObject(resp);
 			if(jroot.has("id")) {
 				return true;
 			}
 			
-	        logger.info("oook : "+resp);
 		} catch (ClientProtocolException e) {
 			//TODO Auto-generated catch block
 		} catch (IOException e) {
@@ -112,8 +112,8 @@ public class MapDust extends ErrorPlatform {
 	public boolean createError(ErrorItem i) {
 		super.createError(i);
 		HttpClient httpclient = new DefaultHttpClient();
-		base_url = base_url + "addBug";
-		HttpPost httppost = new HttpPost(base_url);
+		String url = base_url + "addBug";
+		HttpPost httppost = new HttpPost(url);
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("key", getManager().getPreferences().getString("mapdust_key")));
