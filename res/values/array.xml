@@ -12,59 +12,59 @@
     </string-array>
     
    	<string-array name="err_type_osmose_labels">
-		<item>bâtiments se recouvrant</item>
-		<item>nœud répété</item>
+		<item>overlapping buildings</item>
+		<item>duplicate node</item>
 		<item>way without node</item>
-		<item>way 1 nœud</item>
-		<item>polygone non valide</item>
-		<item>rond-point à l\'envers</item>
+		<item>way of 1 node</item>
+		<item>not valid polygone</item>
+		<item>reversed turnabout</item>
 		<item>boundary intersect</item>
 		<item>highway vs building</item>
-		<item>noeuds orphelins</item>
-		<item>types de routes disparates</item>
-		<item>area=yes non fermé</item>
-		<item>mauvaise connection *_link</item>
-		<item>continuité rompue des highway</item>
+		<item>Orphan nodes</item>
+		<item>dissimilar types of roads</item>
+		<item>not closed area=yes</item>
+		<item>bad connection of *_link</item>
+		<item>broken continuity of highway</item>
 		<item>ferme basque</item>
 		<item>junction=roundabout</item>
 		<item>ele=…</item>
 		<item>oneway=</item>
 		<item>source=…</item>
-		<item>tag parent</item>
-		<item>numéros de rue</item>
+		<item>parent tag</item>
+		<item>Street number</item>
 		<item>highway roundabout</item>
-		<item>mauvais tag source</item>
+		<item>bad source tag</item>
 		<item>tagwatch cleaner</item>
 		<item>wikipedia</item>
-		<item>liens entre tags</item>
-		<item>tag incorrect</item>
-		<item>mauvaise clé de tag</item>
-		<item>valeurs similaires</item>
-		<item>valeurs multiples</item>
-		<item>piscine en natural=water</item>
-		<item>abandonné</item>
-		<item>sur junction=roundabout</item>
-		<item>tags incompatibles</item>
+		<item>links between tags</item>
+		<item>incorrect tag</item>
+		<item>bad tag value</item>
+		<item>similar values</item>
+		<item>multiple values</item>
+		<item>pool with natural=water</item>
+		<item>abandoned</item>
+		<item>on junction=roundabout</item>
+		<item>incompatible tags</item>
 		<item>ref in name</item>
-		<item>miettes corine</item>
+		<item>corine crumbs</item>
 		<item>seamark:fixme</item>
 		<item>construction</item>
-		<item>POI en double</item>
-		<item>orthographe</item>
-		<item>type voie</item>
-		<item>2 noms</item>
-		<item>toponymie</item>
-		<item>test soundex</item>
-		<item>polygone ouvert</item>
-		<item>way dupliqué</item>
-		<item>place sans name</item>
+		<item>duplicate POI</item>
+		<item>Spelling</item>
+		<item>way type</item>
+		<item>2 names</item>
+		<item>toponymy</item>
+		<item>soundex test</item>
+		<item>open polygon</item>
+		<item>duplicate way</item>
+		<item>place without name</item>
 		<item>code INSEE</item>
 		<item>admin_level</item>
-		<item>trou admin_level=8</item>
-		<item>bâtiment géodésique</item>
-		<item>limite admin</item>
+		<item>hole in admin_level=8</item>
+		<item>geodesic building</item>
+		<item>admin boundary</item>
 		<item>OpenStreetBugs</item>
-		<item>lignes électriques</item>
+		<item>power lines</item>
 	</string-array>
 
 	<string-array name="err_type_keepright_labels">
