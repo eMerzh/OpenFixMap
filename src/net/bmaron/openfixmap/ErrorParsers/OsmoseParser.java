@@ -87,12 +87,22 @@ public class OsmoseParser{
 		        		ErrorItem tItem = new ErrorItem(error);
 				        tItem.setLat(Double.parseDouble(next[4]));
 				        tItem.setLon(Double.parseDouble(next[3]));
-				        tItem.setTitle(next[5]);
+				        //String orig_title = next[5];
+		        		String[] error_types_val = error.getManager().getContext().getResources().getStringArray(R.array.err_type_osmose_values);
+		        		String[] error_types_lab = error.getManager().getContext().getResources().getStringArray(R.array.err_type_osmose_labels);
+		        		String title="";
+		        		for(int i1=0; i1< error_types_val.length;i1++) {
+		        			if(error_types_val[i1].equals(next[7])){
+		        				title = error_types_lab[i1];
+		        			}
+		        		}
+				        tItem.setTitle(title);
 				        //Set description to subtitle or title if empty
-				        tItem.setDescription(next[6].equals("") ? next[5] : next[6]);
+				        tItem.setDescription(next[6].equals("") ? title : next[6]);
 				        tItem.getExtendedInfo().put("id",next[2]);
+				        tItem.getExtendedInfo().put("type",next[2]);
 				        tItem.setLink("http://osmose.openstreetmap.fr/map/?zoom=18&lat=" + tItem.getLat() + "&lon=" +tItem.getLon());
-				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.00"); 
+				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssz"); 
 						try {
 					        Date dateObj;
 							dateObj = curFormater.parse(next[0]);
