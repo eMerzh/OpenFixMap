@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
+  <string name="multiselect_all">Tous / aucun</string>
   <string name="menu_switchlayer_button">Changer la carte</string>
   <string name="menu_pref_button">Préférences</string>
   <string name="main_fetch_btn">Rapatrier les erreurs</string>
@@ -27,6 +28,7 @@
   <string name="detail_mark_as_close_btn">Marquer comme résolu</string>
   <string name="dialog_close_message">Merci, erreur fermée!
     Actualiser les erreurs pour voir le nouveau status de votre rapport.</string>
+  <string name="error_not_found">Impossible d\'afficher l\'erreur. Si le problème persiste, veuillez rapporter un bug !</string>
   <string name="report_no_parser">Il n\'y a pas de plateforme active pour rapporter des erreurs</string>
   <string name="report_platform_txt">Plateforme</string>
   <string name="report_platform_spin_title">Choisissez une plateforme</string>
@@ -51,5 +53,8 @@
   <string name="crash_dialog_comment_prompt">Vous pouvez ajouter votre commentaire sur le problème ci-dessous:</string>
   <string name="crash_dialog_ok_toast">Merci !</string>
   <string name="acd_go_to_location">Allez à la position actuelle</string>
-  <plurals name="numberOfDownloadedItems"><item quantity="other">%d éléments rapatriés.</item><item quantity="one">Un élément rapatrié.</item></plurals>
+  <plurals name="numberOfDownloadedItems">
+<item quantity="one">Un élément rapatrié.</item>
+<item quantity="other">%d éléments rapatriés.</item>
+</plurals>
 </resources>

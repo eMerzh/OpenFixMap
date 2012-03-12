@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
+  <string name="multiselect_all">All / None</string>
   <string name="menu_switchlayer_button">Выбрать подложку</string>
   <string name="menu_pref_button">Настройки</string>
   <string name="main_fetch_btn">Скачать ошибки</string>
@@ -26,6 +27,7 @@
   <string name="dialog_status_invalid">Неопределено</string>
   <string name="detail_mark_as_close_btn">Исправлено</string>
   <string name="dialog_close_message">Ошибка закрыта, спасибо! Обновите ошибки, чтобы увидеть изменения</string>
+  <string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
   <string name="report_no_parser">Не выбран сервис, позволяющий добавлять ошибки</string>
   <string name="report_platform_txt">Сервис</string>
   <string name="report_platform_spin_title">Выберите сервис</string>
@@ -46,6 +48,10 @@
   <string name="crash_dialog_text">Неожиданная ошибка привела к вынужденной остановке приложения. Пожалуйста, помогите нам исправить её, пришлите отчет о сбое - для этого нажмите \'ОК\'.</string>
   <string name="crash_dialog_comment_prompt">Здесь можно добавить ваши замечания о проблеме:</string>
   <string name="crash_dialog_ok_toast">Спасибо!</string>
-  <string name="acd_go_to_location"></string>
-  <plurals name="numberOfDownloadedItems"><item quantity="few">Загружено %d объекта.</item><item quantity="other">Загружено %d объектов.</item><item quantity="one">Загружен один объект.</item></plurals>
+  <string name="acd_go_to_location">Перейти к текущей позиции</string>
+  <plurals name="numberOfDownloadedItems">
+<item quantity="one">Загружен один объект.</item>
+<item quantity="few">Загружено %d объекта.</item>
+<item quantity="other">Загружено %d объектов.</item>
+</plurals>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
+  <string name="multiselect_all">All / None</string>
   <string name="menu_switchlayer_button">Cambia Layer</string>
   <string name="menu_pref_button">Preferenze</string>
   <string name="main_fetch_btn">Scarica gli errori</string>
@@ -26,6 +27,7 @@
   <string name="dialog_status_invalid">Invalido</string>
   <string name="detail_mark_as_close_btn">Segnala come risolto</string>
   <string name="dialog_close_message">Grazie! L\'errore è stato corretto. Aggiorna gli errori per vederne il nuovo strato.</string>
+  <string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
   <string name="report_no_parser">Non ci sono piattaforme attive per segnalare errori</string>
   <string name="report_platform_txt">Piattaforma</string>
   <string name="report_platform_spin_title">Scegli una piattaforma</string>
@@ -47,5 +49,8 @@
   <string name="crash_dialog_comment_prompt">Aggiungi per cortesia una descrizione/commento riguardo l\'errore:</string>
   <string name="crash_dialog_ok_toast">Grazie!</string>
   <string name="acd_go_to_location">Vai alla posizione corrente</string>
-  <plurals name="numberOfDownloadedItems"><item quantity="other">%d oggetti sono stati scaricati.</item><item quantity="one">Un oggetto è stato scaricato.</item></plurals>
+  <plurals name="numberOfDownloadedItems">
+<item quantity="one">Un oggetto è stato scaricato.</item>
+<item quantity="other">%d oggetti sono stati scaricati.</item>
+</plurals>
 </resources>

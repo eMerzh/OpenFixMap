@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
+  <string name="multiselect_all">All / None</string>
   <string name="menu_switchlayer_button">Ebene wechseln</string>
   <string name="menu_pref_button">Einstellungen</string>
   <string name="main_fetch_btn">Fehler abrufen</string>
@@ -27,6 +28,7 @@
   <string name="detail_mark_as_close_btn">Als behoben markieren</string>
   <string name="dialog_close_message">Danke. Fehler wurde geschlossen!
     Fehler aktualisieren, um den neuen Fehlerstatus zu sehen</string>
+  <string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
   <string name="report_no_parser">Es gibt keine aktiven Plattformen für Fehlerberichte</string>
   <string name="report_platform_txt">Plattform</string>
   <string name="report_platform_spin_title">Plattform wählen</string>
@@ -51,5 +53,8 @@
   <string name="crash_dialog_comment_prompt">Nachfolgend einen Kommentar zu dem Problem abgeben:</string>
   <string name="crash_dialog_ok_toast">Vielen Dank!</string>
   <string name="acd_go_to_location">Aktuellen Standort aufrufen</string>
-  <plurals name="numberOfDownloadedItems"><item quantity="other">%d Fehler abgerufen</item><item quantity="one">Einen Fehler abgerufen</item></plurals>
+  <plurals name="numberOfDownloadedItems">
+<item quantity="one">Einen Fehler abgerufen</item>
+<item quantity="other">%d Fehler abgerufen</item>
+</plurals>
 </resources>

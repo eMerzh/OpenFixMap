@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
+  <string name="multiselect_all">All / None</string>
   <string name="menu_switchlayer_button">Muuda kihti</string>
   <string name="menu_pref_button">Eelistused</string>
   <string name="main_fetch_btn">Tõmbamise viga</string>
-  <string name="menu_quit_button"></string>
+  <string name="menu_quit_button">Quit</string>
   <string name="pref_platform_title">Vigade teatamise platform</string>
   <string name="pref_platform_sum">Vali veatevituse platformid</string>
   <string name="pref_fix_title">Mine esimese paranduse juurde</string>
@@ -15,7 +16,7 @@
   <string name="pref_err_level_sum">Määra näidatavate veateadete tase</string>
   <string name="pref_closed_title">Näita suletuid</string>
   <string name="pref_closed_sum">Näita tuletud vigasid</string>
-  <string name="parser_platform"></string>
+  <string name="parser_platform">Error fetching</string>
   <string name="details_close_btn">Sulge</string>
   <string name="details_note_btn">Muuda märkust</string>
   <string name="details_bug_title">Uus viga</string>
@@ -24,9 +25,10 @@
   <string name="dialog_status_open">Avatud</string>
   <string name="dialog_status_close">Suletud</string>
   <string name="dialog_status_invalid">Vigane</string>
-  <string name="detail_mark_as_close_btn"></string>
+  <string name="detail_mark_as_close_btn">Mark as resolved</string>
   <string name="dialog_close_message">Täname, viga on suletud!
     Värskenda vigasid, et näha vea uut staatust</string>
+  <string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
   <string name="report_no_parser">Ühtegi aktiivset veateavitusplatfomi pole</string>
   <string name="report_platform_txt">Platform</string>
   <string name="report_platform_spin_title">Vali platform</string>
@@ -50,6 +52,9 @@
     Selle tegemiseks pead sa vajutama ainult nuppu \'OK\'.</string>
   <string name="crash_dialog_comment_prompt">Sa võid soovida lisada allapoole oma kommentaarid probleemi kohta:</string>
   <string name="crash_dialog_ok_toast">Täname!</string>
-  <string name="acd_go_to_location"></string>
-  <plurals name="numberOfDownloadedItems"><item quantity="other">%d kirjet tõmmatud.</item><item quantity="one">Üks kirje tõmmatud.</item></plurals>
+  <string name="acd_go_to_location">Go to current location</string>
+  <plurals name="numberOfDownloadedItems">
+<item quantity="one">Üks kirje tõmmatud.</item>
+<item quantity="other">%d kirjet tõmmatud.</item>
+</plurals>
 </resources>

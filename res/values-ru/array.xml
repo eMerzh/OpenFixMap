@@ -1,37 +1,121 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="errorBackend"><item>KeepRight</item>
+  <string-array name="err_type_mapdust_labels"><item>Other</item>
+<item>Wrong turn</item>
+<item>Oneway road</item>
+<item>Blocked street</item>
+<item>Missing street</item>
+<item>Roundabout issue</item>
+<item>Missing speed info</item>
+<item>Bad Routing</item>
+</string-array>
+  <string-array name="err_type_osmose_labels"><item>overlapping buildings</item>
+<item>duplicate node</item>
+<item>way without node</item>
+<item>way of 1 node</item>
+<item>not valid polygone</item>
+<item>reversed turnabout</item>
+<item>boundary intersect</item>
+<item>highway vs building</item>
+<item>Orphan nodes</item>
+<item>dissimilar types of roads</item>
+<item>not closed area=yes</item>
+<item>bad connection of *_link</item>
+<item>broken continuity of highway</item>
+<item>ferme basque</item>
+<item>junction=roundabout</item>
+<item>ele=…</item>
+<item>oneway=</item>
+<item>source=…</item>
+<item>parent tag</item>
+<item>Street number</item>
+<item>highway roundabout</item>
+<item>bad source tag</item>
+<item>tagwatch cleaner</item>
+<item>wikipedia</item>
+<item>links between tags</item>
+<item>incorrect tag</item>
+<item>bad tag value</item>
+<item>similar values</item>
+<item>multiple values</item>
+<item>pool with natural=water</item>
+<item>abandoned</item>
+<item>on junction=roundabout</item>
+<item>incompatible tags</item>
+<item>ref in name</item>
+<item>corine crumbs</item>
+<item>seamark:fixme</item>
+<item>construction</item>
+<item>duplicate POI</item>
+<item>Spelling</item>
+<item>way type</item>
+<item>2 names</item>
+<item>toponymy</item>
+<item>soundex test</item>
+<item>open polygon</item>
+<item>duplicate way</item>
+<item>place without name</item>
+<item>code INSEE</item>
+<item>admin_level</item>
+<item>hole in admin_level=8</item>
+<item>geodesic building</item>
+<item>admin boundary</item>
 <item>OpenStreetBugs</item>
-<item>MapDust</item>
+<item>power lines</item>
 </string-array>
-<string-array name="errorBackendValues"><item>1</item>
-<item>2</item>
-<item>3</item>
-</string-array>
-  <string-array name="displayLevel"><item>Все</item>
-<item>Средний</item>
-<item>Только важные</item>
-</string-array>
-  <string-array name="displayLevelValues"><item>0</item>
-<item>1</item>
-<item>2</item>
-</string-array>
-  <string-array name="error_type_label"><item>Другое</item>
-<item>Поворот не туда</item>
-<item>Односторонняя дорога</item>
-<item>Нет проезда по дороге</item>
-<item>Отсутствует дорога</item>
-<item>Проблема с круговым движением</item>
-<item>Неизв. скоростной режим</item>
-<item>Плохой роутинг</item>
-</string-array>
-  <string-array name="error_type_value"><item>other</item>
-<item>wrong_turn</item>
-<item>oneway_road</item>
-<item>blocked_street</item>
-<item>missing_street</item>
-<item>wrong_roundabout</item>
-<item>missing_speedlimit</item>
-<item>bad_routing</item>
+  <string-array name="err_type_keepright_labels"><item>non-closed areas</item>
+<item>dead-ended one-ways</item>
+<item>almost-junctions</item>
+<item>deprecated tags</item>
+<item>missing tags</item>
+<item>motorways without ref</item>
+<item>places of worship without religion</item>
+<item>point of interest without name</item>
+<item>ways without nodes</item>
+<item>floating islands</item>
+<item>railway crossings without tag</item>
+<item>wrongly used railway crossing tag</item>
+<item>fixme-tagged items</item>
+<item>relations without type</item>
+<item>highway-highway</item>
+<item>highway-waterway</item>
+<item>highway-riverbank</item>
+<item>waterway-waterway</item>
+<item>cycleway-cycleway</item>
+<item>highway-cycleway</item>
+<item>cycleway-waterway</item>
+<item>cycleway-riverbank</item>
+<item>highway-highway</item>
+<item>highway-waterway</item>
+<item>highway-riverbank</item>
+<item>waterway-waterway</item>
+<item>cycleway-cycleway</item>
+<item>highway-cycleway</item>
+<item>cycleway-waterway</item>
+<item>cycleway-riverbank</item>
+<item>loopings</item>
+<item>misspelled tags</item>
+<item>mixed layers intersections</item>
+<item>strange layers</item>
+<item>motorways connected directly</item>
+<item>missing name</item>
+<item>missing admin_level</item>
+<item>not closed loop</item>
+<item>splitting boundary</item>
+<item>missing type</item>
+<item>missing from way</item>
+<item>missing to way</item>
+<item>not closed loop</item>
+<item>wrong direction</item>
+<item>faintly connected</item>
+<item>bridge-tags</item>
+<item>non-physical use of sport-tag</item>
+<item>http error</item>
+<item>domain hijacking</item>
+<item>non-match</item>
+<item>multiple nodes on the same spot</item>
+<item>missing maxspeed</item>
+<item>language unknown</item>
+<item>missing tracktype</item>
 </string-array>
 </resources>
