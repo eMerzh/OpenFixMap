@@ -92,6 +92,9 @@ public class KeepRightCSVParser{
 
         	
         	CSVReader reader = new CSVReader(new InputStreamReader(response.getEntity().getContent()),'\t', '\0', 1);
+	        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	        Date dateObj;
+
 		    for(;;) {
 		    	next = reader.readNext();
 		        if(next != null){
@@ -104,12 +107,9 @@ public class KeepRightCSVParser{
 				        tItem.setId(Integer.parseInt(next[9]));
 				        tItem.getExtendedInfo().put("schema",next[8]);
 				        tItem.setLink("http://keepright.ipax.at/report_map.php?schema=" +next[8]+ "&error=" + tItem.getId());
-				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 						try {
-					        Date dateObj;
 							dateObj = curFormater.parse(next[7]);
 					        tItem.setDate(dateObj);
-
 						} catch (ParseException e) {
 							e.printStackTrace();
 						} 
@@ -124,6 +124,7 @@ public class KeepRightCSVParser{
 				        }
 				        
 				        lItems.add(tItem);
+
 		        	}else {
 			            logger.error("Abord number of field not expected :"+ next.length);
 			            logger.info(Arrays.toString(next));

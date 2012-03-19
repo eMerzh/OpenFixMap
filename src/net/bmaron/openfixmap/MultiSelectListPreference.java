@@ -103,7 +103,7 @@ public class MultiSelectListPreference extends ListPreference {
             }
         } else {
             for (int i = 0; i < entryValues.length; i++) {
-                mClickedDialogEntryIndices[i+1] = false;
+                mClickedDialogEntryIndices[i+1] = true;
             }
         }
         boolean all_checked = true;

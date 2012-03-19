@@ -20,6 +20,7 @@ public class Preferences extends PreferenceActivity
 
 		togglePreferences();
 		PreferenceManager.getDefaultSharedPreferences(getApplication()).registerOnSharedPreferenceChangeListener(this);
+		PreferenceManager.setDefaultValues(this, R.layout.main_preferences_menu, false);
 	}
 	
 	protected void togglePreferences()
@@ -48,7 +49,6 @@ public class Preferences extends PreferenceActivity
 		} else {
 			somePreference.setEnabled(false);
 		}
-		
 		somePreference = findPreference("pl_errors_osmose");
 		if(list.contains("Osmose")) {
 			somePreference.setEnabled(true);
