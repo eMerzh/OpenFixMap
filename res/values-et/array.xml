@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="err_type_mapdust_labels"><item>Other</item>
-<item>Wrong turn</item>
-<item>Oneway road</item>
-<item>Blocked street</item>
-<item>Missing street</item>
-<item>Roundabout issue</item>
-<item>Missing speed info</item>
-<item>Bad Routing</item>
+  <string-array name="err_type_mapdust_labels"><item>Muu</item>
+<item>Vale pööre</item>
+<item>Ühesuunaline tee</item>
+<item>Blokeeritud tänav</item>
+<item>Puuduv tänav</item>
+<item>Ümbersuunamise probleem</item>
+<item>Puuduv kiiruse info</item>
 </string-array>
   <string-array name="err_type_osmose_labels"><item>overlapping buildings</item>
 <item>duplicate node</item>

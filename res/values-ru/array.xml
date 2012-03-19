@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="err_type_mapdust_labels"><item>Other</item>
-<item>Wrong turn</item>
-<item>Oneway road</item>
-<item>Blocked street</item>
-<item>Missing street</item>
-<item>Roundabout issue</item>
-<item>Missing speed info</item>
-<item>Bad Routing</item>
+  <string-array name="err_type_mapdust_labels"><item>Другое</item>
+<item>Поворот не туда</item>
+<item>Односторонняя дорога</item>
+<item>Нет проезда по дороге</item>
+<item>Отсутствует дорога</item>
+<item>Проблема с круговым движением</item>
+<item>Неизв. скоростной режим</item>
+<item>Плохой роутинг</item>
 </string-array>
   <string-array name="err_type_osmose_labels"><item>overlapping buildings</item>
 <item>duplicate node</item>
