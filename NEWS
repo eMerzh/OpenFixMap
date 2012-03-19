@@ -1,3 +1,11 @@
+v0.5.0 (19/03/2012):
+ * Add Osmose support
+ * Choose informations to display per parser
+ * display closed error with another icon (Thanks to Claudius Henrichs)
+ * Display more info about errors (translatable, accurate,..) 
+ * Add cyclemap as layer
+ * full bunch of tweaks and bugs corrected here and there
+ 
 v0.4.0 (10/01/2012):
  * Remove Scale from the map
  * Disable gps when activity is in pause (#3)
