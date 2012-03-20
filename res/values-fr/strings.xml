@@ -16,6 +16,7 @@
   <string name="pref_err_level_sum">Définir le niveau des erreurs affichée</string>
   <string name="pref_closed_title">Afficher les fermées</string>
   <string name="pref_closed_sum">Afficher les erreurs fermées</string>
+  <string name="pref_choose_errors">Choisir les erreurs que vous souhaitez afficher</string>
   <string name="parser_platform">Récupération d\'erreurs</string>
   <string name="details_close_btn">Fermer</string>
   <string name="details_note_btn">Éditer une note</string>

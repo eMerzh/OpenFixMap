@@ -16,6 +16,7 @@
   <string name="pref_err_level_sum">Показывать ошибки по уровню тяжести</string>
   <string name="pref_closed_title">Показывать закрытые</string>
   <string name="pref_closed_sum">Показывать уже закрытые ошибки</string>
+  <string name="pref_choose_errors">Choose errors you want to display</string>
   <string name="parser_platform">Ошибка загрузки</string>
   <string name="details_close_btn">Закрыть</string>
   <string name="details_note_btn">Заметка</string>

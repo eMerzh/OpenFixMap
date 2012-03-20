@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="errorBackend">
+	<string-array translatable="false" name="errorBackend">
         <item>KeepRight</item>
         <item>OpenStreetBugs</item>
 		<item>MapDust</item>
 		<item>Osmose</item>
     </string-array>
     
-    <string-array name="errorBackendValues">
+    <string-array translatable="false" name="errorBackendValues">
         <item>1</item>
         <item>2</item>
 		<item>3</item>
 		<item>4</item>
     </string-array>
         
-	<string-array name="err_type_mapdust_values">
+	<string-array translatable="false" name="err_type_mapdust_values">
 	    <item>other</item>
         <item>wrong_turn</item>
         <item>oneway_road</item>
@@ -26,7 +26,7 @@
     </string-array>
     
  
-	<string-array name="err_type_osmose_values">
+	<string-array translatable="false" name="err_type_osmose_values">
 		<item>0</item>
 		<item>1010</item>
 		<item>1020</item>
@@ -82,7 +82,7 @@
 		<item>7040</item>
 	</string-array>
 	
-	<string-array name="err_type_keepright_values">
+	<string-array translatable="false" name="err_type_keepright_values">
 		<item>30</item>
 		<item>40</item>
 		<item>50</item>

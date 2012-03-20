@@ -37,21 +37,21 @@
 	    <net.bmaron.openfixmap.MultiSelectListPreference
 	        android:key="pl_errors_mapdust"
 	        android:title="MapDust Errors"
-	        android:summary="Choose errors you want to display"
+	        android:summary="@string/pref_choose_errors"
             android:entries="@array/err_type_mapdust_labels"
 			android:entryValues="@array/err_type_mapdust_values"
 	        />
 	    <net.bmaron.openfixmap.MultiSelectListPreference
 	        android:key="pl_errors_osmose"
 	        android:title="Osmose Errors"
-	        android:summary="Choose errors you want to display"
+	        android:summary="@string/pref_choose_errors"
             android:entries="@array/err_type_osmose_labels"
 			android:entryValues="@array/err_type_osmose_values"
 	        />
 	    <net.bmaron.openfixmap.MultiSelectListPreference
 	        android:key="pl_errors_keepright"
 	        android:title="Keepright Errors"
-	        android:summary="Choose errors you want to display"
+	        android:summary="@string/pref_choose_errors"
             android:entries="@array/err_type_keepright_labels"
 			android:entryValues="@array/err_type_keepright_values"
 	        />

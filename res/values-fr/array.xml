@@ -2,7 +2,6 @@
 <resources>
   <string-array name="err_type_mapdust_labels"><item>Autre</item>
 <item>Virage erroné</item>
-<item>Mauvais routage</item>
 <item>Rue à sens unique</item>
 <item>Rue bloquée</item>
 <item>Rue manquante</item>
