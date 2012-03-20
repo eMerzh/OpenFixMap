@@ -1,5 +1,9 @@
 package net.bmaron.openfixmap.ErrorParsers;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -43,9 +47,14 @@ public class Osmose extends ErrorPlatform {
 	public boolean closeError(ErrorItem item) {
 		super.closeError(item);
 		HttpClient httpclient = new DefaultHttpClient();
-		//http://osmose.openstreetmap.fr/cgi-bin/status.py?e=248-1-0-way102341452_way102341423&s=false
 		try {
-			Uri.Builder b = Uri.parse("http://osmose.openstreetmap.fr/api/0.1/closePOIexec").buildUpon();
+			String host;
+        	String env= getManager().getPreferences().getString("env");
+    		if(env != null && env.equals("debug"))
+    			host = "dev.osmose.openstreetmap.fr";
+			else
+				host = "osmose.openstreetmap.fr";
+			Uri.Builder b = Uri.parse("http://" + host + "/api/0.1/closePOIexec").buildUpon();
 			b.appendQueryParameter("id", (String) item.getExtendedInfo().get("id"));
     		HttpGet httpget = new HttpGet(b.build().toString());
 
@@ -53,7 +62,14 @@ public class Osmose extends ErrorPlatform {
 	        logger.info("Put: "+ httpget.getURI());
 			// Execute HTTP Post Request
 
-    		httpclient.execute(httpget);
+	        HttpResponse response = httpclient.execute(httpget);
+	        logger.info("Put: "+ httpget.getURI());
+			BufferedReader rd = new BufferedReader(new InputStreamReader(
+					response.getEntity().getContent()));
+			String line = "";
+			while ((line = rd.readLine()) != null) {
+				logger.info("get "+line);
+			}
     		return true;
 
 		} catch (Exception e) {

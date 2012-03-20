@@ -102,10 +102,12 @@ public class OsmoseParser{
 				        tItem.getExtendedInfo().put("id",next[2]);
 				        tItem.getExtendedInfo().put("type",next[2]);
 				        tItem.setLink("http://osmose.openstreetmap.fr/map/?zoom=18&lat=" + tItem.getLat() + "&lon=" +tItem.getLon());
-				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssz"); 
+				        String str[]=next[0].split("\\.");
+			            logger.info("grr "+ next[0]);
+				        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 						try {
 					        Date dateObj;
-							dateObj = curFormater.parse(next[0]);
+							dateObj = curFormater.parse(str[0]);
 					        tItem.setDate(dateObj);
 
 						} catch (ParseException e) {
