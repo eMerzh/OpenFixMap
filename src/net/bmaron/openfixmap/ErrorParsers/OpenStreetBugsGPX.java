@@ -133,15 +133,19 @@ public class OpenStreetBugsGPX extends DefaultHandler {
 			tempItem.setId(Integer.parseInt(tempVal));
 		}else if (qName.equalsIgnoreCase("Desc")) {
 			
-			Pattern pattern_date = Pattern.compile("(.+)(\\[(.*), (.*) CET\\])$");
+			Pattern pattern_date = Pattern.compile("(.+)(\\[(.*)(, (.*) (.+?))?\\])$");
 			Matcher matcher_date = pattern_date.matcher(tempVal);
 			if(matcher_date.find()) {
-				tempItem.setDescription(matcher_date.group(1));
+				tempItem.setDescription(matcher_date.group(1).replaceAll("<hr />", "\n"));
 		        SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 				try {
 					// Try to fetch date
-			        Date dateObj;
-					dateObj = curFormater.parse(matcher_date.group(4));
+			        Date dateObj = null;
+			        try {
+			        	dateObj = curFormater.parse(matcher_date.group(4));
+			        } catch(java.lang.NullPointerException e) {
+			        	
+			        }
 					tempItem.setDate(dateObj);
 					
 				} catch (ParseException e) {
