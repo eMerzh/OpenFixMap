@@ -62,7 +62,7 @@ public class KeepRightCSVParser{
         	HttpClient httpClient = new DefaultHttpClient();
         	HttpContext localContext = new BasicHttpContext();
         	List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-        	qparams.add(new BasicNameValuePair("format", "gpx"));
+        	qparams.add(new BasicNameValuePair("format", "csv"));
 			if(show_closed)	{
 				qparams.add(new BasicNameValuePair("show_ign", "1")); // Show Ignored 
 				qparams.add(new BasicNameValuePair("show_tmpign", "1")); // Show Corrected
@@ -98,15 +98,15 @@ public class KeepRightCSVParser{
 		    for(;;) {
 		    	next = reader.readNext();
 		        if(next != null){
-		        	if(next.length == 16) {
+		        	if(next.length == 18) {
 		        		ErrorItem tItem = new ErrorItem(error);
 				        tItem.setLat(Double.parseDouble(next[0]));
 				        tItem.setLon(Double.parseDouble(next[1]));
 				        tItem.setTitle(next[2]);
-				        tItem.setDescription(Html.fromHtml(next[10]).toString());
-				        tItem.setId(Integer.parseInt(next[9]));
-				        tItem.getExtendedInfo().put("schema",next[8]);
-				        tItem.setLink("http://keepright.ipax.at/report_map.php?schema=" +next[8]+ "&error=" + tItem.getId());
+				        tItem.setDescription(Html.fromHtml(next[11]).toString());
+				        tItem.setId(Integer.parseInt(next[10]));
+				        tItem.getExtendedInfo().put("schema",next[9]);
+				        tItem.setLink("http://keepright.ipax.at/report_map.php?schema=" +next[9]+ "&error=" + tItem.getId());
 						try {
 							dateObj = curFormater.parse(next[7]);
 					        tItem.setDate(dateObj);
