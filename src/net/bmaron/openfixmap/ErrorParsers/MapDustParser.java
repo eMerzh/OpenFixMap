@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import net.bmaron.openfixmap.ErrorItem;
 import net.bmaron.openfixmap.R;
@@ -22,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osmdroid.util.BoundingBoxE6;
+
 
 public class MapDustParser{
 	
@@ -95,7 +97,7 @@ public class MapDustParser{
 				logger.info("Type" + jroot.getString("type"));
 
 				JSONArray jitemArr = jroot.getJSONArray("features"); 
-			    SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); 
+			    SimpleDateFormat curFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
 
 				for (int i = 0; i < jitemArr.length(); i++) {
 	        		ErrorItem tItem = new ErrorItem(error);
