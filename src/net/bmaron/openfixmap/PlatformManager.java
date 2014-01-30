@@ -30,7 +30,8 @@ public class PlatformManager {
 		lPlatforms = new ArrayList<ErrorPlatform>();
 		lPlatforms.add(new OpenStreetBugs(this));
 		lPlatforms.add(new KeepRight(this));
-		lPlatforms.add(new MapDust(this));
+		//@TODO: Temporary disabled the Mapdust parser   
+		//lPlatforms.add(new MapDust(this));
 		lPlatforms.add(new Osmose(this));
 		instance=this;
 	}

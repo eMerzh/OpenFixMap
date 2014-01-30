@@ -3,7 +3,7 @@
 	<string-array translatable="false" name="errorBackend">
         <item>KeepRight</item>
         <item>OpenStreetBugs</item>
-		<item>MapDust</item>
+		<!-- <item>MapDust</item>  -->
 		<item>Osmose</item>
     </string-array>
     
