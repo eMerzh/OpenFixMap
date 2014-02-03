@@ -48,28 +48,20 @@ public class Osmose extends ErrorPlatform {
 		super.closeError(item);
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
-			String host;
-        	String env= getManager().getPreferences().getString("env");
-    		if(env != null && env.equals("debug"))
-    			host = "dev.osmose.openstreetmap.fr";
-			else
-				host = "osmose.openstreetmap.fr";
-			Uri.Builder b = Uri.parse("http://" + host + "/api/0.1/closePOIexec").buildUpon();
-			b.appendQueryParameter("id", (String) item.getExtendedInfo().get("id"));
-    		HttpGet httpget = new HttpGet(b.build().toString());
+
+    		HttpGet httpget = new HttpGet("http://osmose.openstreetmap.fr/en/api/0.2/error/" + item.getId() + "/done");
 
 			org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OpenFixMapActivity.class);
-	        logger.info("Put: "+ httpget.getURI());
-			// Execute HTTP Post Request
-
+			// Execute HTTP Request
 	        HttpResponse response = httpclient.execute(httpget);
 	        logger.info("Put: "+ httpget.getURI());
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
+			// Only for debug, url give errors message
+			 /* BufferedReader rd = new BufferedReader(new InputStreamReader(
 					response.getEntity().getContent()));
 			String line = "";
 			while ((line = rd.readLine()) != null) {
 				logger.info("get "+line);
-			}
+			}*/
     		return true;
 
 		} catch (Exception e) {
