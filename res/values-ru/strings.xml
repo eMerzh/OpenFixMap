@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">OpenFixMap</string>
-  <string name="multiselect_all">All / None</string>
+  <string name="multiselect_all">Все/Ни одной</string>
   <string name="menu_switchlayer_button">Выбрать подложку</string>
   <string name="menu_pref_button">Настройки</string>
   <string name="main_fetch_btn">Скачать ошибки</string>
@@ -16,7 +16,7 @@
   <string name="pref_err_level_sum">Показывать ошибки по уровню тяжести</string>
   <string name="pref_closed_title">Показывать закрытые</string>
   <string name="pref_closed_sum">Показывать уже закрытые ошибки</string>
-  <string name="pref_choose_errors">Choose errors you want to display</string>
+  <string name="pref_choose_errors">Выберите ошибки, которые вы хотите видеть</string>
   <string name="parser_platform">Ошибка загрузки</string>
   <string name="details_close_btn">Закрыть</string>
   <string name="details_note_btn">Заметка</string>
@@ -28,7 +28,7 @@
   <string name="dialog_status_invalid">Неопределено</string>
   <string name="detail_mark_as_close_btn">Исправлено</string>
   <string name="dialog_close_message">Ошибка закрыта, спасибо! Обновите ошибки, чтобы увидеть изменения</string>
-  <string name="error_not_found">Unable to display the error. If the problem persist, please report a bug!</string>
+  <string name="error_not_found">Не удается показать ошибки. Если проблема не исчезнет, пожалуйста, сообщите об ошибке!</string>
   <string name="report_no_parser">Не выбран сервис, позволяющий добавлять ошибки</string>
   <string name="report_platform_txt">Сервис</string>
   <string name="report_platform_spin_title">Выберите сервис</string>
@@ -51,8 +51,8 @@
   <string name="crash_dialog_ok_toast">Спасибо!</string>
   <string name="acd_go_to_location">Перейти к текущей позиции</string>
   <plurals name="numberOfDownloadedItems">
-<item quantity="one">Загружен один объект.</item>
-<item quantity="few">Загружено %d объекта.</item>
-<item quantity="other">Загружено %d объектов.</item>
-</plurals>
+    <item quantity="one">Загружен один объект.</item>
+    <item quantity="few">Загружено %d объекта.</item>
+    <item quantity="other">Загружено %d объектов.</item>
+  </plurals>
 </resources>

@@ -1,120 +1,68 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="err_type_mapdust_labels"><item>Muu</item>
-<item>Vale pööre</item>
-<item>Ühesuunaline tee</item>
-<item>Blokeeritud tänav</item>
-<item>Puuduv tänav</item>
-<item>Ümbersuunamise probleem</item>
-<item>Puuduv kiiruse info</item>
-</string-array>
-  <string-array name="err_type_osmose_labels"><item>overlapping buildings</item>
-<item>duplicate node</item>
-<item>way without node</item>
-<item>way of 1 node</item>
-<item>not valid polygone</item>
-<item>reversed turnabout</item>
-<item>boundary intersect</item>
-<item>highway vs building</item>
-<item>Orphan nodes</item>
-<item>dissimilar types of roads</item>
-<item>not closed area=yes</item>
-<item>bad connection of *_link</item>
-<item>broken continuity of highway</item>
-<item>ferme basque</item>
-<item>junction=roundabout</item>
-<item>ele=…</item>
-<item>oneway=</item>
-<item>source=…</item>
-<item>parent tag</item>
-<item>Street number</item>
-<item>highway roundabout</item>
-<item>bad source tag</item>
-<item>tagwatch cleaner</item>
-<item>wikipedia</item>
-<item>links between tags</item>
-<item>incorrect tag</item>
-<item>bad tag value</item>
-<item>similar values</item>
-<item>multiple values</item>
-<item>pool with natural=water</item>
-<item>abandoned</item>
-<item>on junction=roundabout</item>
-<item>incompatible tags</item>
-<item>ref in name</item>
-<item>corine crumbs</item>
-<item>seamark:fixme</item>
-<item>construction</item>
-<item>duplicate POI</item>
-<item>Spelling</item>
-<item>way type</item>
-<item>2 names</item>
-<item>toponymy</item>
-<item>soundex test</item>
-<item>open polygon</item>
-<item>duplicate way</item>
-<item>place without name</item>
-<item>code INSEE</item>
-<item>admin_level</item>
-<item>hole in admin_level=8</item>
-<item>geodesic building</item>
-<item>admin boundary</item>
-<item>OpenStreetBugs</item>
-<item>power lines</item>
-</string-array>
-  <string-array name="err_type_keepright_labels"><item>mitte suletud alad</item>
-<item>tupik ühesuunalised</item>
-<item>pea-aegu ühendused</item>
-<item>iganenud sildid</item>
-<item>puuduvad sildid</item>
-<item>Kiirteed ilma ref</item>
-<item>palvekohad ilma religioonita</item>
-<item>huvikohad ilma nimeta</item>
-<item>punktideta jooned</item>
-<item>ujuvad saared</item>
-<item>sildita raudtee ületuskohad</item>
-<item>valesti kasutatud raudtee ületuse silt</item>
-<item>paranda-mind sildistatud asjad</item>
-<item>ilma tüübita relatsioonid</item>
-<item>tee-tee</item>
-<item>tee-veetee</item>
-<item>tee-jõekallas</item>
-<item>veetee-veetee</item>
-<item>cycleway-cycleway</item>
-<item>highway-cycleway</item>
-<item>cycleway-waterway</item>
-<item>cycleway-riverbank</item>
-<item>tee-tee</item>
-<item>tee-veetee</item>
-<item>tee-jõekallas</item>
-<item>veetee-veetee</item>
-<item>cycleway-cycleway</item>
-<item>highway-cycleway</item>
-<item>cycleway-waterway</item>
-<item>cycleway-riverbank</item>
-<item>ringid</item>
-<item>valesti kirjutatud sildid</item>
-<item>ristumised eri kihtidel</item>
-<item>imelikud kihid</item>
-<item>vahetult ühendatud kiirteed</item>
-<item>puuduv nimi</item>
-<item>puuduv admin_level</item>
-<item>mitte suletud ring</item>
-<item>jagunev piir</item>
-<item>puuduv tüüp</item>
-<item>puuduv kust (from) joon</item>
-<item>puuduv kuhu (to) joon</item>
-<item>mitte suletud ring</item>
-<item>vale suund</item>
-<item>faintly connected</item>
-<item>silla sildid</item>
-<item>non-physical use of sport-tag</item>
-<item>http error</item>
-<item>domain hijacking</item>
-<item>non-match</item>
-<item>mitu punkti ühes kohas</item>
-<item>puuduv maksimaalne kiirus</item>
-<item>language unknown</item>
-<item>missing tracktype</item>
-</string-array>
+  <string-array name="err_type_mapdust_labels">
+    <item>Muu</item>
+    <item>Vale pööre</item>
+    <item>Ühesuunaline tee</item>
+    <item>Blokeeritud tänav</item>
+    <item>Puuduv tänav</item>
+    <item>Ümbersuunamise probleem</item>
+    <item>Puuduv kiiruse info</item>
+  </string-array>
+  <string-array name="err_type_keepright_labels">
+    <item>mitte suletud alad</item>
+    <item>tupik ühesuunalised</item>
+    <item>pea-aegu ühendused</item>
+    <item>iganenud sildid</item>
+    <item>puuduvad sildid</item>
+    <item>Kiirteed ilma ref</item>
+    <item>palvekohad ilma religioonita</item>
+    <item>huvikohad ilma nimeta</item>
+    <item>punktideta jooned</item>
+    <item>ujuvad saared</item>
+    <item>sildita raudtee ületuskohad</item>
+    <item>valesti kasutatud raudtee ületuse silt</item>
+    <item>paranda-mind sildistatud asjad</item>
+    <item>ilma tüübita relatsioonid</item>
+    <item>tee-tee</item>
+    <item>tee-veetee</item>
+    <item>tee-jõekallas</item>
+    <item>veetee-veetee</item>
+    <item>cycleway-cycleway</item>
+    <item>highway-cycleway</item>
+    <item>cycleway-waterway</item>
+    <item>cycleway-riverbank</item>
+    <item>tee-tee</item>
+    <item>tee-veetee</item>
+    <item>tee-jõekallas</item>
+    <item>veetee-veetee</item>
+    <item>cycleway-cycleway</item>
+    <item>highway-cycleway</item>
+    <item>cycleway-waterway</item>
+    <item>cycleway-riverbank</item>
+    <item>ringid</item>
+    <item>valesti kirjutatud sildid</item>
+    <item>ristumised eri kihtidel</item>
+    <item>imelikud kihid</item>
+    <item>vahetult ühendatud kiirteed</item>
+    <item>puuduv nimi</item>
+    <item>puuduv admin_level</item>
+    <item>mitte suletud ring</item>
+    <item>jagunev piir</item>
+    <item>puuduv tüüp</item>
+    <item>puuduv kust (from) joon</item>
+    <item>puuduv kuhu (to) joon</item>
+    <item>mitte suletud ring</item>
+    <item>vale suund</item>
+    <item>nõrgalt ühendatud</item>
+    <item>silla sildid</item>
+    <item>mittefüüsiline spordisildi kasutamine</item>
+    <item>http error</item>
+    <item>domain hijacking</item>
+    <item>non-match</item>
+    <item>mitu punkti ühes kohas</item>
+    <item>puuduv maksimaalne kiirus</item>
+    <item>tundmatu keel</item>
+    <item>missing tracktype</item>
+  </string-array>
 </resources>

@@ -1,121 +1,124 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="err_type_mapdust_labels"><item>Andere</item>
-<item>Wrong turn</item>
-<item>Einbahnstraße</item>
-<item>Gesperrte Straße</item>
-<item>Fehlende Straße</item>
-<item>Fehler im Kreisverkehr</item>
-<item>Fehlende Geschwindigkeitsbegrenzung</item>
-<item>Schlechte Routenführung</item>
-</string-array>
-  <string-array name="err_type_osmose_labels"><item>overlapping buildings</item>
-<item>duplicate node</item>
-<item>way without node</item>
-<item>way of 1 node</item>
-<item>not valid polygone</item>
-<item>reversed turnabout</item>
-<item>boundary intersect</item>
-<item>highway vs building</item>
-<item>Orphan nodes</item>
-<item>dissimilar types of roads</item>
-<item>not closed area=yes</item>
-<item>bad connection of *_link</item>
-<item>broken continuity of highway</item>
-<item>ferme basque</item>
-<item>junction=roundabout</item>
-<item>ele=…</item>
-<item>oneway=</item>
-<item>source=…</item>
-<item>parent tag</item>
-<item>Street number</item>
-<item>highway roundabout</item>
-<item>bad source tag</item>
-<item>tagwatch cleaner</item>
-<item>wikipedia</item>
-<item>links between tags</item>
-<item>incorrect tag</item>
-<item>bad tag value</item>
-<item>similar values</item>
-<item>multiple values</item>
-<item>pool with natural=water</item>
-<item>abandoned</item>
-<item>on junction=roundabout</item>
-<item>incompatible tags</item>
-<item>ref in name</item>
-<item>corine crumbs</item>
-<item>seamark:fixme</item>
-<item>construction</item>
-<item>duplicate POI</item>
-<item>Spelling</item>
-<item>way type</item>
-<item>2 names</item>
-<item>toponymy</item>
-<item>soundex test</item>
-<item>open polygon</item>
-<item>duplicate way</item>
-<item>place without name</item>
-<item>code INSEE</item>
-<item>admin_level</item>
-<item>hole in admin_level=8</item>
-<item>geodesic building</item>
-<item>admin boundary</item>
-<item>OpenStreetBugs</item>
-<item>power lines</item>
-</string-array>
-  <string-array name="err_type_keepright_labels"><item>non-closed areas</item>
-<item>dead-ended one-ways</item>
-<item>almost-junctions</item>
-<item>deprecated tags</item>
-<item>missing tags</item>
-<item>motorways without ref</item>
-<item>places of worship without religion</item>
-<item>point of interest without name</item>
-<item>ways without nodes</item>
-<item>floating islands</item>
-<item>railway crossings without tag</item>
-<item>wrongly used railway crossing tag</item>
-<item>fixme-tagged items</item>
-<item>relations without type</item>
-<item>highway-highway</item>
-<item>highway-waterway</item>
-<item>highway-riverbank</item>
-<item>waterway-waterway</item>
-<item>cycleway-cycleway</item>
-<item>highway-cycleway</item>
-<item>cycleway-waterway</item>
-<item>cycleway-riverbank</item>
-<item>highway-highway</item>
-<item>highway-waterway</item>
-<item>highway-riverbank</item>
-<item>waterway-waterway</item>
-<item>cycleway-cycleway</item>
-<item>highway-cycleway</item>
-<item>cycleway-waterway</item>
-<item>cycleway-riverbank</item>
-<item>loopings</item>
-<item>misspelled tags</item>
-<item>mixed layers intersections</item>
-<item>strange layers</item>
-<item>motorways connected directly</item>
-<item>missing name</item>
-<item>missing admin_level</item>
-<item>not closed loop</item>
-<item>splitting boundary</item>
-<item>missing type</item>
-<item>missing from way</item>
-<item>missing to way</item>
-<item>not closed loop</item>
-<item>wrong direction</item>
-<item>faintly connected</item>
-<item>bridge-tags</item>
-<item>non-physical use of sport-tag</item>
-<item>http error</item>
-<item>domain hijacking</item>
-<item>non-match</item>
-<item>multiple nodes on the same spot</item>
-<item>missing maxspeed</item>
-<item>language unknown</item>
-<item>missing tracktype</item>
-</string-array>
+  <string-array name="err_type_mapdust_labels">
+    <item>Andere</item>
+    <item>Wrong turn</item>
+    <item>Einbahnstraße</item>
+    <item>Gesperrte Straße</item>
+    <item>Fehlende Straße</item>
+    <item>Fehler im Kreisverkehr</item>
+    <item>Fehlende Geschwindigkeitsbegrenzung</item>
+    <item>Schlechte Routenführung</item>
+  </string-array>
+  <string-array name="err_type_osmose_labels">
+    <item>Überlappende Gebäude</item>
+    <item>Doppelte Knoten</item>
+    <item>Wege ohne Knoten</item>
+    <item>Wege mit nur einem Knoten</item>
+    <item>Ungültige Polygone</item>
+    <item>Verdrehter Kreisverkehr</item>
+    <item>Überschneidende Grenzen</item>
+    <item>Straße vs Gebäude</item>
+    <item>Verwaiste Knoten</item>
+    <item>Unterschiedliche Wegtypen</item>
+    <item>Nicht geschlossenes area=yes</item>
+    <item>Schlechte Verbindung von *_link</item>
+    <item>Unterbrochene Straße</item>
+    <item>Ferme basque</item>
+    <item>junction=roundabout</item>
+    <item>ele=…</item>
+    <item>oneway=</item>
+    <item>source=…</item>
+    <item>Eltern-Tag</item>
+    <item>Straßennummer</item>
+    <item>highway roundabout</item>
+    <item>Schlechtes Source-Tag</item>
+    <item>Tagwatch Cleaner</item>
+    <item>wikipedia</item>
+    <item>links between tags</item>
+    <item>Fehlerhaftes Tag</item>
+    <item>Schlechter Tag-Wert</item>
+    <item>Ähnliche Werte</item>
+    <item>Mehrere Werte</item>
+    <item>Pool mit natural=water</item>
+    <item>Abandoned</item>
+    <item>on junction=roundabout</item>
+    <item>Unvollständige Tags</item>
+    <item>ref im Namen</item>
+    <item>Corine Stücke</item>
+    <item>Seamark:fixme</item>
+    <item>Construction</item>
+    <item>Doppelte POI</item>
+    <item>Rechtschreibung</item>
+    <item>Wegtyp</item>
+    <item>2 Namen</item>
+    <item>Toponymie</item>
+    <item>Soundex Test</item>
+    <item>Offenes Polygon</item>
+    <item>Doppelter Weg</item>
+    <item>Ort ohne Namen</item>
+    <item>Code INSEE</item>
+    <item>admin_level</item>
+    <item>Lücke in admin_level=8</item>
+    <item>Geodätisches Gebäude</item>
+    <item>Admin-Grenze</item>
+    <item>OpenStreetBugs</item>
+    <item>Stromleitungen</item>
+  </string-array>
+  <string-array name="err_type_keepright_labels">
+    <item>Nicht-geschlossene Flächen</item>
+    <item>Einbahn-Sackgassen</item>
+    <item>Beinahe-Verbindungen</item>
+    <item>Veraltete Tags</item>
+    <item>Fehlende Tags</item>
+    <item>Autobahnen ohne ref</item>
+    <item>Anbetungshäuser ohne Religion</item>
+    <item>Interessanter Ort (POI) ohne Name</item>
+    <item>Linien ohne Punkte</item>
+    <item>Freistehende Inseln</item>
+    <item>Eisenbahnkreuzung ohne Tag</item>
+    <item>falsch verwendetes Eisenbahnkreuzungs-Tag</item>
+    <item>Korrekturhinweis (fixme)</item>
+    <item>Relationen ohne Typ</item>
+    <item>Straße-Straße</item>
+    <item>Straße-Gewässer</item>
+    <item>Straße-Ufer</item>
+    <item>Gewässer-Gewässer</item>
+    <item>Radweg-Radweg</item>
+    <item>Straße-Radweg</item>
+    <item>Radweg-Gewässer</item>
+    <item>Radweg-Ufer</item>
+    <item>Straße-Straße</item>
+    <item>Straße-Gewässer</item>
+    <item>Straße-Ufer</item>
+    <item>Gewässer-Gewässer</item>
+    <item>Radweg-Radweg</item>
+    <item>Straße-Radweg</item>
+    <item>Radweg-Gewässer</item>
+    <item>Radweg-Ufer</item>
+    <item>Schleifen</item>
+    <item>Tippfehler in Tags</item>
+    <item>Kreuzungen auf unterschiedlichen Ebenen</item>
+    <item>sonderbarer Ebenen</item>
+    <item>direkte Autobahn-Verbindungen</item>
+    <item>Name fehlt</item>
+    <item>Rang (admin_level) fehlt</item>
+    <item>nicht geschlossen</item>
+    <item>Verlauf teilt sich</item>
+    <item>fehlender Type</item>
+    <item>\'von\' (from) fehlt</item>
+    <item>\'to\' (nach) fehlt</item>
+    <item>nicht geschlossen</item>
+    <item>falscher Drehsinn</item>
+    <item>wenige Verbindungen</item>
+    <item>Brücken-Tags</item>
+    <item>Sport-Tag ohne physikalisches Objekt</item>
+    <item>HTTP-Fehler</item>
+    <item>Domain-Hijacking</item>
+    <item>Fehlende Ähnlichkeit</item>
+    <item>mehrere Punkte an einem Fleck</item>
+    <item>keine Geschwindigkeitsangabe</item>
+    <item>welche Sprache?</item>
+    <item>kein tracktype</item>
+  </string-array>
 </resources>
