@@ -46,7 +46,7 @@ public class OpenStreetBugs extends ErrorPlatform {
 	
 	@Override
 	public boolean canAdd() {
-		return true;
+		return false;
 	}
 	
 	@Override
