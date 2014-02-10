@@ -54,7 +54,7 @@ public class MapDustParser{
     		String env= error.getManager().getPreferences().getString("env");
     		String url;
     		if(env != null && env.equals("debug"))
-    			url = "http://80.242.147.84/XY";
+    			url = "http://st.www.mapdust.com";
     		else
     			url = "http://www.mapdust.com";
     		

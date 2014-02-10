@@ -35,13 +35,13 @@ public class Preferences extends PreferenceActivity
 			list = new ArrayList<String>(Arrays.asList(values));
 		
 		Preference somePreference;
-// @TODO: Re-enable MapDust parser
-//		somePreference = findPreference("pl_errors_mapdust");
-//		if(list.contains("MapDust")) {
-//			somePreference.setEnabled(true);
-//		} else {
-//			somePreference.setEnabled(false);
-//		}
+
+		somePreference = findPreference("pl_errors_mapdust");
+		if(list.contains("MapDust")) {
+			somePreference.setEnabled(true);
+		} else {
+			somePreference.setEnabled(false);
+		}
 		
 		somePreference = findPreference("pl_errors_keepright");
 		if(list.contains("KeepRight")) {
