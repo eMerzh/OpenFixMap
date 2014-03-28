@@ -2,9 +2,7 @@ package net.bmaron.openfixmap;
 
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.tileprovider.MapTileProviderBase;
-import org.osmdroid.tileprovider.tilesource.CloudmadeTileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.tileprovider.util.CloudmadeUtil;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MyLocationOverlay;
@@ -19,7 +17,7 @@ import android.view.MotionEvent;
 
 public class FixMapView extends MapView {
 	private Handler mHandler;
-	private final CharSequence[] layers = {"OSM Mapnik", "No Name", "Mapquest", "Midnight", "CycleMap"};
+	private final CharSequence[] layers = {"OSM Mapnik", "Mapquest", "CycleMap"};
 	private MyLocationOverlay locationOverlay;
     GestureDetector mGestureDetector;
 
@@ -64,7 +62,7 @@ public class FixMapView extends MapView {
         mHandler = new Handler(); 
         setBuiltInZoomControls(true);
         setMultiTouchControls(true);
-        
+
         locationOverlay = new MyLocationOverlay(ctx, this);   
         getOverlays().add(locationOverlay);
         locationOverlay.enableMyLocation();
@@ -84,27 +82,15 @@ public class FixMapView extends MapView {
 	{
 
 		switch(source) {
-		case 0:
-			setTileSource(TileSourceFactory.MAPNIK);
-			break;
 		case 1:
-			CloudmadeTileSource map_source_noname = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
-			map_source_noname.setStyle(3);
-			CloudmadeUtil.retrieveCloudmadeKey(getContext());
-			setTileSource(map_source_noname);		
-			break;
-		case 2:
 			setTileSource(TileSourceFactory.MAPQUESTOSM);
 			break;
-		case 3:
-			CloudmadeTileSource map_source_cloud = (CloudmadeTileSource)TileSourceFactory.CLOUDMADESTANDARDTILES;
-			map_source_cloud.setStyle(999);
-			CloudmadeUtil.retrieveCloudmadeKey(getContext());
-			setTileSource(map_source_cloud);
-			break;
-		case 4:
-			setTileSource(TileSourceFactory.CYCLEMAP);
+		case 2:
+			setTileSource(TileSourceFactory.CYCLEMAP); break;
+		case 0:
+			setTileSource(TileSourceFactory.MAPNIK);
 		default:
+			setTileSource(TileSourceFactory.MAPNIK);
 			break;
 		}
 

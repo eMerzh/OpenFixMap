@@ -49,7 +49,6 @@
             
 		<activity android:name=".Preferences"></activity>
         <meta-data android:name="mapdust_key" android:value="67e91409b6c0963f707536d618b1c199"/>    
-        <meta-data android:name="CLOUDMADE_KEY" android:value="6b81f3de419d48c7aaaa25202dd81f63"/>
   		<meta-data android:name="env" android:value="debug"/>
     </application>
 
