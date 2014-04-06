@@ -24,6 +24,7 @@ public class FixMapView extends MapView {
     
 	public FixMapView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		
 		// TODO Auto-generated constructor stub
 	}
 

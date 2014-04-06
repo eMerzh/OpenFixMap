@@ -26,8 +26,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import net.bmaron.openfixmap.R;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
+import org.osmdroid.http.HttpClientFactory;
+import org.osmdroid.http.IHttpClientFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
@@ -53,6 +58,14 @@ public class OpenFixMapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        HttpClientFactory.setFactoryInstance(new IHttpClientFactory() {
+            public HttpClient createHttpClient() {
+                final DefaultHttpClient client = new DefaultHttpClient();
+                client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "OpenFixMap");
+                return client;
+            }
+        });
+        
         mHandler = new Handler(); 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	ApplicationInfo ai = null;
@@ -71,13 +84,14 @@ public class OpenFixMapActivity extends Activity {
         setContentView(R.layout.main);
 
         mapView = (FixMapView) findViewById(R.id.mapview);
+        mapView.getOverlayManager().getTilesOverlay().setOvershootTileCache(300);
         mapView.setup(this);
 
 
         /* Set position of last open or near Home :) */
 
         settings = getSharedPreferences("last_position", 0);
-    	mapView.loadMapSource(settings.getInt("map_layer",1));
+    	//mapView.loadMapSource(settings.getInt("map_layer",0));
 
         int lat = settings.getInt("last_position_lat",50838599);
         int lon = settings.getInt("last_position_lon",4406551);
@@ -85,7 +99,6 @@ public class OpenFixMapActivity extends Activity {
         
         mapView.getController().setZoom(zoom);
         mapView.getController().setCenter(new GeoPoint(lat, lon));
-
         mapView.getLocationOverlay().runOnFirstFix(new Runnable() {
             public void run() {
             	
